@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
+    <title>Home</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: black;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .pages {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pages>.item {
+            flex: 0 0 100%;
+            scroll-snap-align: start;
+            color: #fff;
+            padding-left: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .item:first-child {
+            text-align: center;
+            position: relative;
+            height: 100vh;
+            padding-top: 0;
+            padding-left: 0;
+            justify-content: center;
+        }
+
+        /* --- STYLES FOR FIXED HEADER --- */
+        .site-header {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 100;
+        }
+
+        .college-logo {
+            width: 60px;
+            height: auto;
+        }
+
+        .college-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: white;
+            margin: 0;
+            white-space: nowrap;
+        }
+
+        /* --- END OF HEADER STYLES --- */
+
+        .preloader {
+            width: 100%;
+            height: 100vh;
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle, #000020, #000000);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            z-index: 9999;
+            font-family: 'Orbitron', sans-serif;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .preloader-title {
+            color: #ffffff;
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+            opacity: 0;
+            animation: appear 0.8s forwards 0.2s;
+        }
+
+        .hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .logo {
+            color: #ffffff;
+            font-size: 3rem;
+            font-weight: bold;
+            letter-spacing: 8px;
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .logo span {
+            opacity: 0;
+            animation: appear 0.8s forwards;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        nav {
+            background: transparent;
+            width: 50px;
+            height: 25vh;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            align-items: center;
+        }
+
+        nav ul li {
+            position: relative;
+            width: 100%;
+            text-align: center;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.4rem;
+            transition: color 0.3s ease;
+            display: block;
+            padding: 10px 0;
+        }
+
+        nav ul li::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 0%;
+            background-color: #001f4d;
+            transition: height 0.3s ease;
+        }
+
+        nav ul li.active::after {
+            height: 100%;
+        }
+
+        nav ul li:hover::after {
+            height: 100%;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: gray;
+        }
+
+        .social-nav {
+            background: transparent;
+            width: auto;
+            height: 50px;
+            position: absolute;
+            top: 0;
+            right: 10px;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .social-nav ul {
+            list-style: none;
+            display: flex;
+            flex-direction: row;
+            gap: 0;
+            padding: 0;
+            margin: 0;
+        }
+
+        .social-nav ul li {
+            position: relative;
+            text-align: center;
+        }
+
+        .social-nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.4rem;
+            transition: color 0.3s ease;
+            display: block;
+            padding: 0 15px;
+        }
+
+        .social-nav ul li::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0%;
+            height: 3px;
+            transition: width 0.3s ease;
+        }
+
+        .social-nav ul li:hover::after {
+            width: 100%;
+        }
+
+        .social-nav ul li a:hover {
+            color: gray;
+        }
+
+        .departments {
+            color: white;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .events {
+            text-align: center;
+            width: 100%;
+        }
+
+        .message {
+            color: white;
+            font-size: 1.2rem;
+            margin-top: 20px;
+        }
+
+        .credits {
+            text-align: center;
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .credits h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .credits p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                width: 40px;
+                height: 25vh;
+            }
+
+            nav ul li a {
+                font-size: 1.1rem;
+                padding: 8px 0;
+            }
+
+            .pages>.item {
+                padding-left: 0px;
+            }
+
+            .social-nav {
+                height: 40px;
+                right: 5px;
+            }
+
+            .social-nav ul li a {
+                font-size: 1.1rem;
+                padding: 0 10px;
+            }
+
+            .site-header .college-logo {
+                width: 50px;
+            }
+
+            .site-header .college-title {
+                font-size: 1.2rem;
+            }
+        }
+
+        .centered-text {
+            color: #f0f0f0;
+            font-size: 3rem;
+            letter-spacing: 0.1em;
+            word-spacing: 0.6em;
+        }
+
+        @keyframes slideUpFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .centered-text span {
+            display: inline-block;
+            font-size: 80px;
+            opacity: 0;
+            animation: slideUpFadeIn 0.6s ease-out forwards;
+        }
+
+        /* Staggered animation delays for each letter */
+        .centered-text span:nth-child(1) {
+            animation-delay: 3.0s;
+        }
+
+        .centered-text span:nth-child(2) {
+            animation-delay: 3.1s;
+        }
+
+        .centered-text span:nth-child(3) {
+            animation-delay: 3.2s;
+        }
+
+        .centered-text span:nth-child(4) {
+            animation-delay: 3.3s;
+        }
+
+        .centered-text span:nth-child(5) {
+            animation-delay: 3.4s;
+        }
+
+        .centered-text span:nth-child(6) {
+            animation-delay: 3.5s;
+        }
+
+        .centered-text span:nth-child(7) {
+            animation-delay: 3.6s;
+        }
+
+        .centered-text span:nth-child(8) {
+            animation-delay: 3.7s;
+        }
+
+        .centered-text span:nth-child(9) {
+            animation-delay: 3.8s;
+        }
+
+        .centered-text span:nth-child(10) {
+            animation-delay: 3.9s;
+        }
+
+        .centered-text span:nth-child(11) {
+            animation-delay: 4.0s;
+        }
+
+        .centered-text span:nth-child(12) {
+            animation-delay: 4.1s;
+        }
+
+        .centered-text span:nth-child(13) {
+            animation-delay: 4.2s;
+        }
+
+        .centered-text span:nth-child(14) {
+            animation-delay: 4.3s;
+        }
+
+        .centered-text span:nth-child(15) {
+            animation-delay: 4.4s;
+        }
+
+        .centered-text span:nth-child(16) {
+            animation-delay: 4.5s;
+        }
+
+        .centered-text span:nth-child(17) {
+            animation-delay: 4.6s;
+        }
+
+        .centered-text span:nth-child(18) {
+            animation-delay: 4.7s;
+        }
+
+        /* Departments grid (desktop default) */
+        .depart {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            width: 1000px;
+            max-width: 1040px;
+            margin: 40px auto;
+            transition: all 0.6s ease-in-out;
+        }
+
+        /* Department big square buttons */
+        .department {
+            background: #007bff;
+            border-radius: 16px;
+            cursor: pointer;
+            aspect-ratio: 1/1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.6s ease-in-out;
+            /* smooth shape+size */
+            overflow: hidden;
+            border: 3px solid #ddd;
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            min-height: 180px;
+        }
+
+        .department i {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            transition: all 0.6s ease-in-out;
+        }
+
+        .department span {
+            font-size: 1em;
+            transition: opacity 0.4s ease-in-out;
+        }
+
+        .department:hover {
+            transform: scale(1.05);
+        }
+
+        /* Different colors */
+        .civil {
+            background: #A0522D;
+        }
+
+        .mechanical {
+            background: #2c3e50;
+        }
+
+        .electrical {
+            background: #FFD700;
+            color: black;
+        }
+
+        .electronics {
+            background: #28a745;
+        }
+
+        .cse {
+            background: #007bff;
+        }
+
+        .aids {
+            background: #6f42c1;
+        }
+
+        .it {
+            background: #17a2b8;
+        }
+
+        .cyber {
+            background: #dc3545;
+        }
+
+        /* Small mode → centered circles */
+        .depart.small {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin: 20px auto;
+            padding: 10px;
+            overflow-x: auto;
+            scrollbar-width: thin;
+            max-width: 100%;
+        }
+
+        .depart.small .department {
+            width: 70px;
+            height: 70px;
+            font-size: 0.6em;
+            flex-shrink: 0;
+            border-radius: 50%;
+            /* morph into circle */
+            min-height: auto;
+            aspect-ratio: auto;
+        }
+
+        .depart.small .department i {
+            font-size: 1.2em;
+            margin-bottom: 2px;
+        }
+
+        .depart.small .department span {
+            opacity: 0;
+        }
+
+        /* Event details */
+        .event-details {
+            display: none;
+            width: 90%;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .event-details.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .event-details h4 {
+            color: #ffffff;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+        }
+
+        .event-details p {
+            color: #dddddd;
+            font-size: 1rem;
+            margin: 5px 0;
+            line-height: 1.5;
+        }
+
+        .techeven, .coor {
+            margin-bottom: 20px;
+        }
+
+        #no-selection {
+            color: #ffffff;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        /* Buttons */
+        .event-actions {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s ease;
+        }
+
+        .btn.back {
+            background: #2c3e50;
+            color: white;
+        }
+
+        .btn.register {
+            background: #27ae60;
+            color: white;
+        }
+
+        .btn.back:hover {
+            background: #1a242f;
+        }
+
+        .btn.register:hover {
+            background: #1e8449;
+        }
+
+        /* Mobile view */
+        @media (max-width: 768px) {
+            .depart {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 100%;
+            }
+
+            .department {
+                min-height: 120px;
+                font-size: 14px;
+            }
+
+            .department i {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="preloader" id="preloader">
+        <div class="preloader-title"><img src="images/Gemini_Generated_Image_nyl78knyl78knyl7-removebg-preview.png"
+                alt="RPSIT Preloader Logo" style="width: 150px; height: 170px;"></div>
+        <div class="logo">
+            <span>R</span>
+            <span>P</span>
+            <span>S</span>
+            <span>I</span>
+            <span>T</span>
+        </div>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="#" class="active" aria-label="Home"><i class="fas fa-house"></i></a></li>
+            <li><a href="#" aria-label="Building"><i class="fas fa-building"></i></a></li>
+            <li><a href="#" aria-label="Documents"><i class="fas fa-file-alt"></i></a></li>
+            <li><a href="#" aria-label="Team"><i class="fas fa-users"></i></a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="pages">
+            <div class="item">
+                <div class="site-header">
+                    <img src="images/Gemini_Generated_Image_nyl78knyl78knyl7-removebg-preview.png"
+                        alt="R P Sarathy Institute of Technology Logo" class="college-logo" />
+                    <h1 class="college-title">R P Sarathy Institute of Technology</h1>
+                </div>
+                <div class="social-nav">
+                    <ul>
+                        <li><a href="mailto:info@rpsit.ac.in" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                        </li>
+                        <li><a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i
+                                    class="fab fa-instagram"></i></a></li>
+                        <li><a href="https://www.facebook.com" target="_blank" aria-label="Facebook"><i
+                                    class="fab fa-facebook"></i></a></li>
+                    </ul>
+                </div>
+                <h1 class="centered-text">
+                    <span>I</span><span>N</span><span>F</span><span>I</span><span>N</span><span>I</span><span>T</span><span>E</span>
+                    <span>T</span><span>E</span><span>C</span><span>H</span><span>F</span><span>E</span><span>S</span><span>T</span>
+                    <span>2</span><span>5</span>
+                </h1>
+            </div>
+            <div class="item departments" id="departments">
+                <!-- Departments -->
+                <div class="depart" id="depart">
+                    <div class="department civil" onclick="showEvents('Civil Engineering', event)"
+                        style="background-image: url(images/sh.png); background-size: cover; background-repeat: no-repeat; background-position: center;">
+                    </div>
+                    <div class="department mechanical" onclick="showEvents('Mechanical Engineering', event)"
+                        style="background-image: url(images/mech.png); background-size: cover; background-repeat: no-repeat; background-position: center;">
+                    </div>
+                    <div class="department electrical"
+                        onclick="showEvents('Electrical and Electronics Engineering', event)"
+                        style="background-image: url(images/eee.png); background-size: cover; background-repeat: no-repeat; background-position: center;">
+                    </div>
+                    <div class="department electronics"
+                        onclick="showEvents('Electronics and Communication Engineering', event)"
+                        style="background-image: url(images/ece.png); background-size: cover; background-repeat: no-repeat; background-position: center;">
+                    </div>
+                    <div class="department cse" onclick="showEvents('Computer Science and Engineering', event)"
+                        style="background-image: url(images/cse.png); background-size: cover; background-repeat: no-repeat; background-position: center;">
+                    </div>
+                    <div class="department aids" onclick="showEvents('Artificial Intelligence & Data Science', event)"
+                        style="background-image: url(images/aids.png); background-size: cover; background-repeat: no-repeat; background-position: center;">
+                    </div>
+                    <div class="department it" onclick="showEvents('Information Technology', event)"
+                        style="background-image: url(images/it.png); background-size: cover; background-repeat: no-repeat; background-position: center;">
+                    </div>
+                    <div class="department cyber"
+                        onclick="showEvents('Computer Science and Engineering (Cyber Security)', event)"
+                        style="background-image: url(images/cys.png); background-size: cover; background-repeat: no-repeat; background-position: center;">
+                    </div>
+                </div>
+            </div>
+            <div class="item events">
+                <h2>Event Details</h2>
+                <div id="no-selection" class="message">Please select a department from the Departments section to view details.</div>
+                <div class="event-content">
+                    <div class="event-details" data-dept="Civil Engineering">
+                        <div class="techeven">
+                            <h4>Technical Events</h4>
+                            <p>Bridge Building Competition</p>
+                            <p>Structural Design Workshop</p>
+                            <p>Surveying Challenge</p>
+                        </div>
+                        <div class="coor">
+                            <h4>Coordinators Details</h4>
+                            <p>Staff Coordinators: Mr. A. Civil - 1234567890</p>
+                            <p>Student Coordinators: Ms. B. Student - 0987654321</p>
+                        </div>
+                        <div class="event-actions">
+                            <button class="btn back" onclick="goBack()">⬅ Back</button>
+                            <button class="btn register">Register</button>
+                        </div>
+                    </div>
+                    <div class="event-details" data-dept="Mechanical Engineering">
+                        <div class="techeven">
+                            <h4>Technical Events</h4>
+                            <p>Robotics Assembly</p>
+                            <p>CAD Modeling Contest</p>
+                            <p>Thermodynamics Quiz</p>
+                        </div>
+                        <div class="coor">
+                            <h4>Coordinators Details</h4>
+                            <p>Staff Coordinators: Mr. C. Mech - 1234567890</p>
+                            <p>Student Coordinators: Ms. D. Student - 0987654321</p>
+                        </div>
+                        <div class="event-actions">
+                            <button class="btn back" onclick="goBack()">⬅ Back</button>
+                            <button class="btn register">Register</button>
+                        </div>
+                    </div>
+                    <div class="event-details" data-dept="Electrical and Electronics Engineering">
+                        <div class="techeven">
+                            <h4>Technical Events</h4>
+                            <p>Circuit Design Hackathon</p>
+                            <p>Power Systems Seminar</p>
+                            <p>Embedded Systems Project</p>
+                        </div>
+                        <div class="coor">
+                            <h4>Coordinators Details</h4>
+                            <p>Staff Coordinators: Mr. E. EEE - 1234567890</p>
+                            <p>Student Coordinators: Ms. F. Student - 0987654321</p>
+                        </div>
+                        <div class="event-actions">
+                            <button class="btn back" onclick="goBack()">⬅ Back</button>
+                            <button class="btn register">Register</button>
+                        </div>
+                    </div>
+                    <div class="event-details" data-dept="Electronics and Communication Engineering">
+                        <div class="techeven">
+                            <h4>Technical Events</h4>
+                            <p>Signal Processing Workshop</p>
+                            <p>VLSI Design Competition</p>
+                            <p>Wireless Communication Challenge</p>
+                        </div>
+                        <div class="coor">
+                            <h4>Coordinators Details</h4>
+                            <p>Staff Coordinators: Mr. G. ECE - 1234567890</p>
+                            <p>Student Coordinators: Ms. H. Student - 0987654321</p>
+                        </div>
+                        <div class="event-actions">
+                            <button class="btn back" onclick="goBack()">⬅ Back</button>
+                            <button class="btn register">Register</button>
+                        </div>
+                    </div>
+                    <div class="event-details" data-dept="Computer Science and Engineering">
+                        <div class="techeven">
+                            <h4>Technical Events</h4>
+                            <p>Paper Presentation</p>
+                            <p>Brain bytes (Quiz)</p>
+                            <p>Algo quest (Design Challenge)</p>
+                            <p>Poster Presentation</p>
+                            <p>Code Debugging</p>
+                        </div>
+                        <div class="coor">
+                            <h4>Coordinators Details</h4>
+                            <p>Staff Coordinators: Mr.M.Ramesh AP/CSE - 9500535551</p>
+                            <p>Student Coordinators: Mr.D.Jana krishnan IV/CSE - 7558163201</p>
+                        </div>
+                        <div class="event-actions">
+                            <button class="btn back" onclick="goBack()">⬅ Back</button>
+                            <button class="btn register">Register</button>
+                        </div>
+                    </div>
+                    <div class="event-details" data-dept="Artificial Intelligence & Data Science">
+                        <div class="techeven">
+                            <h4>Technical Events</h4>
+                            <p>Machine Learning Model Building</p>
+                            <p>Data Visualization Contest</p>
+                            <p>AI Ethics Debate</p>
+                        </div>
+                        <div class="coor">
+                            <h4>Coordinators Details</h4>
+                            <p>Staff Coordinators: Mr. I. AI - 1234567890</p>
+                            <p>Student Coordinators: Ms. J. Student - 0987654321</p>
+                        </div>
+                        <div class="event-actions">
+                            <button class="btn back" onclick="goBack()">⬅ Back</button>
+                            <button class="btn register">Register</button>
+                        </div>
+                    </div>
+                    <div class="event-details" data-dept="Information Technology">
+                        <div class="techeven">
+                            <h4>Technical Events</h4>
+                            <p>Web Development Workshop</p>
+                            <p>Database Management Challenge</p>
+                            <p>Cloud Computing Seminar</p>
+                        </div>
+                        <div class="coor">
+                            <h4>Coordinators Details</h4>
+                            <p>Staff Coordinators: Mr. K. IT - 1234567890</p>
+                            <p>Student Coordinators: Ms. L. Student - 0987654321</p>
+                        </div>
+                        <div class="event-actions">
+                            <button class="btn back" onclick="goBack()">⬅ Back</button>
+                            <button class="btn register">Register</button>
+                        </div>
+                    </div>
+                    <div class="event-details" data-dept="Computer Science and Engineering (Cyber Security)">
+                        <div class="techeven">
+                            <h4>Technical Events</h4>
+                            <p>Capture The Flag (CTF)</p>
+                            <p>Ethical Hacking Workshop</p>
+                            <p>Cyber Security Quiz</p>
+                        </div>
+                        <div class="coor">
+                            <h4>Coordinators Details</h4>
+                            <p>Staff Coordinators: Mr. M. Cyber - 1234567890</p>
+                            <p>Student Coordinators: Ms. N. Student - 0987654321</p>
+                        </div>
+                        <div class="event-actions">
+                            <button class="btn back" onclick="goBack()">⬅ Back</button>
+                            <button class="btn register">Register</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item credits">
+                <h2>Developer Credits</h2>
+                <p>Designed and Developed by: RPSIT Web Team</p>
+                <p>Lead Developer: [Your Name]</p>
+                <p>Support Team: [Team Member Names]</p>
+                <p>Special Thanks to R P Sarathy Institute of Technology for their support.</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Preloader animation
+            const letters = document.querySelectorAll(".logo span");
+            letters.forEach((letter, i) => {
+                letter.style.animationDelay = i * 0.3 + "s";
+            });
+            const lastLetterDelay = (letters.length - 1) * 0.3;
+            const appearDuration = 0.8;
+            const buffer = 0.3;
+            const totalTime = (lastLetterDelay + appearDuration + buffer) * 1000;
+
+            Promise.all(
+                Array.from(document.images).map((img) => {
+                    if (img.complete) return Promise.resolve();
+                    return new Promise((resolve) => {
+                        img.addEventListener("load", resolve);
+                        img.addEventListener("error", resolve);
+                    });
+                })
+            ).then(() => {
+                setTimeout(() => {
+                    document.getElementById("preloader").classList.add("hidden");
+                }, totalTime);
+            });
+
+
+            // Navigation links scroll and active state
+            const navLinks = document.querySelectorAll("nav ul li a");
+            const pages = document.querySelectorAll(".pages .item");
+            const navListItems = document.querySelectorAll("nav ul li");
+
+            navLinks.forEach((link, index) => {
+                link.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    pages[index].scrollIntoView({ behavior: "smooth" });
+                });
+            });
+
+            const pagesContainer = document.querySelector(".pages");
+            let selectedDept = null;
+
+            pagesContainer.addEventListener("scroll", () => {
+                let current = 0;
+                pages.forEach((page, index) => {
+                    const pageTop = page.getBoundingClientRect().top;
+                    const pageBottom = page.getBoundingClientRect().bottom;
+                    const viewHeight = window.innerHeight;
+                    if (pageTop < viewHeight / 2 && pageBottom > viewHeight / 2) {
+                        current = index;
+                    }
+                });
+
+                navListItems.forEach((li) => li.classList.remove("active"));
+                navLinks.forEach((link) => link.classList.remove("active"));
+
+                if (navListItems[current]) {
+                    navListItems[current].classList.add("active");
+                    navLinks[current].classList.add("active");
+                }
+
+                if (current === 2) {
+                    showDeptEvents();
+                }
+            });
+
+        });
+        let selectedDept = null;
+        function showEvents(dept, e) {
+            selectedDept = dept;
+
+            document.querySelectorAll(".department").forEach(el => el.classList.remove("active"));
+            e.currentTarget.classList.add("active");
+
+            const pages = document.querySelectorAll(".pages .item");
+            pages[2].scrollIntoView({ behavior: "smooth" });
+        }
+
+        function showDeptEvents() {
+            const noSelection = document.getElementById('no-selection');
+            const eventDetails = document.querySelectorAll('.event-details');
+            if (selectedDept) {
+                noSelection.style.display = 'none';
+                eventDetails.forEach(detail => detail.classList.remove('active'));
+                const activeDetail = document.querySelector(`.event-details[data-dept="${selectedDept}"]`);
+                if (activeDetail) {
+                    activeDetail.classList.add('active');
+                }
+            } else {
+                noSelection.style.display = 'block';
+                eventDetails.forEach(detail => detail.classList.remove('active'));
+            }
+        }
+
+        function goBack() {
+            selectedDept = null;
+            const pages = document.querySelectorAll(".pages .item");
+            pages[1].scrollIntoView({ behavior: "smooth" });
+        }
+    </script>
+</body>
+
+</html>
