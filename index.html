@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
     <title>Home</title>
     <style>
@@ -54,11 +54,11 @@
         /* --- STYLES FOR FIXED HEADER --- */
         .site-header {
             position: absolute;
-            top: 20px;
-            left: 20px;
+            top: 15px;
+            left: 15px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
             z-index: 100;
         }
 
@@ -291,40 +291,6 @@
             margin: 10px 0;
         }
 
-        @media (max-width: 768px) {
-            nav {
-                width: 40px;
-                height: 25vh;
-            }
-
-            nav ul li a {
-                font-size: 1.1rem;
-                padding: 8px 0;
-            }
-
-            .pages>.item {
-                padding-left: 0px;
-            }
-
-            .social-nav {
-                height: 40px;
-                right: 5px;
-            }
-
-            .social-nav ul li a {
-                font-size: 1.1rem;
-                padding: 0 10px;
-            }
-
-            .site-header .college-logo {
-                width: 50px;
-            }
-
-            .site-header .college-title {
-                font-size: 1.2rem;
-            }
-        }
-
         .centered-text {
             color: #f0f0f0;
             font-size: 3rem;
@@ -446,7 +412,6 @@
             align-items: center;
             justify-content: center;
             transition: all 0.6s ease-in-out;
-            /* smooth shape+size */
             overflow: hidden;
             border: 3px solid #ddd;
             color: white;
@@ -523,7 +488,6 @@
             font-size: 0.6em;
             flex-shrink: 0;
             border-radius: 50%;
-            /* morph into circle */
             min-height: auto;
             aspect-ratio: auto;
         }
@@ -628,27 +592,434 @@
             background: #1e8449;
         }
 
-        /* Mobile view */
+        /* Team Styles */
+        @property --angle {
+            syntax: '<angle>';
+            initial-value: 0deg;
+            inherits: false;
+        }
+
+        @property --border-color {
+            syntax: '<color>';
+            initial-value: #00ffff;
+            inherits: true;
+        }
+
+        .team-container {
+            width: 100%;
+            max-width: 700px;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        h1 {
+            text-align: center;
+            font-weight: 600;
+            color: #58a6ff;
+            margin-bottom: 1rem;
+        }
+
+        .developer-card {
+            display: flex;
+            align-items: center;
+            background-color: #161b22;
+            border-radius: 12px;
+            position: relative;
+            padding: var(--border-width, 3px);
+            height: 180px;
+            background-image: conic-gradient(from var(--angle),
+                        transparent 50%,
+                        var(--border-color) 90%,
+                        transparent 100%);
+            filter: drop-shadow(0 0 10px var(--border-color));
+            animation: rotate-angle 4s linear infinite;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .developer-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            filter: drop-shadow(0 0 20px var(--border-color));
+        }
+
+        .developer-card::before {
+            content: '';
+            position: absolute;
+            inset: var(--border-width, 3px);
+            background-color: #161b22;
+            border-radius: 10px;
+            z-index: 1;
+        }
+
+        .card-image,
+        .card-details {
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-image {
+            width: 130px;
+            height: 130px;
+            border-radius: 20%;
+            background-size: cover;
+            background-position: center;
+            border: 3px solid #30363d;
+            margin: 1.5rem;
+            flex-shrink: 0;
+            object-fit: cover;
+        }
+
+        .card-details {
+            padding: 1rem;
+            flex-grow: 1;
+        }
+
+        .card-details h2 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.8rem;
+            color: #f0f6fc;
+            background: linear-gradient(90deg, #e0e0e0, var(--border-color), #e0e0e0);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: text-gradient-shift 3s linear infinite;
+        }
+
+        @keyframes text-gradient-shift {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        .card-details p {
+            margin: 0;
+            font-size: 1.1rem;
+            color: #8b949e;
+        }
+
+        .card-details a {
+            display: inline-block;
+            margin-top: 0.5rem;
+            font-size: 1rem;
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .card-details a:hover {
+            color: var(--border-color);
+        }
+
+        .social-links {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1.25rem;
+        }
+
+        .social-links a {
+            color: #8b949e;
+            font-size: 1.25rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--border-color);
+            transform: scale(1.2);
+        }
+
+        .developer-card.image-right {
+            flex-direction: row-reverse;
+        }
+
+        .developer-card.image-right .card-details {
+            text-align: right;
+        }
+
+        .developer-card.image-right .social-links {
+            justify-content: flex-end;
+        }
+
+        @keyframes rotate-angle {
+            to {
+                --angle: 360deg;
+            }
+        }
+
+        /* Updated Mobile View Media Queries */
         @media (max-width: 768px) {
+            body {
+                padding: 0;
+                overflow-y: auto;
+            }
+
+            .container {
+                height: auto;
+                min-height: 100vh;
+            }
+
+            .pages>.item {
+                padding: 0 15px;
+                min-height: 100vh;
+            }
+
+            .site-header {
+                top: 10px;
+                left: 10px;
+                gap: 8px;
+            }
+
+            .college-logo {
+                width: 40px;
+            }
+
+            .college-title {
+                font-size: 1rem;
+                letter-spacing: 1px;
+            }
+
+            .preloader-title img {
+                width: 120px;
+                height: 140px;
+            }
+
+            .logo {
+                font-size: 2rem;
+                letter-spacing: 5px;
+            }
+
+            nav {
+                width: 100%;
+                height: 60px;
+                bottom: 0;
+                left: 0;
+                flex-direction: row;
+                background: rgba(0, 0, 0, 0.9);
+                justify-content: center;
+            }
+
+            nav ul {
+                flex-direction: row;
+                justify-content: space-around;
+            }
+
+            nav ul li a {
+                font-size: 1.2rem;
+                padding: 10px;
+            }
+
+            nav ul li::after {
+                width: 0;
+                height: 3px;
+                top: auto;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            nav ul li:hover::after,
+            nav ul li.active::after {
+                width: 100%;
+                height: 3px;
+            }
+
+            .social-nav {
+                top: 10px;
+                right: 10px;
+                height: 40px;
+            }
+
+            .social-nav ul li a {
+                font-size: 1.1rem;
+                padding: 0 10px;
+            }
+
+            .centered-text {
+                font-size: 1.8rem;
+            }
+
+            .centered-text span {
+                font-size: 40px;
+            }
+
             .depart {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
                 max-width: 100%;
+                padding: 0 10px;
+                margin: 20px auto;
             }
 
             .department {
                 min-height: 120px;
                 font-size: 14px;
+                border-radius: 12px;
             }
 
             .department i {
                 font-size: 2em;
+            }
+
+            .depart.small {
+                gap: 10px;
+                padding: 10px;
+            }
+
+            .depart.small .department {
+                width: 60px;
+                height: 60px;
+            }
+
+            .depart.small .department i {
+                font-size: 1em;
+            }
+
+            .event-details {
+                width: 95%;
+                padding: 15px;
+                margin: 15px auto;
+            }
+
+            .event-details h4 {
+                font-size: 1.3rem;
+            }
+
+            .event-details p {
+                font-size: 0.9rem;
+            }
+
+            .event-actions {
+                gap: 15px;
+            }
+
+            .btn {
+                padding: 8px 15px;
+                font-size: 12px;
+            }
+
+            .team-container {
+                max-width: 100%;
+                padding: 0 10px;
+                gap: 1.5rem;
+            }
+
+            .developer-card,
+            .developer-card.image-right {
+                flex-direction: column;
+                height: auto;
+                padding: 2px;
+                margin: 0 5px;
+            }
+
+            .developer-card::before {
+                inset: 2px;
+                border-radius: 8px;
+            }
+
+            .card-image {
+                width: 100px;
+                height: 100px;
+                margin: 1rem auto 0.5rem;
+                border-radius: 15%;
+            }
+
+            .card-details {
+                text-align: center;
+                padding: 0.5rem 1rem 1.5rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card-details h2 {
+                font-size: 1.4rem;
+            }
+
+            .card-details p {
+                font-size: 0.9rem;
+            }
+
+            .card-details a {
+                font-size: 0.85rem;
+                margin-top: 0.3rem;
+            }
+
+            .social-links {
+                justify-content: center;
+                gap: 1rem;
+                margin-top: 0.75rem;
+            }
+
+            .social-links a {
+                font-size: 1.1rem;
+            }
+
+            .credits h2 {
+                font-size: 1.8rem;
+                margin-bottom: 20px;
+            }
+
+            .credits p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .college-title {
+                font-size: 0.9rem;
+            }
+
+            .centered-text {
+                font-size: 1.5rem;
+            }
+
+            .centered-text span {
+                font-size: 30px;
+            }
+
+            .depart {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .department {
+                min-height: 100px;
+                font-size: 12px;
+            }
+
+            .event-details {
+                padding: 10px;
+            }
+
+            .event-details h4 {
+                font-size: 1.1rem;
+            }
+
+            .event-details p {
+                font-size: 0.85rem;
+            }
+
+            .card-image {
+                width: 80px;
+                height: 80px;
+            }
+
+            .card-details h2 {
+                font-size: 1.2rem;
+            }
+
+            .card-details p {
+                font-size: 0.8rem;
+            }
+
+            .social-links a {
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 
 <body>
-
     <div class="preloader" id="preloader">
         <div class="preloader-title"><img src="images/Gemini_Generated_Image_nyl78knyl78knyl7-removebg-preview.png"
                 alt="RPSIT Preloader Logo" style="width: 150px; height: 170px;"></div>
@@ -695,7 +1066,6 @@
                 </h1>
             </div>
             <div class="item departments" id="departments">
-                <!-- Departments -->
                 <div class="depart" id="depart">
                     <div class="department civil" onclick="showEvents('Civil Engineering', event)"
                         style="background-image: url(images/sh.png); background-size: cover; background-repeat: no-repeat; background-position: center;">
@@ -871,11 +1241,117 @@
                 </div>
             </div>
             <div class="item credits">
-                <h2>Developer Credits</h2>
-                <p>Designed and Developed by: RPSIT Web Team</p>
-                <p>Lead Developer: [Your Name]</p>
-                <p>Support Team: [Team Member Names]</p>
-                <p>Special Thanks to R P Sarathy Institute of Technology for their support.</p>
+                <div class="team-container">
+                    <h1>Meet Our Team</h1>
+
+                    <div class="developer-card"
+                        data-img-url="images/kiran.png" 
+                        data-color="#00ffff" data-email="mailto:alex@example.com" data-linkedin="#" data-instagram="#"
+                        data-youtube="#">
+                        <div class="card-image"></div>
+                        <div class="card-details">
+                            <h2>Kiran Balaso Patil</h2>
+                            <p>Front end developer</p>
+                            <a href="tel:+918610641610">+91 86106 41610</a>
+                            <div class="social-links">
+                                <a href="#" class="gmail" target="_blank"><i class="fas fa-envelope"></i></a>
+                                <a href="#" class="linkedin" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="youtube" target="_blank"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="developer-card image-right"
+                        data-img-url="images/vishnu.png"
+                        data-color="#ff00ff" data-email="mailto:maria@example.com" data-linkedin="#" data-instagram="#"
+                        data-youtube="#">
+                        <div class="card-image"></div>
+                        <div class="card-details">
+                            <h2>Vishnu R</h2>
+                            <p>Lead Developer</p>
+                            <a href="tel:+916379000598">+91 63790 00598</a>
+                            <div class="social-links">
+                                <a href="#" class="gmail" target="_blank"><i class="fas fa-envelope"></i></a>
+                                <a href="#" class="linkedin" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="youtube" target="_blank"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="developer-card"
+                        data-img-url="images/rohith.png"
+                        data-color="#00ff7f" data-email="mailto:chen@example.com" data-linkedin="#" data-instagram="#"
+                        data-youtube="#">
+                        <div class="card-image"></div>
+                        <div class="card-details">
+                            <h2>Rohith S</h2>
+                            <p>UI Designer & Animater</p>
+                            <a href="tel:+917530019229">+91 75300 19229</a>
+                            <div class="social-links">
+                                <a href="#" class="gmail" target="_blank"><i class="fas fa-envelope"></i></a>
+                                <a href="#" class="linkedin" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="youtube" target="_blank"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="developer-card image-right"
+                        data-img-url="images/gokul.png"
+                        data-color="#ffff00" data-email="mailto:priya@example.com" data-linkedin="#" data-instagram="#"
+                        data-youtube="#">
+                        <div class="card-image"></div>
+                        <div class="card-details">
+                            <h2>Gokul M</h2>
+                            <p>Content Creator & Designer</p>
+                            <a href="tel:+918778401744">+91 87784 01744</a>
+                            <div class="social-links">
+                                <a href="#" class="gmail" target="_blank"><i class="fas fa-envelope"></i></a>
+                                <a href="#" class="linkedin" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="youtube" target="_blank"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="developer-card"
+                        data-img-url="images/prasanna.png"
+                        data-color="#ff8c00" data-email="mailto:james@example.com" data-linkedin="#" data-instagram="#"
+                        data-youtube="#">
+                        <div class="card-image"></div>
+                        <div class="card-details">
+                            <h2>Prasanna Ramana S</h2>
+                            <p>IT Support</p>
+                            <a href="tel:+916382920103">+91 63829 20103</a>
+                            <div class="social-links">
+                                <a href="#" class="gmail" target="_blank"><i class="fas fa-envelope"></i></a>
+                                <a href="#" class="linkedin" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="youtube" target="_blank"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="developer-card image-right" 
+                        data-img-url="images/senthil.png" 
+                        data-color="#9400d3" data-email="mailto:fatima@example.com" data-linkedin="#" data-instagram="#"
+                        data-youtube="#">
+                        <div class="card-image"></div>
+                        <div class="card-details">
+                            <h2>Senthilnathan L M</h2>
+                            <p>UI Designer</p>
+                            <a href="tel:+919345639455">+91 93456 39455</a>
+                            <div class="social-links">
+                                <a href="#" class="gmail" target="_blank"><i class="fas fa-envelope"></i></a>
+                                <a href="#" class="linkedin" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="youtube" target="_blank"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -905,7 +1381,6 @@
                 }, totalTime);
             });
 
-
             // Navigation links scroll and active state
             const navLinks = document.querySelectorAll("nav ul li a");
             const pages = document.querySelectorAll(".pages .item");
@@ -919,7 +1394,6 @@
             });
 
             const pagesContainer = document.querySelector(".pages");
-            let selectedDept = null;
 
             pagesContainer.addEventListener("scroll", () => {
                 let current = 0;
@@ -945,6 +1419,32 @@
                 }
             });
 
+            // Team Cards Initialization
+            const cards = document.querySelectorAll('.developer-card');
+
+            cards.forEach(card => {
+                const { imgUrl, color, email, linkedin, instagram, youtube } = card.dataset;
+
+                // Set the developer's image on the card
+                const imageElement = card.querySelector('.card-image');
+                if (imageElement && imgUrl) {
+                    imageElement.style.backgroundImage = `url(${imgUrl})`;
+                }
+
+                // Set the unique border color for the animation
+                if (color) {
+                    card.style.setProperty('--border-color', color);
+                }
+
+                // Set social media links
+                const socialLinks = card.querySelector('.social-links');
+                if (socialLinks) {
+                    socialLinks.querySelector('.gmail').href = email;
+                    socialLinks.querySelector('.linkedin').href = linkedin;
+                    socialLinks.querySelector('.instagram').href = instagram;
+                    socialLinks.querySelector('.youtube').href = youtube;
+                }
+            });
         });
         let selectedDept = null;
         function showEvents(dept, e) {
