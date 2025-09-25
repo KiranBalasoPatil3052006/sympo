@@ -11,13 +11,28 @@
         body {
             margin: 0;
             padding: 0;
-            overflow: hidden;
+            overflow-x: hidden;
             background-color: black;
+            /* Fallback background if video fails */
+        }
+
+        /* Video Background */
+        video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -999;
+            opacity: 0.8;
         }
 
         .container {
             display: flex;
             height: 100vh;
+            position: relative;
+            z-index: 1;
         }
 
         .pages {
@@ -29,6 +44,7 @@
             scroll-behavior: smooth;
             position: relative;
             z-index: 1;
+            background: transparent;
         }
 
         .pages>.item {
@@ -40,21 +56,23 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-        }
-
-        .item:first-child {
-            text-align: center;
             position: relative;
-            height: 100vh;
-            padding-top: 0;
-            padding-left: 0;
-            justify-content: center;
+            z-index: 2;
         }
 
-        /* --- STYLES FOR FIXED HEADER --- */
+        .pages>.item:first-child {
+            height: 100vh;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Site Header (RPSIT Logo and Name) */
         .site-header {
+            width: 500px;
+            font-size: 10px;
             position: absolute;
-            top: 20px;
+            top: 10px;
             left: 20px;
             display: flex;
             align-items: center;
@@ -62,22 +80,23 @@
             z-index: 100;
         }
 
+
         .college-logo {
-            width: 40px;
+            width: 50px;
             height: auto;
         }
 
         .college-title {
-            font-size: 1.5rem;
+            font-size: 10px;
             font-weight: bold;
             letter-spacing: 2px;
             color: white;
             margin: 0;
-            white-space: nowrap;
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
         }
 
-        /* --- END OF HEADER STYLES --- */
-
+        /* Preloader */
         .preloader {
             width: 100%;
             height: 100vh;
@@ -134,6 +153,7 @@
             }
         }
 
+        /* Navigation */
         nav {
             background: transparent;
             width: 50px;
@@ -198,12 +218,13 @@
             color: gray;
         }
 
+        /* Social Navigation */
         .social-nav {
             background: transparent;
             width: auto;
             height: 50px;
-            position: absolute;
-            top: 0;
+            position: fixed;
+            top: 20px;
             right: 10px;
             display: flex;
             flex-direction: row;
@@ -254,41 +275,10 @@
             color: gray;
         }
 
-        .departments {
-            color: white;
+        /* Event Intro Page (Page 2) */
+        .event-intro {
             text-align: center;
-            width: 100%;
-            box-sizing: border-box;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .events {
-            text-align: center;
-            width: 100%;
-        }
-
-        .message {
-            color: white;
-            font-size: 1.2rem;
-            margin-top: 20px;
-        }
-
-        .credits {
-            text-align: center;
-            color: #fff;
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        .credits h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-
-        .credits p {
-            font-size: 1.2rem;
-            margin: 10px 0;
+            padding: 20px;
         }
 
         .centered-text {
@@ -299,13 +289,11 @@
             font-family: 'Orbitron', sans-serif;
         }
 
-        .welcome-text {
-            color: #dddddd;
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 20px auto;
-            line-height: 1.5;
-            font-family: 'Orbitron', sans-serif;
+        .centered-text span {
+            display: inline-block;
+            font-size: 80px;
+            opacity: 0;
+            animation: slideUpFadeIn 0.6s ease-out forwards;
         }
 
         @keyframes slideUpFadeIn {
@@ -320,91 +308,108 @@
             }
         }
 
-        .centered-text span {
-            display: inline-block;
-            font-size: 80px;
-            opacity: 0;
-            animation: slideUpFadeIn 0.6s ease-out forwards;
-        }
-
-        /* Staggered animation delays for each letter */
         .centered-text span:nth-child(1) {
-            animation-delay: 3.0s;
+            animation-delay: 0.2s;
         }
 
         .centered-text span:nth-child(2) {
-            animation-delay: 3.1s;
+            animation-delay: 0.3s;
         }
 
         .centered-text span:nth-child(3) {
-            animation-delay: 3.2s;
+            animation-delay: 0.4s;
         }
 
         .centered-text span:nth-child(4) {
-            animation-delay: 3.3s;
+            animation-delay: 0.5s;
         }
 
         .centered-text span:nth-child(5) {
-            animation-delay: 3.4s;
+            animation-delay: 0.6s;
         }
 
         .centered-text span:nth-child(6) {
-            animation-delay: 3.5s;
+            animation-delay: 0.7s;
         }
 
         .centered-text span:nth-child(7) {
-            animation-delay: 3.6s;
+            animation-delay: 0.8s;
         }
 
         .centered-text span:nth-child(8) {
-            animation-delay: 3.7s;
+            animation-delay: 0.9s;
         }
 
         .centered-text span:nth-child(9) {
-            animation-delay: 3.8s;
+            animation-delay: 1.0s;
         }
 
         .centered-text span:nth-child(10) {
-            animation-delay: 3.9s;
+            animation-delay: 1.1s;
         }
 
         .centered-text span:nth-child(11) {
-            animation-delay: 4.0s;
-        }
-
-        .centered-text span:nth-child(6) {
-            animation-delay: 3.5s;
+            animation-delay: 1.2s;
         }
 
         .centered-text span:nth-child(12) {
-            animation-delay: 4.1s;
+            animation-delay: 1.3s;
         }
 
         .centered-text span:nth-child(13) {
-            animation-delay: 4.2s;
+            animation-delay: 1.4s;
         }
 
         .centered-text span:nth-child(14) {
-            animation-delay: 4.3s;
+            animation-delay: 1.5s;
         }
 
         .centered-text span:nth-child(15) {
-            animation-delay: 4.4s;
+            animation-delay: 1.6s;
         }
 
         .centered-text span:nth-child(16) {
-            animation-delay: 4.5s;
+            animation-delay: 1.7s;
         }
 
         .centered-text span:nth-child(17) {
-            animation-delay: 4.6s;
+            animation-delay: 1.8s;
         }
 
         .centered-text span:nth-child(18) {
-            animation-delay: 4.7s;
+            animation-delay: 1.9s;
         }
 
-        /* Departments grid */
+        .subtitle {
+            font-size: 1.5rem;
+            color: #58a6ff;
+            margin: 10px 0;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .welcome-text {
+            color: #dddddd;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 20px auto;
+            line-height: 1.5;
+            font-family: 'Orbitron', sans-serif;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        /* Departments */
+        .departments {
+            color: white;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
+            position: relative;
+            z-index: 2;
+        }
+
         .depart {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -417,7 +422,6 @@
             transition: all 0.6s ease-in-out;
         }
 
-        /* Department big square buttons */
         .department {
             background: #007bff;
             border-radius: 16px;
@@ -451,7 +455,6 @@
             transform: scale(1.05);
         }
 
-        /* Different colors */
         .civil {
             background: #A0522D;
         }
@@ -485,7 +488,6 @@
             background: #dc3545;
         }
 
-        /* Small mode → centered circles */
         .depart.small {
             display: flex;
             justify-content: center;
@@ -517,17 +519,24 @@
             opacity: 0;
         }
 
-        /* Event details */
+        /* Events */
+        .events {
+            text-align: center;
+            width: 100%;
+            z-index: 2;
+        }
+
         .event-details {
             display: none;
             width: 90%;
             max-width: 600px;
             margin: 20px auto;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 12px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             text-align: left;
+            z-index: 2;
         }
 
         .event-details.active {
@@ -605,6 +614,9 @@
             color: #ffffff;
             font-size: 1.2rem;
             text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 8px;
         }
 
         /* Buttons */
@@ -669,6 +681,7 @@
             padding: 10px;
             box-sizing: border-box;
             overflow: hidden;
+            z-index: 2;
         }
 
         .team-container h1 {
@@ -680,7 +693,6 @@
             font-size: 2rem;
         }
 
-        /* Card Styles */
         .developer-card {
             display: flex;
             flex-direction: column;
@@ -695,6 +707,7 @@
             animation: rotate-angle 4s linear infinite;
             transition: transform 0.3s ease, filter 0.3s ease;
             box-sizing: border-box;
+            z-index: 2;
         }
 
         .developer-card:hover {
@@ -805,7 +818,7 @@
             justify-content: center;
         }
 
-        /* Mobile view */
+        /* Mobile View */
         @media (max-width: 768px) {
             nav {
                 width: auto;
@@ -817,6 +830,7 @@
                 flex-direction: row;
                 justify-content: center;
                 align-items: center;
+                z-index: 100;
             }
 
             nav ul {
@@ -854,12 +868,12 @@
             .pages>.item {
                 padding-left: 0px;
                 padding-bottom: 60px;
-                /* Add padding to avoid overlap with nav */
             }
 
             .social-nav {
                 height: 40px;
                 right: 5px;
+                z-index: 100;
             }
 
             .social-nav ul li a {
@@ -868,11 +882,11 @@
             }
 
             .site-header .college-logo {
-                width: 50px;
+                width: 20px;
             }
 
             .site-header .college-title {
-                font-size: 1.2rem;
+                font-size: 20px;
             }
 
             .centered-text {
@@ -891,16 +905,13 @@
 
             .subtitle {
                 font-size: 1rem;
-                color: #58a6ff;
-                margin: 10px 0;
-                font-family: 'Orbitron', sans-serif;
             }
 
             .welcome-text {
                 font-size: 0.9rem;
                 max-width: 90%;
                 margin: 15px auto;
-                padding: 0 10px;
+                padding: 10px;
             }
 
             .depart {
@@ -988,6 +999,7 @@
                 flex-direction: row;
                 justify-content: center;
                 align-items: center;
+                z-index: 100;
             }
 
             nav ul {
@@ -1020,7 +1032,6 @@
 
             .pages>.item {
                 padding-bottom: 50px;
-                /* Add padding to avoid overlap with nav */
             }
 
             .depart {
@@ -1038,6 +1049,14 @@
 
             .department i {
                 font-size: 1.8em;
+            }
+
+            .site-header .college-logo {
+                width: 40px;
+            }
+
+            .site-header .college-title {
+                font-size: 8px;
             }
 
             .centered-text {
@@ -1127,9 +1146,15 @@
 </head>
 
 <body>
+    <!-- Video Background -->
+    <video src="video/VID-20250925-WA0019.mp4" loop autoplay muted playsinline></video>
+
+    <!-- Preloader -->
     <div class="preloader" id="preloader">
-        <div class="preloader-title"><img src="images/Gemini_Generated_Image_nyl78knyl78knyl7-removebg-preview.png"
-                alt="RPSIT Preloader Logo" style="width: 150px; height: 170px;"></div>
+        <div class="preloader-title">
+            <img src="images/Gemini_Generated_Image_nyl78knyl78knyl7-removebg-preview.png" alt="RPSIT Preloader Logo"
+                style="width: 150px; height: 170px;">
+        </div>
         <div class="logo">
             <span>R</span>
             <span>P</span>
@@ -1139,32 +1164,36 @@
         </div>
     </div>
 
+    <!-- Navigation -->
     <nav>
         <ul>
             <li><a href="#" class="active" aria-label="Home"><i class="fas fa-house"></i></a></li>
+            <li><a href="#" aria-label="Event Intro"><i class="fas fa-star"></i></a></li>
             <li><a href="#" aria-label="Building"><i class="fas fa-building"></i></a></li>
-            <li><a href="#" aria-label="Documents"><i class="fas fa-file-alt"></i></a></li>
             <li><a href="#" aria-label="Team"><i class="fas fa-users"></i></a></li>
         </ul>
     </nav>
 
+    <!-- Social Navigation -->
+    <div class="social-nav">
+        <ul>
+            <li><a href="mailto:info@rpsit.ac.in" aria-label="Email"><i class="fas fa-envelope"></i></a></li>
+            <li><a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i
+                        class="fab fa-instagram"></i></a></li>
+            <li><a href="https://www.facebook.com" target="_blank" aria-label="Facebook"><i
+                        class="fab fa-facebook"></i></a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
     <div class="container">
         <div class="pages">
-            <div class="item">
+            <!-- Page 2: Event Introduction -->
+            <div class="item event-intro">
                 <div class="site-header">
                     <img src="images/Gemini_Generated_Image_nyl78knyl78knyl7-removebg-preview.png"
                         alt="R P Sarathy Institute of Technology Logo" class="college-logo" />
                     <h1 class="college-title">R P Sarathy<br>Institute of Technology</h1>
-                </div>
-                <div class="social-nav">
-                    <ul>
-                        <li><a href="mailto:info@rpsit.ac.in" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                        </li>
-                        <li><a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i
-                                    class="fab fa-instagram"></i></a></li>
-                        <li><a href="https://www.facebook.com" target="_blank" aria-label="Facebook"><i
-                                    class="fab fa-facebook"></i></a></li>
-                    </ul>
                 </div>
                 <h1 class="centered-text">
                     <span>I</span><span>N</span><span>F</span><span>I</span><span>N</span><span>I</span><span>T</span><span>E</span>
@@ -1177,6 +1206,7 @@
                     events by selecting a department below to view detailed event information and register to
                     participate in this exciting journey of knowledge and creativity!</p>
             </div>
+            <!-- Page 3: Departments -->
             <div class="item departments" id="departments">
                 <div class="depart" id="depart">
                     <div class="department civil" onclick="showEvents('Civil Engineering', event)"
@@ -1202,8 +1232,13 @@
                     <div class="department it" onclick="showEvents('Information Technology', event)"
                         style="background-image: url(images/it.png); background-size: cover; background-repeat: no-repeat; background-position: center; margin-left: 95px; height: 183.7px;">
                     </div>
+                    <div class="department cyber"
+                        onclick="showEvents('Computer Science and Engineering (Cyber Security)', event)"
+                        style="background-image: url(images/cys.png); background-size: cover; background-repeat: no-repeat; background-position: center;">
+                    </div>
                 </div>
             </div>
+            <!-- Page 4: Events -->
             <div class="item events">
                 <h2>Event Details</h2>
                 <div id="no-selection" class="message">Please select a department from the Departments section to view
@@ -1212,14 +1247,14 @@
                     <div class="event-details civil" data-dept="Civil Engineering">
                         <div class="techeven">
                             <h4>Technical Events</h4>
-                            <p>Bridge Building Competition</p>
-                            <p>Structural Design Workshop</p>
-                            <p>Surveying Challenge</p>
+                            <p>Paper Presentation(Maths)</p>
+                            <p>Symposium on Organic Chemistry(Chemistry)</p>
+                            <p>Professional Communication vs Dialect(English - Quiz)</p>
                         </div>
                         <div class="coor">
                             <h4>Coordinators Details</h4>
-                            <p>Staff Coordinators: Mr. A. Civil - 1234567890</p>
-                            <p>Student Coordinators: Ms. B. Student - 0987654321</p>
+                            <p>Staff Coordinators: Dr.T>R.Vijayan(prof/Maths) - 8667403339</p>
+                            <p>Student Coordinators: Mr.S.Udhayamathivanan(I/ECE) - 9965228735</p>
                         </div>
                         <div class="event-actions">
                             <button class="btn back" onclick="goBack()">⬅ Back</button>
@@ -1229,14 +1264,16 @@
                     <div class="event-details mechanical" data-dept="Mechanical Engineering">
                         <div class="techeven">
                             <h4>Technical Events</h4>
-                            <p>Robotics Assembly</p>
-                            <p>CAD Modeling Contest</p>
-                            <p>Thermodynamics Quiz</p>
+                            <p>Paper Presentation</p>
+                            <p>Mr. Machinist(Engineering Expert)/p>
+                            <p>Steel Fest(Welding Challenge)</p>
+                            <p>Extempore(Tech Talk)</p>
+                            <p>CAD Modeling</p>
                         </div>
                         <div class="coor">
                             <h4>Coordinators Details</h4>
-                            <p>Staff Coordinators: Mr. C. Mech - 1234567890</p>
-                            <p>Student Coordinators: Ms. D. Student - 0987654321</p>
+                            <p>Staff Coordinators: Mr.S.Jeevanantham(AP/MECH) - 9940703910</p>
+                            <p>Student Coordinators: Mr.B.Sabarishan(III/MECH) - 8428230017</p>
                         </div>
                         <div class="event-actions">
                             <button class="btn back" onclick="goBack()">⬅ Back</button>
@@ -1246,14 +1283,16 @@
                     <div class="event-details electrical" data-dept="Electrical and Electronics Engineering">
                         <div class="techeven">
                             <h4>Technical Events</h4>
-                            <p>Circuit Design Hackathon</p>
-                            <p>Power Systems Seminar</p>
-                            <p>Embedded Systems Project</p>
+                            <p>Paper Presentation</p>
+                            <p>Power and innovation(Project Expo)</p>
+                            <p>Brain Wired(Circuit Designing)</p>
+                            <p>Wire Wars(Circuit Debugging)</p>
+                            <p>Quiztronix(Technical Quiz)</p>
                         </div>
                         <div class="coor">
                             <h4>Coordinators Details</h4>
-                            <p>Staff Coordinators: Mr. E. EEE - 1234567890</p>
-                            <p>Student Coordinators: Ms. F. Student - 0987654321</p>
+                            <p>Staff Coordinators: Mr.P.Velmurugan(AP/EEE) - 9952365509</p>
+                            <p>Student Coordinators: Mr.N.Gowtham(IV/EEE) - 8489668837/p>
                         </div>
                         <div class="event-actions">
                             <button class="btn back" onclick="goBack()">⬅ Back</button>
@@ -1263,14 +1302,16 @@
                     <div class="event-details electronics" data-dept="Electronics and Communication Engineering">
                         <div class="techeven">
                             <h4>Technical Events</h4>
-                            <p>Signal Processing Workshop</p>
-                            <p>VLSI Design Competition</p>
-                            <p>Wireless Communication Challenge</p>
+                            <p>Paper Presentation</p>
+                            <p>Protomania(Project Expo)</p>
+                            <p>Circuit Hunt(Circuit Debugging)</p>
+                            <p>Startup Pitching</p>
+                            <p>Picture Rebus(Technical Connection Game</p>
                         </div>
                         <div class="coor">
                             <h4>Coordinators Details</h4>
-                            <p>Staff Coordinators: Mr. G. ECE - 1234567890</p>
-                            <p>Student Coordinators: Ms. H. Student - 0987654321</p>
+                            <p>Staff Coordinators: Mrs.T.Vinodhini(AP/ECE) - 8778840090</p>
+                            <p>Student Coordinators: Mr.S.Deepak(IV/ECE) - 9342817217</p>
                         </div>
                         <div class="event-actions">
                             <button class="btn back" onclick="goBack()">⬅ Back</button>
@@ -1288,8 +1329,8 @@
                         </div>
                         <div class="coor">
                             <h4>Coordinators Details</h4>
-                            <p>Staff Coordinators: Mr.M.Ramesh AP/CSE - 9500535551</p>
-                            <p>Student Coordinators: Mr.D.Jana krishnan IV/CSE - 7558163201</p>
+                            <p>Staff Coordinators: Mr.M.Ramesh(AP/CSE) - 9500535551</p>
+                            <p>Student Coordinators: Mr.D.Jana krishnan(IV/CSE) - 7558163201</p>
                         </div>
                         <div class="event-actions">
                             <button class="btn back" onclick="goBack()">⬅ Back</button>
@@ -1299,14 +1340,16 @@
                     <div class="event-details aids" data-dept="Artificial Intelligence & Data Science">
                         <div class="techeven">
                             <h4>Technical Events</h4>
-                            <p>Machine Learning Model Building</p>
-                            <p>Data Visualization Contest</p>
-                            <p>AI Ethics Debate</p>
+                            <p>Short Film/Reel Contest</p>
+                            <p>Brain Teasers</p>
+                            <p>AI Quiz</p>
+                            <p>Poster Presentation</p>
+                            <p>Datathon</p>
                         </div>
                         <div class="coor">
                             <h4>Coordinators Details</h4>
-                            <p>Staff Coordinators: Mr. I. AI - 1234567890</p>
-                            <p>Student Coordinators: Ms. J. Student - 0987654321</p>
+                            <p>Staff Coordinators: Mrs.S.Priyanka(AP/AI&DS) - 9025593180/p>
+                            <p>Student Coordinators: Mr.V.Sivabalan(AP/AI&DS) - 9025979210</p>
                         </div>
                         <div class="event-actions">
                             <button class="btn back" onclick="goBack()">⬅ Back</button>
@@ -1315,23 +1358,45 @@
                     </div>
                     <div class="event-details it" data-dept="Information Technology">
                         <div class="techeven">
+                            <p>Paper Presentation</p>
                             <h4>Technical Events</h4>
-                            <p>Web Development Workshop</p>
-                            <p>Database Management Challenge</p>
-                            <p>Cloud Computing Seminar</p>
+                            <p>Project Expo(Canvas of Concept)</p>
+                            <p>Poster Presentation(Design Speaks)</p>
+                            <p>Recreate with Figma(Figma Remix)</p>
+                            <p>Code Debugging(Code Rescue)</p>
                         </div>
                         <div class="coor">
                             <h4>Coordinators Details</h4>
-                            <p>Staff Coordinators: Mr. K. IT - 1234567890</p>
-                            <p>Student Coordinators: Ms. L. Student - 0987654321</p>
+                            <p>Staff Coordinators: Mrs.G.Kanmani(AP/IT) - 6380535345</p>
+                            <p>Student Coordinators: Ms.M.Priyanka(IV/IT) - 7845030386</p>
                         </div>
                         <div class="event-actions">
                             <button class="btn back" onclick="goBack()">⬅ Back</button>
-                            <a href="#" class="btn register">Register</a>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdbW8cWa0yx4hec06fYmJb6ox1ppdP2pHrLIqddJbr1QtGyqQ/viewform?usp=header" class="btn register">Register</a>
+                        </div>
+                    </div>
+                    <div class="event-details cyber" data-dept="Computer Science and Engineering (Cyber Security)">
+                        <div class="techeven">
+                            <h4>Technical Events</h4>
+                            <p>Paper Presentation</p>
+                            <p>Project Expo(Canvas of Concept)</p>
+                            <p>Poster Presentation(Design Speaks)</p>
+                            <p>Recreate with Figma(Figma Remix)</p>
+                            <p>Code Debugging(Code Rescue)</p>
+                        </div>
+                        <div class="coor">
+                            <h4>Coordinators Details</h4>
+                            <p>Staff Coordinators: Mrs.G.Kanmani(AP/IT) - 6380535345</p>
+                            <p>Student Coordinators: Ms.M.Priyanka(IV/IT) - 7845030386</p>
+                        </div>
+                        <div class="event-actions">
+                            <button class="btn back" onclick="goBack()">⬅ Back</button>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdbW8cWa0yx4hec06fYmJb6ox1ppdP2pHrLIqddJbr1QtGyqQ/viewform?usp=header" class="btn register">Register</a>
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- Page 5: Team -->
             <div class="item credits">
                 <div class="team-container">
                     <h1>Meet Our Team</h1>
@@ -1366,17 +1431,22 @@
                         </div>
                     </div>
                     <div class="developer-card" data-img-url="images/rohith.png" data-color="#00ff7f"
-                        data-email="mailto:chen@example.com" data-linkedin="#" data-instagram="#" data-youtube="#">
+                        data-email="mailto:rohithsathish701@gmial.com" data-linkedin="#" data-instagram="#"
+                        data-youtube="#">
                         <div class="card-image"></div>
                         <div class="card-details">
                             <h2>Rohith S</h2>
                             <p>UI Designer & Frontend developer</p>
                             <a href="tel:+917530019229">+91 75300 19229</a>
                             <div class="social-links">
-                                <a href="#" class="gmail" target="_blank"><i class="fas fa-envelope"></i></a>
-                                <a href="#" class="linkedin" target="_blank"><i class="fab fa-linkedin"></i></a>
-                                <a href="#" class="instagram" target="_blank"><i class="fab fa-instagram"></i></a>
-                                <a href="#" class="youtube" target="_blank"><i class="fab fa-youtube"></i></a>
+                                <a href="mailto:rohithsathish701@gmial.com" class="gmail" target="_blank"><i
+                                        class="fas fa-envelope"></i></a>
+                                <a href="https://www.linkedin.com/in/rohith-s-7a1208345?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                                    class="linkedin" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                <a href="https://github.com/Rohith22s" class="instagram" target="_blank"><i
+                                        class="fab fa-github"></i></a>
+                                <a href="https://rohith22s.github.io/porfolio/" class="social-icon website"
+                                    target="_blank"><i class="fas fa-globe"></i></a>
                             </div>
                         </div>
                     </div>
@@ -1396,7 +1466,7 @@
                         </div>
                     </div>
                     <div class="developer-card" data-img-url="images/prasanna.png" data-color="#ff8c00"
-                        data-email="mailto:james@example.com" data-linkedin="#" data-instagram="#" data-youtube="#">
+                        data-email="mailto:.com" data-linkedin="#" data-instagram="#" data-youtube="#">
                         <div class="card-image"></div>
                         <div class="card-details">
                             <h2>Prasanna Ramana S</h2>
@@ -1411,11 +1481,12 @@
                         </div>
                     </div>
                     <div class="developer-card image-right" data-img-url="images/senthil.png" data-color="#9400d3"
-                        data-email="mailto:fatima@example.com" data-linkedin="#" data-instagram="#" data-youtube="#">
+                        data-email="mailto:senthilloganathan30@gmail.com" data-linkedin="" data-instagram=""
+                        data-youtube="#">
                         <div class="card-image"></div>
                         <div class="card-details">
                             <h2>Senthilnathan L M</h2>
-                            <p>UI Designer</p>
+                            <p>Useless</p>
                             <a href="tel:+919345639455">+91 93456 39455</a>
                             <div class="social-links">
                                 <a href="#" class="gmail" target="_blank"><i class="fas fa-envelope"></i></a>
@@ -1429,6 +1500,7 @@
             </div>
         </div>
     </div>
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             // Preloader animation
@@ -1441,15 +1513,25 @@
             const buffer = 0.3;
             const totalTime = (lastLetterDelay + appearDuration + buffer) * 1000;
 
-            Promise.all(
-                Array.from(document.images).map((img) => {
-                    if (img.complete) return Promise.resolve();
-                    return new Promise((resolve) => {
-                        img.addEventListener("load", resolve);
-                        img.addEventListener("error", resolve);
-                    });
-                })
-            ).then(() => {
+            // Include video in the loading check
+            const video = document.querySelector("video");
+            const mediaPromises = Array.from(document.images).map((img) => {
+                if (img.complete) return Promise.resolve();
+                return new Promise((resolve) => {
+                    img.addEventListener("load", resolve);
+                    img.addEventListener("error", resolve);
+                });
+            });
+            if (video) {
+                mediaPromises.push(
+                    new Promise((resolve) => {
+                        video.addEventListener("loadeddata", resolve);
+                        video.addEventListener("error", resolve);
+                    })
+                );
+            }
+
+            Promise.all(mediaPromises).then(() => {
                 setTimeout(() => {
                     document.getElementById("preloader").classList.add("hidden");
                 }, totalTime);
@@ -1490,29 +1572,22 @@
                     navLinks[current].classList.add("active");
                 }
 
-                if (current === 2) {
+                if (current === 3) {
                     showDeptEvents();
                 }
             });
 
             // Team Cards Initialization
             const cards = document.querySelectorAll('.developer-card');
-
             cards.forEach(card => {
                 const { imgUrl, color, email, linkedin, instagram, youtube } = card.dataset;
-
-                // Set the developer's image on the card
                 const imageElement = card.querySelector('.card-image');
                 if (imageElement && imgUrl) {
                     imageElement.style.backgroundImage = `url(${imgUrl})`;
                 }
-
-                // Set the unique border color for the animation
                 if (color) {
                     card.style.setProperty('--border-color', color);
                 }
-
-                // Set social media links
                 const socialLinks = card.querySelector('.social-links');
                 if (socialLinks) {
                     socialLinks.querySelector('.gmail').href = email;
@@ -1522,16 +1597,15 @@
                 }
             });
         });
+
         let selectedDept = null;
         function showEvents(dept, e) {
             selectedDept = dept;
-
             document.querySelectorAll(".department").forEach(el => el.classList.remove("active"));
             e.currentTarget.classList.add("active");
-
             const pagesContainer = document.querySelector(".pages");
             pagesContainer.scrollTo({
-                top: 2 * pagesContainer.clientHeight,
+                top: 3 * pagesContainer.clientHeight,
                 behavior: "smooth"
             });
         }
@@ -1557,10 +1631,10 @@
             document.querySelectorAll(".department").forEach(el => el.classList.remove("active"));
             const pagesContainer = document.querySelector(".pages");
             pagesContainer.scrollTo({
-                top: 1 * pagesContainer.clientHeight,
+                top: 2 * pagesContainer.clientHeight,
                 behavior: "smooth"
             });
-            showDeptEvents(); // Call to immediately hide details
+            showDeptEvents();
         }
     </script>
 </body>
