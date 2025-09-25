@@ -1415,7 +1415,7 @@
                         <div class="card-image"></div>
                         <div class="card-details">
                             <h2>Senthilnathan L M</h2>
-                            <p>Useless</p>
+                            <p>UI Designer</p>
                             <a href="tel:+919345639455">+91 93456 39455</a>
                             <div class="social-links">
                                 <a href="#" class="gmail" target="_blank"><i class="fas fa-envelope"></i></a>
@@ -1457,17 +1457,19 @@
 
             // Navigation links scroll and active state
             const navLinks = document.querySelectorAll("nav ul li a");
+            const pagesContainer = document.querySelector(".pages");
             const pages = document.querySelectorAll(".pages .item");
             const navListItems = document.querySelectorAll("nav ul li");
 
             navLinks.forEach((link, index) => {
                 link.addEventListener("click", (e) => {
                     e.preventDefault();
-                    pages[index].scrollIntoView({ behavior: "smooth" });
+                    pagesContainer.scrollTo({
+                        top: index * pagesContainer.clientHeight,
+                        behavior: "smooth"
+                    });
                 });
             });
-
-            const pagesContainer = document.querySelector(".pages");
 
             pagesContainer.addEventListener("scroll", () => {
                 let current = 0;
@@ -1527,8 +1529,11 @@
             document.querySelectorAll(".department").forEach(el => el.classList.remove("active"));
             e.currentTarget.classList.add("active");
 
-            const pages = document.querySelectorAll(".pages .item");
-            pages[2].scrollIntoView({ behavior: "smooth" });
+            const pagesContainer = document.querySelector(".pages");
+            pagesContainer.scrollTo({
+                top: 2 * pagesContainer.clientHeight,
+                behavior: "smooth"
+            });
         }
 
         function showDeptEvents() {
@@ -1549,8 +1554,13 @@
 
         function goBack() {
             selectedDept = null;
-            const pages = document.querySelectorAll(".pages .item");
-            pages[1].scrollIntoView({ behavior: "smooth" });
+            document.querySelectorAll(".department").forEach(el => el.classList.remove("active"));
+            const pagesContainer = document.querySelector(".pages");
+            pagesContainer.scrollTo({
+                top: 1 * pagesContainer.clientHeight,
+                behavior: "smooth"
+            });
+            showDeptEvents(); // Call to immediately hide details
         }
     </script>
 </body>
