@@ -54,16 +54,16 @@
         /* --- STYLES FOR FIXED HEADER --- */
         .site-header {
             position: absolute;
-            top: 15px;
-            left: 15px;
+            top: 20px;
+            left: 20px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
             z-index: 100;
         }
 
         .college-logo {
-            width: 60px;
+            width: 40px;
             height: auto;
         }
 
@@ -282,7 +282,7 @@
 
         .credits h2 {
             font-size: 2.5rem;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             font-weight: bold;
         }
 
@@ -296,6 +296,16 @@
             font-size: 3rem;
             letter-spacing: 0.1em;
             word-spacing: 0.6em;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .welcome-text {
+            color: #dddddd;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 20px auto;
+            line-height: 1.5;
+            font-family: 'Orbitron', sans-serif;
         }
 
         @keyframes slideUpFadeIn {
@@ -362,6 +372,10 @@
             animation-delay: 4.0s;
         }
 
+        .centered-text span:nth-child(6) {
+            animation-delay: 3.5s;
+        }
+
         .centered-text span:nth-child(12) {
             animation-delay: 4.1s;
         }
@@ -390,14 +404,16 @@
             animation-delay: 4.7s;
         }
 
-        /* Departments grid (desktop default) */
+        /* Departments grid */
         .depart {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            width: 1000px;
-            max-width: 1040px;
-            margin: 40px auto;
+            gap: 15px;
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 10px;
+            box-sizing: border-box;
             transition: all 0.6s ease-in-out;
         }
 
@@ -415,19 +431,19 @@
             overflow: hidden;
             border: 3px solid #ddd;
             color: white;
-            font-size: 16px;
+            font-size: 14px;
             text-align: center;
-            min-height: 180px;
+            min-height: 140px;
         }
 
         .department i {
-            font-size: 2.8em;
-            margin-bottom: 10px;
+            font-size: 2.5em;
+            margin-bottom: 8px;
             transition: all 0.6s ease-in-out;
         }
 
         .department span {
-            font-size: 1em;
+            font-size: 0.9em;
             transition: opacity 0.4s ease-in-out;
         }
 
@@ -483,8 +499,8 @@
         }
 
         .depart.small .department {
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
             font-size: 0.6em;
             flex-shrink: 0;
             border-radius: 50%;
@@ -521,11 +537,44 @@
             animation: fadeIn 0.5s ease-in-out;
         }
 
+        .event-details.civil {
+            border-left: 4px solid #A0522D;
+        }
+
+        .event-details.mechanical {
+            border-left: 4px solid #2c3e50;
+        }
+
+        .event-details.electrical {
+            border-left: 4px solid #FFD700;
+        }
+
+        .event-details.electronics {
+            border-left: 4px solid #28a745;
+        }
+
+        .event-details.cse {
+            border-left: 4px solid #007bff;
+        }
+
+        .event-details.aids {
+            border-left: 4px solid #6f42c1;
+        }
+
+        .event-details.it {
+            border-left: 4px solid #17a2b8;
+        }
+
+        .event-details.cyber {
+            border-left: 4px solid #dc3545;
+        }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -547,7 +596,8 @@
             line-height: 1.5;
         }
 
-        .techeven, .coor {
+        .techeven,
+        .coor {
             margin-bottom: 20px;
         }
 
@@ -571,7 +621,9 @@
             border-radius: 6px;
             cursor: pointer;
             font-size: 14px;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, transform 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
         }
 
         .btn.back {
@@ -580,16 +632,18 @@
         }
 
         .btn.register {
-            background: #27ae60;
-            color: white;
+            background: #00FFFF;
+            color: black;
         }
 
         .btn.back:hover {
             background: #1a242f;
+            transform: scale(1.05);
         }
 
         .btn.register:hover {
-            background: #1e8449;
+            background: #00CCCC;
+            transform: scale(1.05);
         }
 
         /* Team Styles */
@@ -606,35 +660,41 @@
         }
 
         .team-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
             width: 100%;
-            max-width: 700px;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
+            max-width: 600px;
+            margin: 15px auto;
+            padding: 10px;
+            box-sizing: border-box;
+            overflow: hidden;
         }
 
-        h1 {
+        .team-container h1 {
+            grid-column: 1 / -1;
             text-align: center;
             font-weight: 600;
             color: #58a6ff;
             margin-bottom: 1rem;
+            font-size: 2rem;
         }
 
+        /* Card Styles */
         .developer-card {
             display: flex;
+            flex-direction: column;
             align-items: center;
             background-color: #161b22;
             border-radius: 12px;
             position: relative;
             padding: var(--border-width, 3px);
-            height: 180px;
-            background-image: conic-gradient(from var(--angle),
-                        transparent 50%,
-                        var(--border-color) 90%,
-                        transparent 100%);
+            aspect-ratio: 1/1;
+            background-image: conic-gradient(from var(--angle), transparent 50%, var(--border-color) 90%, transparent 100%);
             filter: drop-shadow(0 0 10px var(--border-color));
             animation: rotate-angle 4s linear infinite;
             transition: transform 0.3s ease, filter 0.3s ease;
+            box-sizing: border-box;
         }
 
         .developer-card:hover {
@@ -658,25 +718,29 @@
         }
 
         .card-image {
-            width: 130px;
-            height: 130px;
+            width: 80px;
+            height: 80px;
             border-radius: 20%;
             background-size: cover;
             background-position: center;
             border: 3px solid #30363d;
-            margin: 1.5rem;
+            margin: 0.5rem auto;
             flex-shrink: 0;
             object-fit: cover;
         }
 
         .card-details {
-            padding: 1rem;
+            padding: 0.5rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             flex-grow: 1;
         }
 
         .card-details h2 {
-            margin: 0 0 0.5rem 0;
-            font-size: 1.8rem;
+            margin: 0 0 0.3rem 0;
+            font-size: 1.2rem;
             color: #f0f6fc;
             background: linear-gradient(90deg, #e0e0e0, var(--border-color), #e0e0e0);
             background-size: 200% auto;
@@ -694,14 +758,14 @@
 
         .card-details p {
             margin: 0;
-            font-size: 1.1rem;
+            font-size: 0.8rem;
             color: #8b949e;
         }
 
         .card-details a {
             display: inline-block;
-            margin-top: 0.5rem;
-            font-size: 1rem;
+            margin-top: 0.3rem;
+            font-size: 0.7rem;
             color: #ffffff;
             text-decoration: none;
             transition: color 0.3s ease;
@@ -712,14 +776,15 @@
         }
 
         .social-links {
-            margin-top: 1rem;
+            margin-top: 0.5rem;
             display: flex;
-            gap: 1.25rem;
+            gap: 0.8rem;
+            justify-content: center;
         }
 
         .social-links a {
             color: #8b949e;
-            font-size: 1.25rem;
+            font-size: 0.9rem;
             transition: color 0.3s ease, transform 0.3s ease;
         }
 
@@ -729,104 +794,72 @@
         }
 
         .developer-card.image-right {
-            flex-direction: row-reverse;
+            flex-direction: column;
         }
 
         .developer-card.image-right .card-details {
-            text-align: right;
+            text-align: center;
         }
 
         .developer-card.image-right .social-links {
-            justify-content: flex-end;
+            justify-content: center;
         }
 
-        @keyframes rotate-angle {
-            to {
-                --angle: 360deg;
-            }
-        }
-
-        /* Updated Mobile View Media Queries */
+        /* Mobile view */
         @media (max-width: 768px) {
-            body {
-                padding: 0;
-                overflow-y: auto;
-            }
-
-            .container {
-                height: auto;
-                min-height: 100vh;
-            }
-
-            .pages>.item {
-                padding: 0 15px;
-                min-height: 100vh;
-            }
-
-            .site-header {
-                top: 10px;
-                left: 10px;
-                gap: 8px;
-            }
-
-            .college-logo {
-                width: 40px;
-            }
-
-            .college-title {
-                font-size: 1rem;
-                letter-spacing: 1px;
-            }
-
-            .preloader-title img {
-                width: 120px;
-                height: 140px;
-            }
-
-            .logo {
-                font-size: 2rem;
-                letter-spacing: 5px;
-            }
-
             nav {
-                width: 100%;
-                height: 60px;
+                width: auto;
+                height: 50px;
                 bottom: 0;
-                left: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
                 flex-direction: row;
-                background: rgba(0, 0, 0, 0.9);
                 justify-content: center;
+                align-items: center;
             }
 
             nav ul {
                 flex-direction: row;
-                justify-content: space-around;
+                gap: 10px;
+            }
+
+            nav ul li {
+                width: auto;
             }
 
             nav ul li a {
-                font-size: 1.2rem;
-                padding: 10px;
+                font-size: 1.1rem;
+                padding: 8px;
             }
 
             nav ul li::after {
-                width: 0;
-                height: 3px;
-                top: auto;
+                content: '';
+                position: absolute;
                 bottom: 0;
                 left: 50%;
                 transform: translateX(-50%);
+                width: 0%;
+                height: 3px;
+                background-color: #001f4d;
+                transition: width 0.3s ease;
             }
 
-            nav ul li:hover::after,
-            nav ul li.active::after {
+            nav ul li.active::after,
+            nav ul li:hover::after {
                 width: 100%;
                 height: 3px;
             }
 
+            .pages>.item {
+                padding-left: 0px;
+                padding-bottom: 60px;
+                /* Add padding to avoid overlap with nav */
+            }
+
             .social-nav {
-                top: 10px;
-                right: 10px;
                 height: 40px;
+                right: 5px;
             }
 
             .social-nav ul li a {
@@ -834,50 +867,57 @@
                 padding: 0 10px;
             }
 
+            .site-header .college-logo {
+                width: 50px;
+            }
+
+            .site-header .college-title {
+                font-size: 1.2rem;
+            }
+
             .centered-text {
-                font-size: 1.8rem;
+                font-size: 2rem;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 90%;
+                margin: 10px auto;
             }
 
             .centered-text span {
-                font-size: 40px;
+                font-size: 2rem;
+                display: inline;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+                color: #58a6ff;
+                margin: 10px 0;
+                font-family: 'Orbitron', sans-serif;
+            }
+
+            .welcome-text {
+                font-size: 0.9rem;
+                max-width: 90%;
+                margin: 15px auto;
+                padding: 0 10px;
             }
 
             .depart {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-                max-width: 100%;
-                padding: 0 10px;
-                margin: 20px auto;
+                gap: 10px;
+                max-width: 90%;
+                margin: 15px auto;
+                padding: 10px;
             }
 
             .department {
                 min-height: 120px;
-                font-size: 14px;
-                border-radius: 12px;
+                font-size: 12px;
             }
 
             .department i {
                 font-size: 2em;
-            }
-
-            .depart.small {
-                gap: 10px;
-                padding: 10px;
-            }
-
-            .depart.small .department {
-                width: 60px;
-                height: 60px;
-            }
-
-            .depart.small .department i {
-                font-size: 1em;
-            }
-
-            .event-details {
-                width: 95%;
-                padding: 15px;
-                margin: 15px auto;
             }
 
             .event-details h4 {
@@ -888,85 +928,116 @@
                 font-size: 0.9rem;
             }
 
-            .event-actions {
-                gap: 15px;
-            }
-
-            .btn {
-                padding: 8px 15px;
-                font-size: 12px;
-            }
-
             .team-container {
-                max-width: 100%;
-                padding: 0 10px;
-                gap: 1.5rem;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+                max-width: 90%;
+                margin: 15px auto;
+                padding: 10px;
             }
 
             .developer-card,
             .developer-card.image-right {
                 flex-direction: column;
-                height: auto;
-                padding: 2px;
-                margin: 0 5px;
-            }
-
-            .developer-card::before {
-                inset: 2px;
-                border-radius: 8px;
+                text-align: center;
+                aspect-ratio: 1/1;
+                padding: 5px;
+                min-height: 140px;
             }
 
             .card-image {
-                width: 100px;
-                height: 100px;
-                margin: 1rem auto 0.5rem;
-                border-radius: 15%;
+                width: 60px;
+                height: 60px;
+                margin: 0.4rem auto;
             }
 
             .card-details {
-                text-align: center;
-                padding: 0.5rem 1rem 1.5rem;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
+                padding: 0.4rem;
             }
 
             .card-details h2 {
-                font-size: 1.4rem;
+                font-size: 1rem;
             }
 
             .card-details p {
-                font-size: 0.9rem;
+                font-size: 0.7rem;
             }
 
             .card-details a {
-                font-size: 0.85rem;
-                margin-top: 0.3rem;
+                font-size: 0.6rem;
             }
 
             .social-links {
-                justify-content: center;
-                gap: 1rem;
-                margin-top: 0.75rem;
+                gap: 0.6rem;
+                margin-top: 0.3rem;
             }
 
             .social-links a {
-                font-size: 1.1rem;
-            }
-
-            .credits h2 {
-                font-size: 1.8rem;
-                margin-bottom: 20px;
-            }
-
-            .credits p {
-                font-size: 1rem;
+                font-size: 0.8rem;
             }
         }
 
         @media (max-width: 480px) {
-            .college-title {
-                font-size: 0.9rem;
+            nav {
+                width: auto;
+                height: 40px;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+            }
+
+            nav ul {
+                flex-direction: row;
+                gap: 8px;
+            }
+
+            nav ul li a {
+                font-size: 1rem;
+                padding: 6px;
+            }
+
+            nav ul li::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 0%;
+                height: 3px;
+                background-color: #001f4d;
+                transition: width 0.3s ease;
+            }
+
+            nav ul li.active::after,
+            nav ul li:hover::after {
+                width: 100%;
+                height: 3px;
+            }
+
+            .pages>.item {
+                padding-bottom: 50px;
+                /* Add padding to avoid overlap with nav */
+            }
+
+            .depart {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+                max-width: 95%;
+                margin: 10px auto;
+                padding: 8px;
+            }
+
+            .department {
+                min-height: 100px;
+                font-size: 11px;
+            }
+
+            .department i {
+                font-size: 1.8em;
             }
 
             .centered-text {
@@ -974,21 +1045,17 @@
             }
 
             .centered-text span {
-                font-size: 30px;
+                font-size: 1.5rem;
             }
 
-            .depart {
-                grid-template-columns: 1fr;
-                gap: 10px;
+            .subtitle {
+                font-size: 0.8rem;
             }
 
-            .department {
-                min-height: 100px;
-                font-size: 12px;
-            }
-
-            .event-details {
-                padding: 10px;
+            .welcome-text {
+                font-size: 0.8rem;
+                max-width: 95%;
+                margin: 10px auto;
             }
 
             .event-details h4 {
@@ -996,24 +1063,64 @@
             }
 
             .event-details p {
-                font-size: 0.85rem;
-            }
-
-            .card-image {
-                width: 80px;
-                height: 80px;
-            }
-
-            .card-details h2 {
-                font-size: 1.2rem;
-            }
-
-            .card-details p {
                 font-size: 0.8rem;
             }
 
+            .team-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+                max-width: 95%;
+                margin: 10px auto;
+                padding: 8px;
+            }
+
+            .developer-card,
+            .developer-card.image-right {
+                flex-direction: column;
+                text-align: center;
+                aspect-ratio: 1/1;
+                padding: 4px;
+                min-height: 120px;
+            }
+
+            .card-image {
+                width: 50px;
+                height: 50px;
+                margin: 0.3rem auto;
+            }
+
+            .card-details h2 {
+                font-size: 0.9rem;
+            }
+
+            .card-details p {
+                font-size: 0.6rem;
+            }
+
+            .card-details a {
+                font-size: 0.55rem;
+            }
+
+            .social-links {
+                gap: 0.5rem;
+                margin-top: 0.2rem;
+            }
+
             .social-links a {
-                font-size: 1rem;
+                font-size: 0.7rem;
+            }
+        }
+
+        /* Animation Keyframes */
+        @keyframes rotate-angle {
+            to {
+                --angle: 360deg;
+            }
+        }
+
+        @keyframes text-gradient-shift {
+            to {
+                background-position: 200% center;
             }
         }
     </style>
@@ -1047,7 +1154,7 @@
                 <div class="site-header">
                     <img src="images/Gemini_Generated_Image_nyl78knyl78knyl7-removebg-preview.png"
                         alt="R P Sarathy Institute of Technology Logo" class="college-logo" />
-                    <h1 class="college-title">R P Sarathy Institute of Technology</h1>
+                    <h1 class="college-title">R P Sarathy<br>Institute of Technology</h1>
                 </div>
                 <div class="social-nav">
                     <ul>
@@ -1064,6 +1171,11 @@
                     <span>T</span><span>E</span><span>C</span><span>H</span><span>F</span><span>E</span><span>S</span><span>T</span>
                     <span>2</span><span>5</span>
                 </h1>
+                <h2 class="subtitle">A National Level Technical Symposium</h2>
+                <p class="welcome-text">Welcome to INFINITE TECHFEST 25 at R P Sarathy Institute of Technology! Join us
+                    for an exhilarating showcase of innovation and technical prowess. Explore a variety of technical
+                    events by selecting a department below to view detailed event information and register to
+                    participate in this exciting journey of knowledge and creativity!</p>
             </div>
             <div class="item departments" id="departments">
                 <div class="depart" id="depart">
@@ -1098,9 +1210,10 @@
             </div>
             <div class="item events">
                 <h2>Event Details</h2>
-                <div id="no-selection" class="message">Please select a department from the Departments section to view details.</div>
+                <div id="no-selection" class="message">Please select a department from the Departments section to view
+                    details.</div>
                 <div class="event-content">
-                    <div class="event-details" data-dept="Civil Engineering">
+                    <div class="event-details civil" data-dept="Civil Engineering">
                         <div class="techeven">
                             <h4>Technical Events</h4>
                             <p>Bridge Building Competition</p>
@@ -1114,10 +1227,10 @@
                         </div>
                         <div class="event-actions">
                             <button class="btn back" onclick="goBack()">⬅ Back</button>
-                            <button class="btn register">Register</button>
+                            <a href="#" class="btn register">Register</a>
                         </div>
                     </div>
-                    <div class="event-details" data-dept="Mechanical Engineering">
+                    <div class="event-details mechanical" data-dept="Mechanical Engineering">
                         <div class="techeven">
                             <h4>Technical Events</h4>
                             <p>Robotics Assembly</p>
@@ -1131,10 +1244,10 @@
                         </div>
                         <div class="event-actions">
                             <button class="btn back" onclick="goBack()">⬅ Back</button>
-                            <button class="btn register">Register</button>
+                            <a href="#" class="btn register">Register</a>
                         </div>
                     </div>
-                    <div class="event-details" data-dept="Electrical and Electronics Engineering">
+                    <div class="event-details electrical" data-dept="Electrical and Electronics Engineering">
                         <div class="techeven">
                             <h4>Technical Events</h4>
                             <p>Circuit Design Hackathon</p>
@@ -1148,10 +1261,10 @@
                         </div>
                         <div class="event-actions">
                             <button class="btn back" onclick="goBack()">⬅ Back</button>
-                            <button class="btn register">Register</button>
+                            <a href="#" class="btn register">Register</a>
                         </div>
                     </div>
-                    <div class="event-details" data-dept="Electronics and Communication Engineering">
+                    <div class="event-details electronics" data-dept="Electronics and Communication Engineering">
                         <div class="techeven">
                             <h4>Technical Events</h4>
                             <p>Signal Processing Workshop</p>
@@ -1165,10 +1278,10 @@
                         </div>
                         <div class="event-actions">
                             <button class="btn back" onclick="goBack()">⬅ Back</button>
-                            <button class="btn register">Register</button>
+                            <a href="#" class="btn register">Register</a>
                         </div>
                     </div>
-                    <div class="event-details" data-dept="Computer Science and Engineering">
+                    <div class="event-details cse" data-dept="Computer Science and Engineering">
                         <div class="techeven">
                             <h4>Technical Events</h4>
                             <p>Paper Presentation</p>
@@ -1184,10 +1297,10 @@
                         </div>
                         <div class="event-actions">
                             <button class="btn back" onclick="goBack()">⬅ Back</button>
-                            <button class="btn register">Register</button>
+                            <a href="#" class="btn register">Register</a>
                         </div>
                     </div>
-                    <div class="event-details" data-dept="Artificial Intelligence & Data Science">
+                    <div class="event-details aids" data-dept="Artificial Intelligence & Data Science">
                         <div class="techeven">
                             <h4>Technical Events</h4>
                             <p>Machine Learning Model Building</p>
@@ -1201,10 +1314,10 @@
                         </div>
                         <div class="event-actions">
                             <button class="btn back" onclick="goBack()">⬅ Back</button>
-                            <button class="btn register">Register</button>
+                            <a href="#" class="btn register">Register</a>
                         </div>
                     </div>
-                    <div class="event-details" data-dept="Information Technology">
+                    <div class="event-details it" data-dept="Information Technology">
                         <div class="techeven">
                             <h4>Technical Events</h4>
                             <p>Web Development Workshop</p>
@@ -1218,10 +1331,10 @@
                         </div>
                         <div class="event-actions">
                             <button class="btn back" onclick="goBack()">⬅ Back</button>
-                            <button class="btn register">Register</button>
+                            <a href="#" class="btn register">Register</a>
                         </div>
                     </div>
-                    <div class="event-details" data-dept="Computer Science and Engineering (Cyber Security)">
+                    <div class="event-details cyber" data-dept="Computer Science and Engineering (Cyber Security)">
                         <div class="techeven">
                             <h4>Technical Events</h4>
                             <p>Capture The Flag (CTF)</p>
@@ -1235,7 +1348,7 @@
                         </div>
                         <div class="event-actions">
                             <button class="btn back" onclick="goBack()">⬅ Back</button>
-                            <button class="btn register">Register</button>
+                            <a href="#" class="btn register">Register</a>
                         </div>
                     </div>
                 </div>
@@ -1243,11 +1356,8 @@
             <div class="item credits">
                 <div class="team-container">
                     <h1>Meet Our Team</h1>
-
-                    <div class="developer-card"
-                        data-img-url="images/kiran.png" 
-                        data-color="#00ffff" data-email="mailto:alex@example.com" data-linkedin="#" data-instagram="#"
-                        data-youtube="#">
+                    <div class="developer-card" data-img-url="images/kiran.png" data-color="#00ffff"
+                        data-email="mailto:alex@example.com" data-linkedin="#" data-instagram="#" data-youtube="#">
                         <div class="card-image"></div>
                         <div class="card-details">
                             <h2>Kiran Balaso Patil</h2>
@@ -1261,11 +1371,8 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="developer-card image-right"
-                        data-img-url="images/vishnu.png"
-                        data-color="#ff00ff" data-email="mailto:maria@example.com" data-linkedin="#" data-instagram="#"
-                        data-youtube="#">
+                    <div class="developer-card image-right" data-img-url="images/vishnu.png" data-color="#ff00ff"
+                        data-email="mailto:maria@example.com" data-linkedin="#" data-instagram="#" data-youtube="#">
                         <div class="card-image"></div>
                         <div class="card-details">
                             <h2>Vishnu R</h2>
@@ -1279,11 +1386,8 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="developer-card"
-                        data-img-url="images/rohith.png"
-                        data-color="#00ff7f" data-email="mailto:chen@example.com" data-linkedin="#" data-instagram="#"
-                        data-youtube="#">
+                    <div class="developer-card" data-img-url="images/rohith.png" data-color="#00ff7f"
+                        data-email="mailto:chen@example.com" data-linkedin="#" data-instagram="#" data-youtube="#">
                         <div class="card-image"></div>
                         <div class="card-details">
                             <h2>Rohith S</h2>
@@ -1297,11 +1401,8 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="developer-card image-right"
-                        data-img-url="images/gokul.png"
-                        data-color="#ffff00" data-email="mailto:priya@example.com" data-linkedin="#" data-instagram="#"
-                        data-youtube="#">
+                    <div class="developer-card image-right" data-img-url="images/gokul.png" data-color="#ffff00"
+                        data-email="mailto:priya@example.com" data-linkedin="#" data-instagram="#" data-youtube="#">
                         <div class="card-image"></div>
                         <div class="card-details">
                             <h2>Gokul M</h2>
@@ -1315,11 +1416,8 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="developer-card"
-                        data-img-url="images/prasanna.png"
-                        data-color="#ff8c00" data-email="mailto:james@example.com" data-linkedin="#" data-instagram="#"
-                        data-youtube="#">
+                    <div class="developer-card" data-img-url="images/prasanna.png" data-color="#ff8c00"
+                        data-email="mailto:james@example.com" data-linkedin="#" data-instagram="#" data-youtube="#">
                         <div class="card-image"></div>
                         <div class="card-details">
                             <h2>Prasanna Ramana S</h2>
@@ -1333,11 +1431,8 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="developer-card image-right" 
-                        data-img-url="images/senthil.png" 
-                        data-color="#9400d3" data-email="mailto:fatima@example.com" data-linkedin="#" data-instagram="#"
-                        data-youtube="#">
+                    <div class="developer-card image-right" data-img-url="images/senthil.png" data-color="#9400d3"
+                        data-email="mailto:fatima@example.com" data-linkedin="#" data-instagram="#" data-youtube="#">
                         <div class="card-image"></div>
                         <div class="card-details">
                             <h2>Senthilnathan L M</h2>
