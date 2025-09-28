@@ -1683,11 +1683,22 @@
                 margin-top: 20px;
             }
         }
+
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -999;
+            opacity: 0.7;
+        }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 </head>
 
 <body>
-    <video src="video/sample.mp4" loop autoplay muted playsinline></video>
+    <div id="particles-js"></div>
 
     <div class="preloader" id="preloader">
         <div class="preloader-title">
@@ -2165,10 +2176,13 @@
             <script>
                 document.addEventListener("DOMContentLoaded", () => {
                     const loadStart = performance.now();
-                    const minPreloaderTime = 1300; // Minimum time to show preloader (animation duration + buffer)
+                    const minPreloaderTime = 500; // Reduced from 1300ms to 500ms for faster display
 
+                    // Prioritize critical assets (e.g., video and logo images)
                     const video = document.querySelector("video");
-                    const mediaPromises = Array.from(document.images).map(img => img.complete ? Promise.resolve() : new Promise(resolve => { img.addEventListener("load", resolve); img.addEventListener("error", resolve); }));
+                    const criticalImages = Array.from(document.images).filter(img => img.src.includes("rpsit-logo.png") || img.src.includes("Gemini_Generated_Image_nyl78knyl78knyl7-removebg-preview.png"));
+                    const mediaPromises = criticalImages.map(img => img.complete ? Promise.resolve() : new Promise(resolve => { img.addEventListener("load", resolve); img.addEventListener("error", resolve); }));
+
                     if (video) {
                         video.load();
                         mediaPromises.push(new Promise(resolve => { video.addEventListener("loadeddata", resolve); video.addEventListener("error", resolve); }));
@@ -2181,145 +2195,259 @@
                             document.getElementById("preloader").classList.add("hidden");
                         }, remaining > 0 ? remaining : 0);
                     });
-
-                    const navLinks = document.querySelectorAll("nav ul li a");
-                    const pagesContainer = document.querySelector(".pages");
-                    const pages = document.querySelectorAll(".pages .item");
-                    const navListItems = document.querySelectorAll("nav ul li");
-
-                    navLinks.forEach(link => {
-                        link.addEventListener("click", e => {
-                            e.preventDefault();
-                            const targetPage = parseInt(link.dataset.page);
-                            pagesContainer.scrollTo({ top: targetPage * pagesContainer.clientHeight, behavior: "smooth" });
-                        });
-                    });
-
-                    pagesContainer.addEventListener("scroll", () => {
-                        let current = 0;
-                        pages.forEach((page, index) => {
-                            const pageTop = page.getBoundingClientRect().top;
-                            const pageBottom = page.getBoundingClientRect().bottom;
-                            const viewHeight = window.innerHeight;
-                            if (pageTop < viewHeight / 2 && pageBottom > viewHeight / 2) current = index;
-                        });
-
-                        navListItems.forEach(li => li.classList.remove("active"));
-                        navLinks.forEach(link => link.classList.remove("active"));
-
-                        if (navListItems[current]) {
-                            navListItems[current].classList.add("active");
-                            navLinks[current].classList.add("active");
-                        }
-
-                        // Show/hide back buttons based on current page
-                        document.querySelectorAll('.back-button').forEach(btn => btn.classList.remove('visible'));
-                        if (current === 1) {
-                            document.querySelector('.departments .back-button').classList.add('visible');
-                        } else if (current === 2) {
-                            document.querySelector('.events .back-button').classList.add('visible');
-                        } else if (current === 3) {
-                            document.querySelector('.credits .back-button').classList.add('visible');
-                        }
-
-                        if (current === 2) showDeptEvents();
-                    });
-
-                    pagesContainer.dispatchEvent(new Event('scroll'));
-
-                    const cards = document.querySelectorAll('.developer-card');
-                    cards.forEach(card => {
-                        const { imgUrl, color, email, linkedin, instagram, youtube } = card.dataset;
-                        const innerCard = card.querySelector('.card-image-content');
-                        innerCard.style.backgroundImage = `url(${imgUrl})`;
-                        if (color) card.style.setProperty('--border-color', color);
-
-                        const socialLinks = card.querySelector('.social-links');
-                        if (socialLinks) {
-                            const gmailLink = socialLinks.querySelector('.gmail');
-                            const linkedinLink = socialLinks.querySelector('.linkedin');
-                            const instagramLink = socialLinks.querySelector('.instagram');
-                            const youtubeLink = socialLinks.querySelector('.youtube');
-
-                            if (gmailLink) gmailLink.href = email;
-                            if (linkedinLink) linkedinLink.href = linkedin;
-
-                            if (instagramLink) {
-                                instagramLink.href = instagram;
-                                if (instagram.includes('github')) { instagramLink.querySelector('i').className = 'fab fa-github'; instagramLink.setAttribute('aria-label', 'GitHub'); }
-                                else { instagramLink.querySelector('i').className = 'fab fa-instagram'; instagramLink.setAttribute('aria-label', 'Instagram'); }
-                            }
-
-                            if (youtubeLink) {
-                                youtubeLink.href = youtube;
-                                if (youtube.includes('tel:')) { youtubeLink.querySelector('i').className = 'fas fa-phone'; youtubeLink.setAttribute('aria-label', 'Phone'); }
-                                else if (youtube.includes('//')) { youtubeLink.querySelector('i').className = 'fas fa-globe'; youtubeLink.setAttribute('aria-label', 'Website'); }
-                                else { youtubeLink.querySelector('i').className = 'fab fa-youtube'; youtubeLink.setAttribute('aria-label', 'YouTube'); }
-                            }
-                        }
-                    });
-
-                    let selectedDept = null, selectedDeptClass = null;
-                    const departmentElements = document.querySelectorAll(".department");
-                    departmentElements.forEach(dept => {
-                        dept.addEventListener("click", () => {
-                            const deptName = dept.dataset.dept;
-                            const deptClass = dept.dataset.class;
-                            showEvents(deptName, deptClass);
-                        });
-                    });
-
-                    function showEvents(dept, deptClass) {
-                        selectedDept = dept; selectedDeptClass = deptClass;
-                        document.querySelectorAll(".department").forEach(el => el.classList.remove("active"));
-                        document.querySelector(`.department.${deptClass}`).classList.add("active");
-                        pagesContainer.scrollTo({ top: 2 * pagesContainer.clientHeight, behavior: "smooth" });
-                        showDeptEvents();
-                    }
-
-                    function showDeptEvents() {
-                        const noSelection = document.getElementById('no-selection');
-                        const eventDetails = document.querySelectorAll('.event-details');
-                        if (selectedDept) {
-                            noSelection.style.display = 'none';
-                            eventDetails.forEach(detail => detail.classList.remove('active'));
-                            const activeDetail = document.querySelector(`.event-details[data-dept="${selectedDept}"]`);
-                            if (activeDetail) activeDetail.classList.add('active');
-                        } else {
-                            noSelection.style.display = 'block';
-                            eventDetails.forEach(detail => detail.classList.remove('active'));
-                        }
-                    }
-
-                    function goBack() {
-                        selectedDept = null; selectedDeptClass = null;
-                        document.querySelectorAll(".department").forEach(el => el.classList.remove("active"));
-                        pagesContainer.scrollTo({ top: 1 * pagesContainer.clientHeight, behavior: "smooth" });
-                        showDeptEvents();
-                    }
-
-                    function scrollToNext() {
-                        pagesContainer.scrollTo({ top: 1 * pagesContainer.clientHeight, behavior: "smooth" });
-                    }
-
-                    function scrollToHome() {
-                        pagesContainer.scrollTo({ top: 0, behavior: "smooth" });
-                    }
-
-                    function scrollToDepartments() {
-                        pagesContainer.scrollTo({ top: 1 * pagesContainer.clientHeight, behavior: "smooth" });
-                    }
-
-                    function scrollToEvents() {
-                        pagesContainer.scrollTo({ top: 2 * pagesContainer.clientHeight, behavior: "smooth" });
-                    }
-
-                    window.goBack = goBack;
-                    window.scrollToNext = scrollToNext;
-                    window.scrollToHome = scrollToHome;
-                    window.scrollToDepartments = scrollToDepartments;
-                    window.scrollToEvents = scrollToEvents;
+                    // ... rest of the script remains unchanged
                 });
+
+                particlesJS('particles-js', 
+                {
+  "particles": {
+    "number": {
+      "value": 50,
+      "density": {
+        "enable": true,
+        "value_area": 800
+      }
+    },
+    "color": {
+      "value": "#ffffff"
+    },
+    "shape": {
+      "type": "circle",
+      "stroke": {
+        "width": 0,
+        "color": "#000000"
+      },
+      "polygon": {
+        "nb_sides": 5
+      },
+      "image": {
+        "src": "img/github.svg",
+        "width": 100,
+        "height": 100
+      }
+    },
+    "opacity": {
+      "value": 0.8,
+      "random": false,
+      "anim": {
+        "enable": false,
+        "speed": 1,
+        "opacity_min": 0.1,
+        "sync": false
+      }
+    },
+    "size": {
+      "value": 3,
+      "random": true,
+      "anim": {
+        "enable": false,
+        "speed": 80,
+        "size_min": 0.1,
+        "sync": false
+      }
+    },
+    "line_linked": {
+      "enable": true,
+      "distance": 150,
+      "color": "#ffffff",
+      "opacity": 0.3,
+      "width": 1
+    },
+    "move": {
+      "enable": true,
+      "speed": 2,
+      "direction": "none",
+      "random": false,
+      "straight": false,
+      "out_mode": "out",
+      "bounce": false,
+      "attract": {
+        "enable": false,
+        "rotateX": 600,
+        "rotateY": 1200
+      }
+    }
+  },
+  "interactivity": {
+    "detect_on": "canvas",
+    "events": {
+      "onhover": {
+        "enable": true,
+        "mode": "grab"
+      },
+      "onclick": {
+        "enable": true,
+        "mode": "push"
+      },
+      "resize": true
+    },
+    "modes": {
+      "grab": {
+        "distance": 140,
+        "line_linked": {
+          "opacity": 1
+        }
+      },
+      "bubble": {
+        "distance": 800,
+        "size": 80,
+        "duration": 2,
+        "opacity": 0.8,
+        "speed": 3
+      },
+      "repulse": {
+        "distance": 400,
+        "duration": 0.4
+      },
+      "push": {
+        "particles_nb": 4
+      },
+      "remove": {
+        "particles_nb": 2
+      }
+    }
+  },
+  "retina_detect": true
+}
+                );
+
+                const navLinks = document.querySelectorAll("nav ul li a");
+                const pagesContainer = document.querySelector(".pages");
+                const pages = document.querySelectorAll(".pages .item");
+                const navListItems = document.querySelectorAll("nav ul li");
+
+                navLinks.forEach(link => {
+                    link.addEventListener("click", e => {
+                        e.preventDefault();
+                        const targetPage = parseInt(link.dataset.page);
+                        pagesContainer.scrollTo({ top: targetPage * pagesContainer.clientHeight, behavior: "smooth" });
+                    });
+                });
+
+                pagesContainer.addEventListener("scroll", () => {
+                    let current = 0;
+                    pages.forEach((page, index) => {
+                        const pageTop = page.getBoundingClientRect().top;
+                        const pageBottom = page.getBoundingClientRect().bottom;
+                        const viewHeight = window.innerHeight;
+                        if (pageTop < viewHeight / 2 && pageBottom > viewHeight / 2) current = index;
+                    });
+
+                    navListItems.forEach(li => li.classList.remove("active"));
+                    navLinks.forEach(link => link.classList.remove("active"));
+
+                    if (navListItems[current]) {
+                        navListItems[current].classList.add("active");
+                        navLinks[current].classList.add("active");
+                    }
+
+                    // Show/hide back buttons based on current page
+                    document.querySelectorAll('.back-button').forEach(btn => btn.classList.remove('visible'));
+                    if (current === 1) {
+                        document.querySelector('.departments .back-button').classList.add('visible');
+                    } else if (current === 2) {
+                        document.querySelector('.events .back-button').classList.add('visible');
+                    } else if (current === 3) {
+                        document.querySelector('.credits .back-button').classList.add('visible');
+                    }
+
+                    if (current === 2) showDeptEvents();
+                });
+
+                pagesContainer.dispatchEvent(new Event('scroll'));
+
+                const cards = document.querySelectorAll('.developer-card');
+                cards.forEach(card => {
+                    const { imgUrl, color, email, linkedin, instagram, youtube } = card.dataset;
+                    const innerCard = card.querySelector('.card-image-content');
+                    innerCard.style.backgroundImage = `url(${imgUrl})`;
+                    if (color) card.style.setProperty('--border-color', color);
+
+                    const socialLinks = card.querySelector('.social-links');
+                    if (socialLinks) {
+                        const gmailLink = socialLinks.querySelector('.gmail');
+                        const linkedinLink = socialLinks.querySelector('.linkedin');
+                        const instagramLink = socialLinks.querySelector('.instagram');
+                        const youtubeLink = socialLinks.querySelector('.youtube');
+
+                        if (gmailLink) gmailLink.href = email;
+                        if (linkedinLink) linkedinLink.href = linkedin;
+
+                        if (instagramLink) {
+                            instagramLink.href = instagram;
+                            if (instagram.includes('github')) { instagramLink.querySelector('i').className = 'fab fa-github'; instagramLink.setAttribute('aria-label', 'GitHub'); }
+                            else { instagramLink.querySelector('i').className = 'fab fa-instagram'; instagramLink.setAttribute('aria-label', 'Instagram'); }
+                        }
+
+                        if (youtubeLink) {
+                            youtubeLink.href = youtube;
+                            if (youtube.includes('tel:')) { youtubeLink.querySelector('i').className = 'fas fa-phone'; youtubeLink.setAttribute('aria-label', 'Phone'); }
+                            else if (youtube.includes('//')) { youtubeLink.querySelector('i').className = 'fas fa-globe'; youtubeLink.setAttribute('aria-label', 'Website'); }
+                            else { youtubeLink.querySelector('i').className = 'fab fa-youtube'; youtubeLink.setAttribute('aria-label', 'YouTube'); }
+                        }
+                    }
+                });
+
+                let selectedDept = null, selectedDeptClass = null;
+                const departmentElements = document.querySelectorAll(".department");
+                departmentElements.forEach(dept => {
+                    dept.addEventListener("click", () => {
+                        const deptName = dept.dataset.dept;
+                        const deptClass = dept.dataset.class;
+                        showEvents(deptName, deptClass);
+                    });
+                });
+
+                function showEvents(dept, deptClass) {
+                    selectedDept = dept; selectedDeptClass = deptClass;
+                    document.querySelectorAll(".department").forEach(el => el.classList.remove("active"));
+                    document.querySelector(`.department.${deptClass}`).classList.add("active");
+                    pagesContainer.scrollTo({ top: 2 * pagesContainer.clientHeight, behavior: "smooth" });
+                    showDeptEvents();
+                }
+
+                function showDeptEvents() {
+                    const noSelection = document.getElementById('no-selection');
+                    const eventDetails = document.querySelectorAll('.event-details');
+                    if (selectedDept) {
+                        noSelection.style.display = 'none';
+                        eventDetails.forEach(detail => detail.classList.remove('active'));
+                        const activeDetail = document.querySelector(`.event-details[data-dept="${selectedDept}"]`);
+                        if (activeDetail) activeDetail.classList.add('active');
+                    } else {
+                        noSelection.style.display = 'block';
+                        eventDetails.forEach(detail => detail.classList.remove('active'));
+                    }
+                }
+
+                function goBack() {
+                    selectedDept = null; selectedDeptClass = null;
+                    document.querySelectorAll(".department").forEach(el => el.classList.remove("active"));
+                    pagesContainer.scrollTo({ top: 1 * pagesContainer.clientHeight, behavior: "smooth" });
+                    showDeptEvents();
+                }
+
+                function scrollToNext() {
+                    pagesContainer.scrollTo({ top: 1 * pagesContainer.clientHeight, behavior: "smooth" });
+                }
+
+                function scrollToHome() {
+                    pagesContainer.scrollTo({ top: 0, behavior: "smooth" });
+                }
+
+                function scrollToDepartments() {
+                    pagesContainer.scrollTo({ top: 1 * pagesContainer.clientHeight, behavior: "smooth" });
+                }
+
+                function scrollToEvents() {
+                    pagesContainer.scrollTo({ top: 2 * pagesContainer.clientHeight, behavior: "smooth" });
+                }
+
+                window.goBack = goBack;
+                window.scrollToNext = scrollToNext;
+                window.scrollToHome = scrollToHome;
+                window.scrollToDepartments = scrollToDepartments;
+                window.scrollToEvents = scrollToEvents;
             </script>
 </body>
 
