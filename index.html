@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" /> <!-- Added for signature font -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
+    <!-- Added for signature font -->
     <title>Home</title>
     <style>
         /* ==================================================================== BASE & LAYOUT ==================================================================== */
@@ -78,7 +79,7 @@
         }
 
         .college-logo {
-            width: 45px;
+            width: 200px;
             height: auto;
         }
 
@@ -221,7 +222,8 @@
             top: 0;
             width: 0;
             height: 100%;
-            background-color: rgba(0, 255, 255, 0.3); /* Semi-transparent cyan */
+            background-color: rgba(0, 255, 255, 0.3);
+            /* Semi-transparent cyan */
             transition: width 0.3s ease;
             z-index: 1;
         }
@@ -247,11 +249,12 @@
             justify-content: flex-end;
             align-items: center;
             z-index: 100;
+            margin-right: 5px;
         }
 
         .social-nav ul {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             align-items: center;
             list-style-type: none;
             margin: 0;
@@ -262,6 +265,7 @@
             position: relative;
             text-align: center;
             margin-bottom: 15px;
+            padding-left: 10px;
         }
 
         .social-nav ul li a {
@@ -316,7 +320,8 @@
 
         .signature-text h3:first-child {
             font-family: 'Orbitron', sans-serif;
-            margin-bottom: 0px; /* Reduced gap */
+            margin-bottom: 0px;
+            /* Reduced gap */
         }
 
         .centered-text {
@@ -326,7 +331,8 @@
             text-align: center;
             letter-spacing: 0.2em;
             /* Adds space between letters */
-            margin-top: 5px; /* Small margin to adjust gap */
+            margin-top: 5px;
+            /* Small margin to adjust gap */
         }
 
         /* 1. Define the keyframe animation for the jump */
@@ -475,12 +481,19 @@
         }
 
         @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
                 transform: translateY(0);
             }
+
             40% {
                 transform: translateY(-10px);
             }
+
             60% {
                 transform: translateY(-5px);
             }
@@ -548,35 +561,43 @@
         }
 
         .department.cse span {
-            color: #00ffff; /* Cyan for CSE */
+            color: #00ffff;
+            /* Cyan for CSE */
         }
 
         .department.it span {
-            color: #ff00ff; /* Magenta for IT */
+            color: #ff00ff;
+            /* Magenta for IT */
         }
 
         .department.aids span {
-            color: #ffff00; /* Yellow for AI&DS */
+            color: #ffff00;
+            /* Yellow for AI&DS */
         }
 
         .department.mechanical span {
-            color: #ff8c00; /* Orange for MECH */
+            color: #ff8c00;
+            /* Orange for MECH */
         }
 
         .department.electronics span {
-            color: #00ff7f; /* Spring green for ECE */
+            color: #00ff7f;
+            /* Spring green for ECE */
         }
 
         .department.electrical span {
-            color: #9400d3; /* Dark violet for EEE */
+            color: #9400d3;
+            /* Dark violet for EEE */
         }
 
         .department.cyber span {
-            color: #ff0000; /* Red for CYS */
+            color: #ff0000;
+            /* Red for CYS */
         }
 
         .department.sh span {
-            color: #ffffff; /* White for S&H */
+            color: #ffffff;
+            /* White for S&H */
         }
 
         /* ==================================================================== EVENTS PAGE (Page 3) ==================================================================== */
@@ -701,7 +722,8 @@
             text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
             cursor: pointer;
             z-index: 100;
-            display: none; /* Hidden by default, shown via JS or class */
+            display: none;
+            /* Hidden by default, shown via JS or class */
         }
 
         .back-button.visible {
@@ -739,8 +761,8 @@
             grid-column: 1 / -1;
             text-align: center;
             font-weight: 600;
-            color: #58a6ff;
-            margin-bottom: 1.5rem;
+            color: #00ffff;
+            margin-bottom: 1.7 rem;
             font-size: 2.2rem;
             text-shadow: 0 0 10px rgba(88, 166, 255, 0.5);
         }
@@ -817,7 +839,7 @@
         .developer-card .social-links {
             margin-top: 2px;
             display: flex;
-            justify-content:center;
+            justify-content: center;
             gap: 30px;
         }
 
@@ -890,32 +912,27 @@
             }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 414px) {
             .site-header {
                 top: 10px;
                 left: 10px;
                 gap: 5px;
             }
 
-            .college-logo {
-                width: 35px;
-            }
-
-            .college-title {
-                font-size: 20px;
-            }
 
             .signature-text {
                 font-size: 1.8rem;
+                margin-top: 80px;
             }
 
             .centered-text {
-                font-size: 20px;
+                font-size: 2rem;
+                letter-spacing: 0.1em;
                 margin-top: 5px;
             }
 
             .centered-text span {
-                font-size: 20px;
+                font-size: 2rem;
             }
 
             .subtitle {
@@ -924,28 +941,282 @@
 
             .welcome-text {
                 font-size: 1rem;
-                max-width: 500px;
+                max-width: 90%;
                 padding: 15px;
             }
 
             .scroll-arrow {
-                font-size: 2rem;
+                font-size: 1.8rem;
+                margin-top: 15px;
+            }
+
+            nav {
+                height: 50px;
+            }
+
+            nav ul li a {
+                font-size: 1.2rem;
             }
 
             .depart {
-                max-width: 500px;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+                max-width: 90%;
             }
 
             .department {
                 min-height: 120px;
+                font-size: 12px;
             }
 
-            .team-container {
-                max-width: 500px;
+            .department span {
+                font-size: 0.7rem;
+                padding: 4px 12px;
             }
 
             .event-details {
+                padding: 20px;
+            }
+
+            .event-details h4 {
+                font-size: 1.2rem;
+            }
+
+            .event-details p {
+                font-size: 0.9rem;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            .team-container {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: auto repeat(3, auto);
+                gap: 15px;
                 max-width: 90%;
+                padding: 8px;
+            }
+
+            .developer-card {
+                flex-direction: row;
+                justify-content: flex-start;
+                padding: 10px;
+            }
+
+            .card-image-content {
+                width: 60px;
+                height: 60px;
+                margin: 0 10px 0 0;
+            }
+
+            .developer-card h2 {
+                font-size: 1rem;
+            }
+
+            .developer-card p {
+                font-size: 0.8rem;
+            }
+
+            .developer-card .card-details>a {
+                font-size: 0.8rem;
+            }
+
+            .developer-card .social-links {
+                gap: 6px;
+            }
+
+            .developer-card .social-links a {
+                font-size: 1rem;
+            }
+
+            .back-button {
+                font-size: 1.8rem;
+                left: 15px;
+                top: 35px;
+            }
+        }
+
+        @media (max-width: 390px) {
+
+
+            .college-title {
+                font-size: 18px;
+            }
+
+            .team-container {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: auto repeat(3, auto);
+                gap: 12px;
+                padding: 6px;
+            }
+
+            .developer-card {
+                padding: 8px;
+            }
+
+            .card-image-content {
+                width: 55px;
+                height: 55px;
+                margin: 0 8px 0 0;
+            }
+
+            .developer-card h2 {
+                font-size: 0.95rem;
+            }
+
+            .developer-card p {
+                font-size: 0.75rem;
+            }
+
+            .developer-card .card-details>a {
+                font-size: 0.75rem;
+            }
+
+            .developer-card .social-links {
+                gap: 5px;
+            }
+
+            .developer-card .social-links a {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 375px) {
+
+
+            .college-title {
+                font-size: 17px;
+            }
+
+            .team-container {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: auto repeat(3, auto);
+                gap: 10px;
+                padding: 5px;
+            }
+
+            .developer-card {
+                padding: 7px;
+            }
+
+            .card-image-content {
+                width: 50px;
+                height: 50px;
+                margin: 0 7px 0 0;
+            }
+
+            .developer-card h2 {
+                font-size: 0.9rem;
+            }
+
+            .developer-card p {
+                font-size: 0.7rem;
+            }
+
+            .developer-card .card-details>a {
+                font-size: 0.7rem;
+            }
+
+            .developer-card .social-links {
+                gap: 4px;
+            }
+
+            .developer-card .social-links a {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+
+            .college-title {
+                font-size: 16px;
+            }
+
+            .team-container {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: auto repeat(3, auto);
+                gap: 8px;
+                padding: 4px;
+            }
+
+            .developer-card {
+                padding: 6px;
+            }
+
+            .card-image-content {
+                width: 45px;
+                height: 45px;
+                margin: 0 6px 0 0;
+            }
+
+            .developer-card h2 {
+                font-size: 0.85rem;
+            }
+
+            .developer-card p {
+                font-size: 0.65rem;
+            }
+
+            .developer-card .card-details>a {
+                font-size: 0.65rem;
+            }
+
+            .developer-card .social-links {
+                gap: 3px;
+            }
+
+            .developer-card .social-links a {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 320px) {
+
+            .college-title {
+                font-size: 14px;
+            }
+
+            .team-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto repeat(6, auto);
+                gap: 10px;
+                padding: 5px;
+            }
+
+            .developer-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 10px;
+            }
+
+            .card-image-content {
+                width: 60px;
+                height: 60px;
+                margin: 0 auto 10px;
+            }
+
+            .developer-card h2 {
+                font-size: 0.9rem;
+            }
+
+            .developer-card p {
+                font-size: 0.7rem;
+            }
+
+            .developer-card .card-details>a {
+                font-size: 0.7rem;
+            }
+
+            .developer-card .social-links {
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .developer-card .social-links a {
+                font-size: 0.9rem;
             }
         }
 
@@ -955,9 +1226,6 @@
                 gap: 3px;
             }
 
-            .college-logo {
-                width: 25px;
-            }
 
             .college-title {
                 font-size: 12px;
@@ -1039,7 +1307,8 @@
             nav ul li.active::after,
             nav ul li:hover::after {
                 width: 100%;
-                height: 3px; /* For mobile, make it a bottom line */
+                height: 3px;
+                /* For mobile, make it a bottom line */
             }
 
             .depart {
@@ -1127,6 +1396,230 @@
             }
         }
 
+        @media (max-width: 414px) {
+            .site-header {
+                top: 10px;
+                left: 10px;
+                gap: 5px;
+            }
+
+
+
+            .college-title {
+                font-size: 20px;
+            }
+
+            .team-container {
+                grid-template-columns: repeat(2fr, 1);
+                grid-template-rows: auto repeat(3, auto);
+                gap: 20px;
+                max-width: 90%;
+                padding: 10px;
+            }
+
+            .developer-card {
+                flex-direction: row;
+                justify-content: flex-start;
+                padding: 12px;
+            }
+
+            .card-image-content {
+                width: 70px;
+                height: 70px;
+                margin: 0 12px 0 0;
+            }
+
+            .developer-card h2 {
+                font-size: 1.1rem;
+            }
+
+            .developer-card p {
+                font-size: 0.85rem;
+            }
+
+            .developer-card .card-details>a {
+                font-size: 0.85rem;
+            }
+
+            .developer-card .social-links {
+                gap: 8px;
+            }
+
+            .developer-card .social-links a {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 390px) {
+
+            .college-title {
+                font-size: 18px;
+            }
+
+            .team-container {
+                gap: 15px;
+                padding: 8px;
+            }
+
+            .developer-card {
+                padding: 10px;
+            }
+
+            .card-image-content {
+                width: 65px;
+                height: 65px;
+                margin: 0 10px 0 0;
+            }
+
+            .developer-card h2 {
+                font-size: 1rem;
+            }
+
+            .developer-card p {
+                font-size: 0.8rem;
+            }
+
+            .developer-card .card-details>a {
+                font-size: 0.8rem;
+            }
+
+            .developer-card .social-links {
+                gap: 6px;
+            }
+
+            .developer-card .social-links a {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .college-title {
+                font-size: 17px;
+            }
+
+            .team-container {
+                gap: 12px;
+                padding: 6px;
+            }
+
+            .developer-card {
+                padding: 8px;
+            }
+
+            .card-image-content {
+                width: 60px;
+                height: 60px;
+                margin: 0 8px 0 0;
+            }
+
+            .developer-card h2 {
+                font-size: 0.95rem;
+            }
+
+            .developer-card p {
+                font-size: 0.75rem;
+            }
+
+            .developer-card .card-details>a {
+                font-size: 0.75rem;
+            }
+
+            .developer-card .social-links {
+                gap: 5px;
+            }
+
+            .developer-card .social-links a {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+
+            .college-title {
+                font-size: 16px;
+            }
+
+            .team-container {
+                gap: 10px;
+                padding: 5px;
+            }
+
+            .developer-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 10px;
+            }
+
+            .card-image-content {
+                width: 70px;
+                height: 70px;
+                margin: 0 auto 10px;
+            }
+
+            .developer-card h2 {
+                font-size: 0.9rem;
+            }
+
+            .developer-card p {
+                font-size: 0.7rem;
+            }
+
+            .developer-card .card-details>a {
+                font-size: 0.7rem;
+            }
+
+            .developer-card .social-links {
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .developer-card .social-links a {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 320px) {
+
+            .college-title {
+                font-size: 14px;
+            }
+
+            .team-container {
+                gap: 8px;
+                padding: 4px;
+            }
+
+            .developer-card {
+                padding: 8px;
+            }
+
+            .card-image-content {
+                width: 60px;
+                height: 60px;
+            }
+
+            .developer-card h2 {
+                font-size: 0.85rem;
+            }
+
+            .developer-card p {
+                font-size: 0.65rem;
+            }
+
+            .developer-card .card-details>a {
+                font-size: 0.65rem;
+            }
+
+            .developer-card .social-links {
+                gap: 6px;
+            }
+
+            .developer-card .social-links a {
+                font-size: 0.85rem;
+            }
+        }
+
         @media (max-width: 480px) {
             .centered-text {
                 font-size: 10px;
@@ -1151,12 +1644,14 @@
             }
 
             .team-container {
-                gap: 8px;
+                gap: 12px;
+                width: 400px;
+                height: 800px;
             }
 
             .card-image-content {
-                width: 45px;
-                height: 45px;
+                width: 50px;
+                height: 50px;
             }
 
             .developer-card h2 {
@@ -1197,7 +1692,7 @@
     <div class="preloader" id="preloader">
         <div class="preloader-title">
             <img src="images/Gemini_Generated_Image_nyl78knyl78knyl7-removebg-preview.png" alt="RPSIT Preloader Logo"
-                style="width: 100px; height: 110px;">
+                style="width: 100px; height: 150px;">
         </div>
         <div class="logo">
             <span>R</span><span>P</span><span>S</span><span>I</span><span>T</span>
@@ -1211,21 +1706,19 @@
                     <ul>
                         <li><a href="mailto:info@rpsit.ac.in" target="_blank" aria-label="Email"><i
                                     class="fas fa-envelope"></i></a></li>
-                        <li><a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i
-                                    class="fab fa-instagram"></i></a></li>
-                        <li><a href="https://www.facebook.com" target="_blank" aria-label="Facebook"><i
-                                    class="fab fa-facebook"></i></a></li>
+                        <li><a href="" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                        <li> <a href="www.youtube.com/@RPSITSalem" target="_blank" aria-label="Instagram">
+                                <i class="fab fa-youtube"></i></a></li>
                     </ul>
                 </div>
                 <div class="site-header">
-                    <img src="images/Gemini_Generated_Image_nyl78knyl78knyl7-removebg-preview.png"
-                        alt="R P Sarathy Institute of Technology Logo" class="college-logo" />
-                    <h1 class="college-title">R P Sarathy Institute of Technology</h1>
+                    <img src="images/rpsit-logo.png" alt="R P Sarathy Institute of Technology Logo"
+                        class="college-logo" />
                 </div>
 
                 <div class="signature-text">
                     <h3>RPSIT</h3>
-                    <h3>Presents</h3>
+                    <h3>Proudly Presents</h3>
                 </div>
                 <h1 class="centered-text">
                     <span>I</span><span>N</span><span>F</span><span>I</span><span>N</span><span>I</span><span>T</span><span>E</span>
@@ -1278,8 +1771,22 @@
                         </div>
                         <div class="coor">
                             <h4>Coordinators Details</h4>
-                            <p>Staff: Dr. T.R. Vijayan (Prof/Maths) - 8667403339</p>
-                            <p>Student: Mr. S. Udhayamathivanan (I/ECE) - 9965228735</p>
+
+                            <p>Staff: Dr. T.R. Vijayan (Prof/Maths) <br>
+                                <i class="fas fa-phone"></i>
+                                <a style="color: white; text-decoration: none;" href="tel:+918667403339" class="phone"
+                                    target="_blank" aria-label="Phone Number for Dr. T.R. Vijayan">
+                                    +91 86674 03339
+                                </a>
+                            </p>
+
+                            <p>Student: Mr. S. Udhayamathivanan (I/ECE) <br>
+                                <i class="fas fa-phone"></i>
+                                <a style="color: white; text-decoration: none;" href="tel:+919965228735" class="phone"
+                                    target="_blank" aria-label="Phone Number for Mr. S. Udhayamathivanan">
+                                    +91 99652 28735
+                                </a>
+                            </p>
                         </div>
                         <div class="event-actions"><a href="#" class="btn register">Register</a></div>
                     </div>
@@ -1294,8 +1801,22 @@
                         </div>
                         <div class="coor">
                             <h4>Coordinators Details</h4>
-                            <p>Staff: Mr. S. Jeevanantham (AP/MECH) - 9940703910</p>
-                            <p>Student: Mr. B. Sabarishan (III/MECH) - 8428230017</p>
+
+                            <p>Staff: Mr. S. Jeevanantham (AP/MECH) <br>
+                                <i class="fas fa-phone"></i>
+                                <a style="color: white; text-decoration: none;" href="tel:+919940703910" class="phone"
+                                    target="_blank" aria-label="Phone Number for Mr. S. Jeevanantham">
+                                    +91 99407 03910
+                                </a>
+                            </p>
+
+                            <p>Student: Mr. B. Sabarishan (III/MECH) <br>
+                                <i class="fas fa-phone"></i>
+                                <a style="color: white; text-decoration: none;" href="tel:+918428230017" class="phone"
+                                    target="_blank" aria-label="Phone Number for Mr. B. Sabarishan">
+                                    +91 84282 30017
+                                </a>
+                            </p>
                         </div>
                         <div class="event-actions"><a href="https://forms.gle/4GrP3TFkHb91Db7s8"
                                 class="btn register">Register</a></div>
@@ -1311,8 +1832,15 @@
                         </div>
                         <div class="coor">
                             <h4>Coordinators Details</h4>
-                            <p>Staff: Mr. P. Velmurugan (AP/EEE) - 9952365509</p>
-                            <p>Student: Mr. N. Gowtham (IV/EEE) - 8489668837</p>
+                            <p>Staff: Mr. P. Velmurugan (AP/EEE) <br> <i class="fas fa-phone"></i> <a
+                                    style="color: white; text-decoration: none;" href="tel:+919952365509" class="phone"
+                                    target="_blank" aria-label="Phone Number"> +91 99523 65509
+                                </a>
+                            <p>Student: Mr. N. Gowtham (IV/EEE) <br> <i class="fas fa-phone"></i> <a
+                                    style="color: white; text-decoration: none;" href="tel:+918489668837" class="phone"
+                                    target="_blank" aria-label="Phone Number"> +91 84896
+                                    68837
+                                </a>
                         </div>
                         <div class="event-actions"><a href="https://forms.gle/necfcPbg3Z2VQ5cN6"
                                 class="btn register">Register</a></div>
@@ -1328,8 +1856,22 @@
                         </div>
                         <div class="coor">
                             <h4>Coordinators Details</h4>
-                            <p>Staff: Mrs. T. Vinodhini (AP/ECE) - 8778840090</p>
-                            <p>Student: Mr. S. Deepak (IV/ECE) - 9342817217</p>
+
+                            <p>Staff: Mrs. T. Vinodhini (AP/ECE) <br>
+                                <i class="fas fa-phone"></i>
+                                <a style="color: white; text-decoration: none;" href="tel:+918778840090" class="phone"
+                                    target="_blank" aria-label="Phone Number for Mrs. T. Vinodhini">
+                                    +91 87788 40090
+                                </a>
+                            </p>
+
+                            <p>Student: Mr. S. Deepak (IV/ECE) <br>
+                                <i class="fas fa-phone"></i>
+                                <a style="color: white; text-decoration: none;" href="tel:+919342817217" class="phone"
+                                    target="_blank" aria-label="Phone Number for Mr. S. Deepak">
+                                    +91 93428 17217
+                                </a>
+                            </p>
                         </div>
                         <div class="event-actions"><a href="https://forms.gle/V2h1bTLsozZnefSe9" class="btn register"
                                 target="_blank">Register</a></div>
@@ -1345,8 +1887,22 @@
                         </div>
                         <div class="coor">
                             <h4>Coordinators Details</h4>
-                            <p>Staff: Mr. M. Ramesh (AP/CSE) - 9500535551</p>
-                            <p>Student: Mr. D. Jana krishnan (IV/CSE) - 7558163201</p>
+
+                            <p>Staff: Mr. M. Ramesh (AP/CSE) <br>
+                                <i class="fas fa-phone"></i>
+                                <a style="color: white; text-decoration: none;" href="tel:+919500535551" class="phone"
+                                    target="_blank" aria-label="Phone Number for Mr. M. Ramesh">
+                                    +91 95005 35551
+                                </a>
+                            </p>
+
+                            <p>Student: Mr. D. Janakrishnan (IV/CSE) <br>
+                                <i class="fas fa-phone"></i>
+                                <a style="color: white; text-decoration: none;" href="tel:+917558163201" class="phone"
+                                    target="_blank" aria-label="Phone Number for Mr. D. Janakrishnan">
+                                    +91 75581 63201
+                                </a>
+                            </p>
                         </div>
                         <div class="event-actions"><a
                                 href="https://docs.google.com/forms/d/e/1FAIpQLScCS65haJ7OfNbb_H-PXFqpNdndMVIg5BlQRCpMIv_aNpBoXw/viewform"
@@ -1363,8 +1919,22 @@
                         </div>
                         <div class="coor">
                             <h4>Coordinators Details</h4>
-                            <p>Staff: Mrs. S. Priyanka (AP/AI&DS) - 9025593180</p>
-                            <p>Student: Mr. V. Sivabalan (AP/AI&DS) - 9025979210</p>
+
+                            <p>Staff: Mrs. S. Priyanka (AP/AI&DS) <br>
+                                <i class="fas fa-phone"></i>
+                                <a style="color: white; text-decoration: none;" href="tel:+919025593180" class="phone"
+                                    target="_blank" aria-label="Phone Number for Mrs. S. Priyanka">
+                                    +91 90255 93180
+                                </a>
+                            </p>
+
+                            <p>Student: Mr. V. Sivabalan (III/AI&DS) <br>
+                                <i class="fas fa-phone"></i>
+                                <a style="color: white; text-decoration: none;" href="tel:+919025979210" class="phone"
+                                    target="_blank" aria-label="Phone Number for Mr. V. Sivabalan">
+                                    +91 90259 79210
+                                </a>
+                            </p>
                         </div>
                         <div class="event-actions"><a href="#" class="btn register">Register</a></div>
                     </div>
@@ -1379,8 +1949,22 @@
                         </div>
                         <div class="coor">
                             <h4>Coordinators Details</h4>
-                            <p>Staff: Mrs. G. Kanmani (AP/IT) - 6380535345</p>
-                            <p>Student: Ms. M. Priyanka (IV/IT) - 7845030386</p>
+
+                            <p>Staff: Mrs. G. Kanmani (AP/IT) <br>
+                                <i class="fas fa-phone"></i>
+                                <a style="color: white; text-decoration: none;" href="tel:+916380535345" class="phone"
+                                    target="_blank" aria-label="Phone Number for Mrs. G. Kanmani">
+                                    +91 63805 35345
+                                </a>
+                            </p>
+
+                            <p>Student: Ms. M. Priyanka (IV/IT) <br>
+                                <i class="fas fa-phone"></i>
+                                <a style="color: white; text-decoration: none;" href="tel:+917845030386" class="phone"
+                                    target="_blank" aria-label="Phone Number for Ms. M. Priyanka">
+                                    +91 78450 30386
+                                </a>
+                            </p>
                         </div>
                         <div class="event-actions"><a
                                 href="https://docs.google.com/forms/d/e/1FAIpQLSdbW8cWa0yx4hec06fYmJb6ox1ppdP2pHrLIqddJbr1QtGyqQ/viewform?usp=header"
@@ -1397,8 +1981,22 @@
                         </div>
                         <div class="coor">
                             <h4>Coordinators Details</h4>
-                            <p>Staff: Mrs. G. Kanmani (AP/IT) - 6380535345</p>
-                            <p>Student: Ms. M. Priyanka (IV/IT) - 7845030386</p>
+
+                            <p>Staff: Mrs. G. Kanmani (AP/IT) <br>
+                                <i class="fas fa-phone"></i>
+                                <a style="color: white; text-decoration: none;" href="tel:+916380535345" class="phone"
+                                    target="_blank" aria-label="Phone Number for Mrs. G. Kanmani">
+                                    +91 63805 35345
+                                </a>
+                            </p>
+
+                            <p>Student: Ms. M. Priyanka (IV/IT) <br>
+                                <i class="fas fa-phone"></i>
+                                <a style="color: white; text-decoration: none;" href="tel:+917845030386" class="phone"
+                                    target="_blank" aria-label="Phone Number for Ms. M. Priyanka">
+                                    +91 78450 30386
+                                </a>
+                            </p>
                         </div>
                         <div class="event-actions"><a
                                 href="https://docs.google.com/forms/d/e/1FAIpQLSdbW8cWa0yx4hec06fYmJb6ox1ppdP2pHrLIqddJbr1QtGyqQ/viewform?usp=header"
@@ -1411,8 +2009,8 @@
                 <i class="fas fa-arrow-left back-button visible" onclick="scrollToEvents()"></i>
                 <div class="team-container">
                     <h1>Meet Our Team</h1>
-                    <div class="developer-card" data-img-url="images/vishnu.png"
-                        data-color="#ff00ff" data-email="mailto:vishnurajan24766@gmail.com"
+                    <div class="developer-card" data-img-url="images/vishnu.png" data-color="#ff00ff"
+                        data-email="mailto:vishnurajan24766@gmail.com"
                         data-linkedin="https://in.linkedin.com/in/vishnu-r-331560213?trk=profile-badge"
                         data-instagram="https://github.com/Vishnuat18"
                         data-youtube="https://vishnuat18.github.io/v_portfolio/">
@@ -1432,10 +2030,10 @@
                                     aria-label="Website"><i class="fas fa-globe"></i></a></div>
                         </div>
                     </div>
-                    <div class="developer-card" data-img-url="images/kiran.png"
-                        data-color="#00ffff" data-email="mailto:kiranbalasopatil33@gmail.com"
-                        data-linkedin="https://www.linkedin.com/in/kiran-patil-110034237?trk=profile-badge"
-                        data-instagram="https://www.instagram.com/kiran__patil_33/"
+                    <div class="developer-card" data-img-url="images/kiran.png" data-color="#00ffff"
+                        data-email="mailto:kiranbalasopatil33@gmail.com"
+                        data-linkedin="https://in.linkedin.com/in/kiran-balaso-patil-851a43351?trk=profile-badge"
+                        data-instagram="https://github.com/KiranBalasoPatil3052006"
                         data-youtube="https://kiranbalasopatil3052006.github.io/Portfolio_Presentation_Micro_IT/">
                         <div class="card-image-content"></div>
                         <div class="card-details">
@@ -1444,18 +2042,19 @@
                                 href="tel:+918610641610">+91 86106 41610</a>
                             <div class="social-links"><a href="mailto:kiranbalasopatil33@gmail.com" class="gmail"
                                     target="_blank" aria-label="Email"><i class="fas fa-envelope"></i></a><a
-                                    href="https://www.linkedin.com/in/kiran-patil-110034237" class="linkedin"
-                                    target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a><a
-                                    href="https://github.com/KiranBalasoPatil3052006FF" class="instagram"
-                                    target="_blank" aria-label="Instagram"><i class="fab fa-github"></i></a><a
+                                    href="https://in.linkedin.com/in/kiran-balaso-patil-851a43351?trk=profile-badge"
+                                    class="linkedin" target="_blank" aria-label="LinkedIn"><i
+                                        class="fab fa-linkedin"></i></a><a
+                                    href="https://github.com/KiranBalasoPatil3052006" class="instagram" target="_blank"
+                                    aria-label="Instagram"><i class="fab fa-github"></i></a><a
                                     href="https://kiranbalasopatil3052006.github.io/Portfolio_Presentation_Micro_IT/"
                                     class="youtube" target="_blank" aria-label="Phone"><i class="fas fa-globe"></i></a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="developer-card" data-img-url="images/prasanna.png"
-                        data-color="#ff8c00" data-email="mailto:prasannaramana2005@gmail.com"
+                    <div class="developer-card" data-img-url="images/prasanna.png" data-color="#ff8c00"
+                        data-email="mailto:prasannaramana2005@gmail.com"
                         data-linkedin="https://www.linkedin.com/in/prasanna-ramana-s/"
                         data-instagram="https://www.instagram.com/prasanna_r_7"
                         data-youtube="https://youtube.com/@prasannaramana5042?si=yWUVn9WjNs6MWOsU">
@@ -1480,8 +2079,8 @@
 
 
 
-                    <div class="developer-card" data-img-url="images/rohith.png"
-                        data-color="#00ff7f" data-email="mailto:rohithsathish701@gmial.com"
+                    <div class="developer-card" data-img-url="images/rohith.png" data-color="#00ff7f"
+                        data-email="mailto:rohithsathish701@gmial.com"
                         data-linkedin="https://www.linkedin.com/in/rohith-s-7a1208345?trk=profile-badge"
                         data-instagram="https://github.com/Rohith22s"
                         data-youtube="https://rohith22s.github.io/porfolio/">
@@ -1502,8 +2101,8 @@
                         </div>
                     </div>
 
-                    <div class="developer-card" data-img-url="images/senthil.png"
-                        data-color="#9400d3" data-email="mailto:senthilloganathan30@gmail.com"
+                    <div class="developer-card" data-img-url="images/senthil.png" data-color="#F5CBCB"
+                        data-email="mailto:senthilloganathan30@gmail.com"
                         data-linkedin="https://www.linkedin.com/in/senthil-loganathan-361661351"
                         data-instagram="https://github.com/SenthilLoganathan30"
                         data-youtube="https://youtube.com/@nsedits8297?si=k7GOE_UqOotAE9yB">
@@ -1527,8 +2126,8 @@
                         </div>
                     </div>
 
-                    <div class="developer-card" data-img-url="images/gokul.png"
-                        data-color="#ffff00" data-email="mailto:ytyt10444@gmail.com"
+                    <div class="developer-card" data-img-url="images/gokul.png" data-color="#ffff00"
+                        data-email="mailto:ytyt10444@gmail.com"
                         data-linkedin="https://www.linkedin.com/in/gokul-m-a773822a6"
                         data-instagram="https://www.instagram.com/gj_gokul_23?igsh=MWQ3emVpZWMwOTVmdw=="
                         data-youtube="www.youtube.com/@GJ4FARMING">
