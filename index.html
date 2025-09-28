@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" /> <!-- Added for signature font -->
     <title>Home</title>
     <style>
         /* ==================================================================== BASE & LAYOUT ==================================================================== */
@@ -209,6 +210,8 @@
             transition: color 0.3s ease;
             display: block;
             padding: 10px 0;
+            position: relative;
+            z-index: 2;
         }
 
         nav ul li::after {
@@ -216,18 +219,16 @@
             position: absolute;
             left: 0;
             top: 0;
-            width: 3px;
-            height: 0%;
-            background-color: #00ffff;
-            transition: height 0.3s ease;
-        }
-
-        nav ul li.active::after {
+            width: 0;
             height: 100%;
+            background-color: rgba(0, 255, 255, 0.3); /* Semi-transparent cyan */
+            transition: width 0.3s ease;
+            z-index: 1;
         }
 
+        nav ul li.active::after,
         nav ul li:hover::after {
-            height: 100%;
+            width: 100%;
         }
 
         nav ul li a:hover,
@@ -300,35 +301,146 @@
             position: relative;
         }
 
-        .centered-text {
-            color: #f0f0f0;
-            font-size: 3rem;
-            letter-spacing: 0.1em;
-            word-spacing: 0.6em;
+        .signature-text {
+            font-family: 'Great Vibes', cursive;
+            font-size: 20px;
+            color: #00ffff;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+            margin-top: 100px;
+            line-height: 1.5;
+        }
+
+        .signature-text h3 {
+            margin: 0;
+        }
+
+        .signature-text h3:first-child {
             font-family: 'Orbitron', sans-serif;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
-            margin-top: 50px;
-            line-height: 1.1;
+            margin-bottom: 0px; /* Reduced gap */
         }
 
-        .centered-text span {
-            display: inline-block;
-            font-size: 80px;
-            opacity: 0;
-            animation: slideUpFadeIn 0.6s ease-out forwards;
-            animation-delay: 0.1s;
+        .centered-text {
+            color: #fff;
+            font-size: 3rem;
+            /* Adjust size as needed */
+            text-align: center;
+            letter-spacing: 0.2em;
+            /* Adds space between letters */
+            margin-top: 5px; /* Small margin to adjust gap */
         }
 
-        @keyframes slideUpFadeIn {
-            from {
+        /* 1. Define the keyframe animation for the jump */
+        @keyframes jump {
+
+            /* The letter starts invisible and slightly below its final position */
+            0% {
                 opacity: 0;
-                transform: translateY(40px);
+                transform: translateY(25px);
             }
 
-            to {
+            /* It jumps up, overshooting its final position */
+            60% {
+                transform: translateY(-10px);
+            }
+
+            /* It settles into its final position and becomes fully visible */
+            100% {
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+
+        /* 2. Apply the animation to each character (span) */
+        .centered-text span {
+            display: inline-block;
+            /* Essential for transforms to work */
+            opacity: 0;
+            animation: jump 2s ease-out forwards;
+
+            /* Calculate the delay based on the character's position */
+            animation-delay: calc(0.1s * var(--i));
+        }
+
+        /* 3. Assign a custom property '--i' to each span for the delay calculation.
+   You must continue this pattern for all your characters. */
+        .centered-text span:nth-child(1) {
+            --i: 1;
+        }
+
+        .centered-text span:nth-child(2) {
+            --i: 2;
+        }
+
+        .centered-text span:nth-child(3) {
+            --i: 3;
+        }
+
+        .centered-text span:nth-child(4) {
+            --i: 4;
+        }
+
+        .centered-text span:nth-child(5) {
+            --i: 5;
+        }
+
+        .centered-text span:nth-child(6) {
+            --i: 6;
+        }
+
+        .centered-text span:nth-child(7) {
+            --i: 7;
+        }
+
+        .centered-text span:nth-child(8) {
+            --i: 8;
+        }
+
+        .centered-text span:nth-child(9) {
+            --i: 9;
+        }
+
+        .centered-text span:nth-child(10) {
+            --i: 10;
+        }
+
+        .centered-text span:nth-child(11) {
+            --i: 11;
+        }
+
+        .centered-text span:nth-child(12) {
+            --i: 12;
+        }
+
+        .centered-text span:nth-child(13) {
+            --i: 13;
+        }
+
+        .centered-text span:nth-child(14) {
+            --i: 14;
+        }
+
+        .centered-text span:nth-child(15) {
+            --i: 15;
+        }
+
+        .centered-text span:nth-child(16) {
+            --i: 16;
+        }
+
+        .centered-text span:nth-child(17) {
+            --i: 17;
+        }
+
+        .centered-text span:nth-child(18) {
+            --i: 18;
+        }
+
+        .centered-text span:nth-child(19) {
+            --i: 19;
+        }
+
+        .centered-text span:nth-child(20) {
+            --i: 20;
         }
 
         .subtitle {
@@ -342,14 +454,36 @@
         .welcome-text {
             color: #dddddd;
             font-size: 1.1rem;
-            max-width: 600px;
-            margin: 20px auto;
+            max-width: 1000px;
+            width: 900px;
+            margin: 10px auto;
             line-height: 1.6;
             font-family: 'Orbitron', sans-serif;
             background: rgba(0, 0, 0, 0.75);
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+        }
+
+        .scroll-arrow {
+            font-size: 2rem;
+            color: #00ffff;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+            animation: bounce 1.5s infinite;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
         }
 
         /* ==================================================================== DEPARTMENTS PAGE (Page 2) - 2x4 Grid ==================================================================== */
@@ -364,7 +498,7 @@
             grid-template-rows: repeat(2, 1fr);
             /* 2 rows */
             gap: 20px;
-            width: 100%;
+            width: 800px;
             max-width: 1200px;
             margin: 30px auto;
             padding: 10px;
@@ -411,6 +545,38 @@
             transform: scale(1.05);
             border-color: #ff00ff;
             box-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
+        }
+
+        .department.cse span {
+            color: #00ffff; /* Cyan for CSE */
+        }
+
+        .department.it span {
+            color: #ff00ff; /* Magenta for IT */
+        }
+
+        .department.aids span {
+            color: #ffff00; /* Yellow for AI&DS */
+        }
+
+        .department.mechanical span {
+            color: #ff8c00; /* Orange for MECH */
+        }
+
+        .department.electronics span {
+            color: #00ff7f; /* Spring green for ECE */
+        }
+
+        .department.electrical span {
+            color: #9400d3; /* Dark violet for EEE */
+        }
+
+        .department.cyber span {
+            color: #ff0000; /* Red for CYS */
+        }
+
+        .department.sh span {
+            color: #ffffff; /* White for S&H */
         }
 
         /* ==================================================================== EVENTS PAGE (Page 3) ==================================================================== */
@@ -501,6 +667,8 @@
             display: inline-block;
             font-weight: bold;
             font-family: 'Orbitron', sans-serif;
+            width: auto;
+            box-sizing: border-box;
         }
 
         .btn.back {
@@ -521,6 +689,23 @@
         .btn.register:hover {
             background: #00CCCC;
             transform: scale(1.05);
+        }
+
+        /* Back Button for Pages 2, 3, 4 */
+        .back-button {
+            position: absolute;
+            top: 40px;
+            left: 50px;
+            font-size: 2rem;
+            color: #00ffff;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+            cursor: pointer;
+            z-index: 100;
+            display: none; /* Hidden by default, shown via JS or class */
+        }
+
+        .back-button.visible {
+            display: block;
         }
 
         /* ==================================================================== TEAM / CREDITS PAGE (Page 4) - 3x2 Grid ==================================================================== */
@@ -620,6 +805,7 @@
             text-decoration: none;
             font-size: 0.85rem;
             transition: color 0.3s;
+            text-align: center;
             margin: 2px 0;
             display: block;
         }
@@ -631,8 +817,8 @@
         .developer-card .social-links {
             margin-top: 2px;
             display: flex;
-            justify-content: flex-start;
-            gap: 10px;
+            justify-content:center;
+            gap: 30px;
         }
 
         .developer-card .social-links a {
@@ -719,13 +905,17 @@
                 font-size: 20px;
             }
 
+            .signature-text {
+                font-size: 1.8rem;
+            }
+
             .centered-text {
-                font-size: 2.5rem;
-                margin-top: 60px;
+                font-size: 20px;
+                margin-top: 5px;
             }
 
             .centered-text span {
-                font-size: 60px;
+                font-size: 20px;
             }
 
             .subtitle {
@@ -736,6 +926,10 @@
                 font-size: 1rem;
                 max-width: 500px;
                 padding: 15px;
+            }
+
+            .scroll-arrow {
+                font-size: 2rem;
             }
 
             .depart {
@@ -769,13 +963,17 @@
                 font-size: 12px;
             }
 
+            .signature-text {
+                font-size: 1.5rem;
+            }
+
             .centered-text {
                 font-size: 1.5rem;
-                margin-top: 80px;
+                margin-top: 5px;
             }
 
             .centered-text span {
-                font-size: 30px;
+                font-size: 20px;
             }
 
             .subtitle {
@@ -786,6 +984,10 @@
                 font-size: 0.8rem;
                 max-width: 90%;
                 padding: 10px;
+            }
+
+            .scroll-arrow {
+                font-size: 2rem;
             }
 
             .social-nav ul li a {
@@ -805,7 +1007,7 @@
                 flex-direction: row;
                 justify-content: center;
                 align-items: center;
-                background: rgba(0, 0, 0, 0.95);
+                background: transparent;
                 box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
             }
 
@@ -825,18 +1027,19 @@
             }
 
             nav ul li::after {
-                left: 50%;
+                left: 0;
                 top: auto;
                 bottom: 0;
-                width: 0%;
-                height: 3px;
-                transform: translateX(-50%);
+                width: 0;
+                height: 100%;
+                transform: none;
                 transition: width 0.3s ease;
             }
 
             nav ul li.active::after,
             nav ul li:hover::after {
-                width: 80%;
+                width: 100%;
+                height: 3px; /* For mobile, make it a bottom line */
             }
 
             .depart {
@@ -880,6 +1083,8 @@
                 justify-content: center;
                 text-align: center;
                 padding: 8px;
+                margin-bottom: 20px;
+                margin-right: 5px;
             }
 
             .card-image-content {
@@ -916,11 +1121,24 @@
             .developer-card .card-details>a {
                 display: block;
             }
+
+            .back-button {
+                font-size: 2rem;
+            }
         }
 
         @media (max-width: 480px) {
             .centered-text {
-                margin-top: 90px;
+                font-size: 10px;
+                margin-top: 5px;
+            }
+
+            .signature-text {
+                font-size: 1.2rem;
+            }
+
+            .scroll-arrow {
+                font-size: 1.7rem;
             }
 
             .social-nav ul li a {
@@ -949,7 +1167,6 @@
                 padding-top: 10px;
                 font-size: 0.55rem;
                 padding-bottom: 10px;
-
             }
 
             .developer-card .card-details>a {
@@ -964,12 +1181,18 @@
             .developer-card .social-links a {
                 font-size: 0.7rem;
             }
+
+            .back-button {
+                font-size: 2rem;
+                left: 20px;
+                margin-top: 20px;
+            }
         }
     </style>
 </head>
 
 <body>
-    <video src="video/VID-20250925-WA0019.mp4" loop autoplay muted playsinline></video>
+    <video src="video/VID-20250925-WA0019-vmake (1).mp4" loop autoplay muted playsinline></video>
 
     <div class="preloader" id="preloader">
         <div class="preloader-title">
@@ -999,40 +1222,49 @@
                         alt="R P Sarathy Institute of Technology Logo" class="college-logo" />
                     <h1 class="college-title">R P Sarathy Institute of Technology</h1>
                 </div>
+
+                <div class="signature-text">
+                    <h3>RPSIT</h3>
+                    <h3>Presents</h3>
+                </div>
                 <h1 class="centered-text">
                     <span>I</span><span>N</span><span>F</span><span>I</span><span>N</span><span>I</span><span>T</span><span>E</span>
                     <span>T</span><span>E</span><span>C</span><span>H</span><span>F</span><span>E</span><span>S</span><span>T</span>
-                    <span>2</span><span>k</span><span>2</span><span>5</span>
+                    <span>2</span><span>K</span><span>2</span><span>5</span>
                 </h1>
                 <h2 class="subtitle">A National Level Technical Symposium</h2>
                 <p class="welcome-text">Welcome to INFINITE TECHFEST 2k25 at R P Sarathy Institute of Technology! Join
                     us for an exhilarating showcase of innovation and technical prowess. Explore a variety of technical
                     events by selecting a department below to view detailed event information and register to
                     participate in this exciting journey of knowledge and creativity!</p>
+                <p>For More details</p>
+                <i class="fas fa-arrow-down scroll-arrow" onclick="scrollToNext()"></i>
             </div>
 
             <div class="item departments" id="departments">
+                <i class="fas fa-arrow-left back-button visible" onclick="scrollToHome()"></i>
                 <div class="depart" id="depart">
                     <div class="department sh" data-dept="Science and Humanities" data-class="sh"
-                        style="background-image: url(images/sh.png);"></div>
+                        style="background-image: url(images/sh.png);"><span>S&H</span></div>
                     <div class="department mechanical" data-dept="Mechanical Engineering" data-class="mechanical"
-                        style="background-image: url(images/mech.png);"></div>
+                        style="background-image: url(images/mech.png);"><span>MECH</span></div>
                     <div class="department electrical" data-dept="Electrical and Electronics Engineering"
-                        data-class="electrical" style="background-image: url(images/eee.png);"></div>
+                        data-class="electrical" style="background-image: url(images/eee.png);"><span>EEE</span></div>
                     <div class="department electronics" data-dept="Electronics and Communication Engineering"
-                        data-class="electronics" style="background-image: url(images/ece.png);"></div>
+                        data-class="electronics" style="background-image: url(images/ece.png);"><span>ECE</span></div>
                     <div class="department cse" data-dept="Computer Science and Engineering" data-class="cse"
-                        style="background-image: url(images/cse.png);"></div>
+                        style="background-image: url(images/cse.png);"><span>CSE</span></div>
                     <div class="department aids" data-dept="Artificial Intelligence & Data Science" data-class="aids"
-                        style="background-image: url(images/aids.png);"></div>
+                        style="background-image: url(images/aids.png);"><span>AI&DS</span></div>
                     <div class="department it" data-dept="Information Technology" data-class="it"
-                        style="background-image: url(images/it.png);"></div>
+                        style="background-image: url(images/it.png);"><span>IT</span></div>
                     <div class="department cyber" data-dept="Computer Science and Engineering (Cyber Security)"
-                        data-class="cyber" style="background-image: url(images/cys.png);"></div>
+                        data-class="cyber" style="background-image: url(images/cys.png);"><span>CYS</span></div>
                 </div>
             </div>
 
             <div class="item events">
+                <i class="fas fa-arrow-left back-button visible" onclick="scrollToDepartments()"></i>
                 <h2>Event Details</h2>
                 <div id="no-selection" class="message">Please select a department from the Departments section to view
                     details.</div>
@@ -1049,8 +1281,7 @@
                             <p>Staff: Dr. T.R. Vijayan (Prof/Maths) - 8667403339</p>
                             <p>Student: Mr. S. Udhayamathivanan (I/ECE) - 9965228735</p>
                         </div>
-                        <div class="event-actions"><button class="btn back" onclick="goBack()">⬅ Back to
-                                Departments</button><a href="#" class="btn register">Register</a></div>
+                        <div class="event-actions"><a href="#" class="btn register">Register</a></div>
                     </div>
                     <div class="event-details mechanical" data-dept="Mechanical Engineering">
                         <div class="techeven">
@@ -1066,8 +1297,7 @@
                             <p>Staff: Mr. S. Jeevanantham (AP/MECH) - 9940703910</p>
                             <p>Student: Mr. B. Sabarishan (III/MECH) - 8428230017</p>
                         </div>
-                        <div class="event-actions"><button class="btn back" onclick="goBack()">⬅ Back to
-                                Departments</button><a href="https://forms.gle/4GrP3TFkHb91Db7s8"
+                        <div class="event-actions"><a href="https://forms.gle/4GrP3TFkHb91Db7s8"
                                 class="btn register">Register</a></div>
                     </div>
                     <div class="event-details electrical" data-dept="Electrical and Electronics Engineering">
@@ -1084,8 +1314,7 @@
                             <p>Staff: Mr. P. Velmurugan (AP/EEE) - 9952365509</p>
                             <p>Student: Mr. N. Gowtham (IV/EEE) - 8489668837</p>
                         </div>
-                        <div class="event-actions"><button class="btn back" onclick="goBack()">⬅ Back to
-                                Departments</button><a href="https://forms.gle/necfcPbg3Z2VQ5cN6"
+                        <div class="event-actions"><a href="https://forms.gle/necfcPbg3Z2VQ5cN6"
                                 class="btn register">Register</a></div>
                     </div>
                     <div class="event-details electronics" data-dept="Electronics and Communication Engineering">
@@ -1102,8 +1331,7 @@
                             <p>Staff: Mrs. T. Vinodhini (AP/ECE) - 8778840090</p>
                             <p>Student: Mr. S. Deepak (IV/ECE) - 9342817217</p>
                         </div>
-                        <div class="event-actions"><button class="btn back" onclick="goBack()">⬅ Back to
-                                Departments</button><a href="https://forms.gle/V2h1bTLsozZnefSe9" class="btn register"
+                        <div class="event-actions"><a href="https://forms.gle/V2h1bTLsozZnefSe9" class="btn register"
                                 target="_blank">Register</a></div>
                     </div>
                     <div class="event-details cse" data-dept="Computer Science and Engineering">
@@ -1120,8 +1348,7 @@
                             <p>Staff: Mr. M. Ramesh (AP/CSE) - 9500535551</p>
                             <p>Student: Mr. D. Jana krishnan (IV/CSE) - 7558163201</p>
                         </div>
-                        <div class="event-actions"><button class="btn back" onclick="goBack()">⬅ Back to
-                                Departments</button><a
+                        <div class="event-actions"><a
                                 href="https://docs.google.com/forms/d/e/1FAIpQLScCS65haJ7OfNbb_H-PXFqpNdndMVIg5BlQRCpMIv_aNpBoXw/viewform"
                                 class="btn register">Register</a></div>
                     </div>
@@ -1139,8 +1366,7 @@
                             <p>Staff: Mrs. S. Priyanka (AP/AI&DS) - 9025593180</p>
                             <p>Student: Mr. V. Sivabalan (AP/AI&DS) - 9025979210</p>
                         </div>
-                        <div class="event-actions"><button class="btn back" onclick="goBack()">⬅ Back to
-                                Departments</button><a href="#" class="btn register">Register</a></div>
+                        <div class="event-actions"><a href="#" class="btn register">Register</a></div>
                     </div>
                     <div class="event-details it" data-dept="Information Technology">
                         <div class="techeven">
@@ -1156,8 +1382,7 @@
                             <p>Staff: Mrs. G. Kanmani (AP/IT) - 6380535345</p>
                             <p>Student: Ms. M. Priyanka (IV/IT) - 7845030386</p>
                         </div>
-                        <div class="event-actions"><button class="btn back" onclick="goBack()">⬅ Back to
-                                Departments</button><a
+                        <div class="event-actions"><a
                                 href="https://docs.google.com/forms/d/e/1FAIpQLSdbW8cWa0yx4hec06fYmJb6ox1ppdP2pHrLIqddJbr1QtGyqQ/viewform?usp=header"
                                 class="btn register" target="_blank">Register</a></div>
                     </div>
@@ -1175,8 +1400,7 @@
                             <p>Staff: Mrs. G. Kanmani (AP/IT) - 6380535345</p>
                             <p>Student: Ms. M. Priyanka (IV/IT) - 7845030386</p>
                         </div>
-                        <div class="event-actions"><button class="btn back" onclick="goBack()">⬅ Back to
-                                Departments</button><a
+                        <div class="event-actions"><a
                                 href="https://docs.google.com/forms/d/e/1FAIpQLSdbW8cWa0yx4hec06fYmJb6ox1ppdP2pHrLIqddJbr1QtGyqQ/viewform?usp=header"
                                 class="btn register" target="_blank">Register</a></div>
                     </div>
@@ -1184,9 +1408,10 @@
             </div>
 
             <div class="item credits">
+                <i class="fas fa-arrow-left back-button visible" onclick="scrollToEvents()"></i>
                 <div class="team-container">
                     <h1>Meet Our Team</h1>
-                    <div style="height: 160px;" class="developer-card" data-img-url="images/vishnu.png"
+                    <div class="developer-card" data-img-url="images/vishnu.png"
                         data-color="#ff00ff" data-email="mailto:vishnurajan24766@gmail.com"
                         data-linkedin="https://in.linkedin.com/in/vishnu-r-331560213?trk=profile-badge"
                         data-instagram="https://github.com/Vishnuat18"
@@ -1207,7 +1432,7 @@
                                     aria-label="Website"><i class="fas fa-globe"></i></a></div>
                         </div>
                     </div>
-                    <div style="height: 160px;" class="developer-card" data-img-url="images/kiran.png"
+                    <div class="developer-card" data-img-url="images/kiran.png"
                         data-color="#00ffff" data-email="mailto:kiranbalasopatil33@gmail.com"
                         data-linkedin="https://www.linkedin.com/in/kiran-patil-110034237?trk=profile-badge"
                         data-instagram="https://www.instagram.com/kiran__patil_33/"
@@ -1229,7 +1454,7 @@
                         </div>
                     </div>
 
-                    <div style="height: 160px;" class="developer-card" data-img-url="images/prasanna.png"
+                    <div class="developer-card" data-img-url="images/prasanna.png"
                         data-color="#ff8c00" data-email="mailto:prasannaramana2005@gmail.com"
                         data-linkedin="https://www.linkedin.com/in/prasanna-ramana-s/"
                         data-instagram="https://www.instagram.com/prasanna_r_7"
@@ -1255,7 +1480,7 @@
 
 
 
-                    <div style="height: 160px;" class="developer-card" data-img-url="images/rohith.png"
+                    <div class="developer-card" data-img-url="images/rohith.png"
                         data-color="#00ff7f" data-email="mailto:rohithsathish701@gmial.com"
                         data-linkedin="https://www.linkedin.com/in/rohith-s-7a1208345?trk=profile-badge"
                         data-instagram="https://github.com/Rohith22s"
@@ -1277,7 +1502,7 @@
                         </div>
                     </div>
 
-                    <div style="height: 160px;" class="developer-card" data-img-url="images/senthil.png"
+                    <div class="developer-card" data-img-url="images/senthil.png"
                         data-color="#9400d3" data-email="mailto:senthilloganathan30@gmail.com"
                         data-linkedin="https://www.linkedin.com/in/senthil-loganathan-361661351"
                         data-instagram="https://github.com/SenthilLoganathan30"
@@ -1302,7 +1527,7 @@
                         </div>
                     </div>
 
-                    <div style="height: 160px;" class="developer-card" data-img-url="images/gokul.png"
+                    <div class="developer-card" data-img-url="images/gokul.png"
                         data-color="#ffff00" data-email="mailto:ytyt10444@gmail.com"
                         data-linkedin="https://www.linkedin.com/in/gokul-m-a773822a6"
                         data-instagram="https://www.instagram.com/gj_gokul_23?igsh=MWQ3emVpZWMwOTVmdw=="
@@ -1387,6 +1612,16 @@
                             navLinks[current].classList.add("active");
                         }
 
+                        // Show/hide back buttons based on current page
+                        document.querySelectorAll('.back-button').forEach(btn => btn.classList.remove('visible'));
+                        if (current === 1) {
+                            document.querySelector('.departments .back-button').classList.add('visible');
+                        } else if (current === 2) {
+                            document.querySelector('.events .back-button').classList.add('visible');
+                        } else if (current === 3) {
+                            document.querySelector('.credits .back-button').classList.add('visible');
+                        }
+
                         if (current === 2) showDeptEvents();
                     });
 
@@ -1463,7 +1698,27 @@
                         showDeptEvents();
                     }
 
+                    function scrollToNext() {
+                        pagesContainer.scrollTo({ top: 1 * pagesContainer.clientHeight, behavior: "smooth" });
+                    }
+
+                    function scrollToHome() {
+                        pagesContainer.scrollTo({ top: 0, behavior: "smooth" });
+                    }
+
+                    function scrollToDepartments() {
+                        pagesContainer.scrollTo({ top: 1 * pagesContainer.clientHeight, behavior: "smooth" });
+                    }
+
+                    function scrollToEvents() {
+                        pagesContainer.scrollTo({ top: 2 * pagesContainer.clientHeight, behavior: "smooth" });
+                    }
+
                     window.goBack = goBack;
+                    window.scrollToNext = scrollToNext;
+                    window.scrollToHome = scrollToHome;
+                    window.scrollToDepartments = scrollToDepartments;
+                    window.scrollToEvents = scrollToEvents;
                 });
             </script>
 </body>
