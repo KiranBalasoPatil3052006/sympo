@@ -2164,11 +2164,8 @@
 
             <script>
                 document.addEventListener("DOMContentLoaded", () => {
-                    const letters = document.querySelectorAll(".logo span");
-                    const lastLetterDelay = 0.5;
-                    const appearDuration = 0.5;
-                    const buffer = 0.3;
-                    const totalTime = (lastLetterDelay + appearDuration + buffer) * 1000;
+                    const loadStart = performance.now();
+                    const minPreloaderTime = 1300; // Minimum time to show preloader (animation duration + buffer)
 
                     const video = document.querySelector("video");
                     const mediaPromises = Array.from(document.images).map(img => img.complete ? Promise.resolve() : new Promise(resolve => { img.addEventListener("load", resolve); img.addEventListener("error", resolve); }));
@@ -2178,7 +2175,11 @@
                     }
 
                     Promise.all(mediaPromises).then(() => {
-                        setTimeout(() => document.getElementById("preloader").classList.add("hidden"), totalTime);
+                        const elapsed = performance.now() - loadStart;
+                        const remaining = minPreloaderTime - elapsed;
+                        setTimeout(() => {
+                            document.getElementById("preloader").classList.add("hidden");
+                        }, remaining > 0 ? remaining : 0);
                     });
 
                     const navLinks = document.querySelectorAll("nav ul li a");
