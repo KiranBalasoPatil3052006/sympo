@@ -502,6 +502,7 @@
         /* ==================================================================== DEPARTMENTS PAGE (Page 2) - 2x4 Grid ==================================================================== */
         .departments {
             padding-top: 50px;
+            position: relative; /* For positioning the hidden button */
         }
 
         .depart {
@@ -516,6 +517,12 @@
             margin: 30px auto;
             padding: 10px;
             box-sizing: border-box;
+        }
+
+        .dept-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .department {
@@ -541,16 +548,12 @@
             position: relative;
         }
 
-        .department span {
-            position: absolute;
-            bottom: 15px;
-            padding: 5px 15px;
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 5px;
+        .dept-name {
+            margin-top: 10px;
             font-weight: bold;
             font-size: 0.8rem;
-            z-index: 3;
             text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+            text-align: center;
         }
 
         .department:hover,
@@ -560,44 +563,61 @@
             box-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
         }
 
-        .department.cse span {
+        .dept-container.cse .dept-name {
             color: #00ffff;
             /* Cyan for CSE */
         }
 
-        .department.it span {
+        .dept-container.it .dept-name {
             color: #ff00ff;
             /* Magenta for IT */
         }
 
-        .department.aids span {
+        .dept-container.aids .dept-name {
             color: #ffff00;
             /* Yellow for AI&DS */
         }
 
-        .department.mechanical span {
+        .dept-container.mechanical .dept-name {
             color: #ff8c00;
             /* Orange for MECH */
         }
 
-        .department.electronics span {
+        .dept-container.electronics .dept-name {
             color: #00ff7f;
             /* Spring green for ECE */
         }
 
-        .department.electrical span {
+        .dept-container.electrical .dept-name {
             color: #9400d3;
             /* Dark violet for EEE */
         }
 
-        .department.cyber span {
+        .dept-container.cyber .dept-name {
             color: #ff0000;
             /* Red for CYS */
         }
 
-        .department.sh span {
+        .dept-container.sh .dept-name {
             color: #ffffff;
             /* White for S&H */
+        }
+
+        /* Hidden button styles */
+        .hidden-btn {
+            position: absolute;
+            font-size: 1rem;
+            color: #00ffff;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 10;
+            animation: glow 1s infinite alternate;
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 15px #00ffff; opacity: 0.8; }
+            100% { text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff; opacity: 1; }
         }
 
         /* ==================================================================== EVENTS PAGE (Page 3) ==================================================================== */
@@ -765,6 +785,7 @@
             margin-bottom: 1.7 rem;
             font-size: 2.2rem;
             text-shadow: 0 0 10px rgba(88, 166, 255, 0.5);
+            cursor: pointer; /* Make it clickable */
         }
 
         .developer-card {
@@ -866,6 +887,30 @@
             margin: 0 15px 0 0;
         }
 
+        /* New Hit Count Page (Page 5) Styles */
+        .hitcount {
+            text-align: center;
+            padding: 50px;
+        }
+
+        .hitcount h1 {
+            color: #00ffff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        #hit-count-display {
+            font-size: 2rem;
+            color: #ffffff;
+            background: rgba(0, 0, 0, 0.75);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+            margin: 20px auto;
+            max-width: 400px;
+        }
+
         /* ==================================================================== RESPONSIVE ADJUSTMENTS ==================================================================== */
         @media (max-width: 1200px) {
             .depart {
@@ -877,7 +922,7 @@
                 font-size: 12px;
             }
 
-            .department span {
+            .dept-name {
                 font-size: 0.7rem;
             }
 
@@ -898,7 +943,7 @@
                 font-size: 14px;
             }
 
-            .department span {
+            .dept-name {
                 font-size: 0.8rem;
             }
 
@@ -969,7 +1014,7 @@
                 font-size: 12px;
             }
 
-            .department span {
+            .dept-name {
                 font-size: 0.7rem;
                 padding: 4px 12px;
             }
@@ -1040,417 +1085,6 @@
 
         @media (max-width: 390px) {
 
-
-            .college-title {
-                font-size: 18px;
-            }
-
-            .team-container {
-                grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: auto repeat(3, auto);
-                gap: 12px;
-                padding: 6px;
-            }
-
-            .developer-card {
-                padding: 8px;
-            }
-
-            .card-image-content {
-                width: 55px;
-                height: 55px;
-                margin: 0 8px 0 0;
-            }
-
-            .developer-card h2 {
-                font-size: 0.95rem;
-            }
-
-            .developer-card p {
-                font-size: 0.75rem;
-            }
-
-            .developer-card .card-details>a {
-                font-size: 0.75rem;
-            }
-
-            .developer-card .social-links {
-                gap: 5px;
-            }
-
-            .developer-card .social-links a {
-                font-size: 0.95rem;
-            }
-        }
-
-        @media (max-width: 375px) {
-
-
-            .college-title {
-                font-size: 17px;
-            }
-
-            .team-container {
-                grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: auto repeat(3, auto);
-                gap: 10px;
-                padding: 5px;
-            }
-
-            .developer-card {
-                padding: 7px;
-            }
-
-            .card-image-content {
-                width: 50px;
-                height: 50px;
-                margin: 0 7px 0 0;
-            }
-
-            .developer-card h2 {
-                font-size: 0.9rem;
-            }
-
-            .developer-card p {
-                font-size: 0.7rem;
-            }
-
-            .developer-card .card-details>a {
-                font-size: 0.7rem;
-            }
-
-            .developer-card .social-links {
-                gap: 4px;
-            }
-
-            .developer-card .social-links a {
-                font-size: 0.9rem;
-            }
-        }
-
-        @media (max-width: 360px) {
-
-            .college-title {
-                font-size: 16px;
-            }
-
-            .team-container {
-                grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: auto repeat(3, auto);
-                gap: 8px;
-                padding: 4px;
-            }
-
-            .developer-card {
-                padding: 6px;
-            }
-
-            .card-image-content {
-                width: 45px;
-                height: 45px;
-                margin: 0 6px 0 0;
-            }
-
-            .developer-card h2 {
-                font-size: 0.85rem;
-            }
-
-            .developer-card p {
-                font-size: 0.65rem;
-            }
-
-            .developer-card .card-details>a {
-                font-size: 0.65rem;
-            }
-
-            .developer-card .social-links {
-                gap: 3px;
-            }
-
-            .developer-card .social-links a {
-                font-size: 0.85rem;
-            }
-        }
-
-        @media (max-width: 320px) {
-
-            .college-title {
-                font-size: 14px;
-            }
-
-            .team-container {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto repeat(6, auto);
-                gap: 10px;
-                padding: 5px;
-            }
-
-            .developer-card {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                padding: 10px;
-            }
-
-            .card-image-content {
-                width: 60px;
-                height: 60px;
-                margin: 0 auto 10px;
-            }
-
-            .developer-card h2 {
-                font-size: 0.9rem;
-            }
-
-            .developer-card p {
-                font-size: 0.7rem;
-            }
-
-            .developer-card .card-details>a {
-                font-size: 0.7rem;
-            }
-
-            .developer-card .social-links {
-                justify-content: center;
-                gap: 8px;
-            }
-
-            .developer-card .social-links a {
-                font-size: 0.9rem;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .site-header {
-                top: 5px;
-                gap: 3px;
-            }
-
-
-            .college-title {
-                font-size: 12px;
-            }
-
-            .signature-text {
-                font-size: 1.5rem;
-            }
-
-            .centered-text {
-                font-size: 1.5rem;
-                margin-top: 5px;
-            }
-
-            .centered-text span {
-                font-size: 20px;
-            }
-
-            .subtitle {
-                font-size: 0.9rem;
-            }
-
-            .welcome-text {
-                font-size: 0.8rem;
-                max-width: 90%;
-                padding: 10px;
-            }
-
-            .scroll-arrow {
-                font-size: 2rem;
-            }
-
-            .social-nav ul li a {
-                font-size: 1.1rem;
-                padding: 0 6px;
-            }
-
-            .social-nav ul li::after {
-                height: 2px;
-            }
-
-            nav {
-                width: 100vw;
-                height: 50px;
-                bottom: 0;
-                left: 0;
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-                background: transparent;
-                box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-            }
-
-            nav ul {
-                flex-direction: row;
-                justify-content: space-around;
-                width: 100%;
-            }
-
-            nav ul li {
-                width: 25%;
-            }
-
-            nav ul li a {
-                padding: 10px 0;
-                font-size: 1.2rem;
-            }
-
-            nav ul li::after {
-                left: 0;
-                top: auto;
-                bottom: 0;
-                width: 0;
-                height: 100%;
-                transform: none;
-                transition: width 0.3s ease;
-            }
-
-            nav ul li.active::after,
-            nav ul li:hover::after {
-                width: 100%;
-                height: 3px;
-                /* For mobile, make it a bottom line */
-            }
-
-            .depart {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-                max-width: 90%;
-                margin: 10px auto;
-                padding: 5px;
-            }
-
-            .department {
-                min-height: 100px;
-                font-size: 10px;
-            }
-
-            .department span {
-                font-size: 0.6rem;
-                padding: 3px 10px;
-            }
-
-            .event-details h4 {
-                font-size: 1.1rem;
-            }
-
-            .event-details p {
-                font-size: 0.8rem;
-            }
-
-            .team-container {
-                grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: auto repeat(3, auto);
-                gap: 10px;
-                max-width: 90%;
-                margin: 10px auto;
-                padding: 5px;
-            }
-
-            .developer-card {
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-                padding: 8px;
-                margin-bottom: 20px;
-                margin-right: 5px;
-            }
-
-            .card-image-content {
-                width: 50px;
-                height: 50px;
-                margin: 0 auto 5px auto;
-            }
-
-            .developer-card h2 {
-                font-size: 0.8rem;
-            }
-
-            .developer-card p {
-                font-size: 0.6rem;
-                margin: 1px 0;
-            }
-
-            .developer-card .card-details>a {
-                font-size: 0.6rem;
-                display: block;
-                margin: 1px 0;
-            }
-
-            .developer-card .social-links {
-                margin-top: 2px;
-                gap: 5px;
-                justify-content: center;
-            }
-
-            .developer-card .social-links a {
-                font-size: 0.8rem;
-            }
-
-            .developer-card .card-details>a {
-                display: block;
-            }
-
-            .back-button {
-                font-size: 2rem;
-            }
-        }
-
-        @media (max-width: 414px) {
-            .site-header {
-                top: 10px;
-                left: 10px;
-                gap: 5px;
-            }
-
-
-
-            .college-title {
-                font-size: 20px;
-            }
-
-            .team-container {
-                grid-template-columns: repeat(2fr, 1);
-                grid-template-rows: auto repeat(3, auto);
-                gap: 20px;
-                max-width: 90%;
-                padding: 10px;
-            }
-
-            .developer-card {
-                flex-direction: row;
-                justify-content: flex-start;
-                padding: 12px;
-            }
-
-            .card-image-content {
-                width: 70px;
-                height: 70px;
-                margin: 0 12px 0 0;
-            }
-
-            .developer-card h2 {
-                font-size: 1.1rem;
-            }
-
-            .developer-card p {
-                font-size: 0.85rem;
-            }
-
-            .developer-card .card-details>a {
-                font-size: 0.85rem;
-            }
-
-            .developer-card .social-links {
-                gap: 8px;
-            }
-
-            .developer-card .social-links a {
-                font-size: 1.1rem;
-            }
-        }
-
-        @media (max-width: 390px) {
 
             .college-title {
                 font-size: 18px;
@@ -1718,7 +1352,7 @@
                         <li><a href="mailto:info@rpsit.ac.in" target="_blank" aria-label="Email"><i
                                     class="fas fa-envelope"></i></a></li>
                         <li><a href="" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
-                        <li> <a href="www.youtube.com/@RPSITSalem" target="_blank" aria-label="Instagram">
+                        <li> <a href="https://www.youtube.com/@RPSITSalem" target="_blank" aria-label="Instagram">
                                 <i class="fab fa-youtube"></i></a></li>
                     </ul>
                 </div>
@@ -1747,24 +1381,50 @@
 
             <div class="item departments" id="departments">
                 <i class="fas fa-arrow-left back-button visible" onclick="scrollToHome()"></i>
+                <h2>Departments</h2>
                 <div class="depart" id="depart">
-                    <div class="department sh" data-dept="Science and Humanities" data-class="sh"
-                        style="background-image: url(images/sh.png);"><span>S&H</span></div>
-                    <div class="department mechanical" data-dept="Mechanical Engineering" data-class="mechanical"
-                        style="background-image: url(images/mech.png);"><span>MECH</span></div>
-                    <div class="department electrical" data-dept="Electrical and Electronics Engineering"
-                        data-class="electrical" style="background-image: url(images/eee.png);"><span>EEE</span></div>
-                    <div class="department electronics" data-dept="Electronics and Communication Engineering"
-                        data-class="electronics" style="background-image: url(images/ece.png);"><span>ECE</span></div>
-                    <div class="department cse" data-dept="Computer Science and Engineering" data-class="cse"
-                        style="background-image: url(images/cse.png);"><span>CSE</span></div>
-                    <div class="department aids" data-dept="Artificial Intelligence & Data Science" data-class="aids"
-                        style="background-image: url(images/aids.png);"><span>AI&DS</span></div>
-                    <div class="department it" data-dept="Information Technology" data-class="it"
-                        style="background-image: url(images/it.png);"><span>IT</span></div>
-                    <div class="department cyber" data-dept="Computer Science and Engineering (Cyber Security)"
-                        data-class="cyber" style="background-image: url(images/cys.png);"><span>CYS</span></div>
+                    <div class="dept-container sh">
+                        <div class="department" data-dept="Science and Humanities" data-class="sh"
+                            style="background-image: url(images/sh.png);"></div>
+                        <div class="dept-name">Science and Humanities</div>
+                    </div>
+                    <div class="dept-container mechanical">
+                        <div class="department" data-dept="Mechanical Engineering" data-class="mechanical"
+                            style="background-image: url(images/mech.png);"></div>
+                        <div class="dept-name">Mechanical Engineering</div>
+                    </div>
+                    <div class="dept-container electrical">
+                        <div class="department" data-dept="Electrical and Electronics Engineering"
+                            data-class="electrical" style="background-image: url(images/eee.png);"></div>
+                        <div class="dept-name">Electrical and Electronics Engineering</div>
+                    </div>
+                    <div class="dept-container electronics">
+                        <div class="department" data-dept="Electronics and Communication Engineering"
+                            data-class="electronics" style="background-image: url(images/ece.png);"></div>
+                        <div class="dept-name">Electronics and Communication Engineering</div>
+                    </div>
+                    <div class="dept-container cse">
+                        <div class="department" data-dept="Computer Science and Engineering" data-class="cse"
+                            style="background-image: url(images/cse.png);"></div>
+                        <div class="dept-name">Computer Science and Engineering</div>
+                    </div>
+                    <div class="dept-container aids">
+                        <div class="department" data-dept="Artificial Intelligence & Data Science" data-class="aids"
+                            style="background-image: url(images/aids.png);"></div>
+                        <div class="dept-name">Artificial Intelligence & Data Science</div>
+                    </div>
+                    <div class="dept-container it">
+                        <div class="department" data-dept="Information Technology" data-class="it"
+                            style="background-image: url(images/it.png);"></div>
+                        <div class="dept-name">Information Technology</div>
+                    </div>
+                    <div class="dept-container cyber">
+                        <div class="department" data-dept="Computer Science and Engineering (Cyber Security)"
+                            data-class="cyber" style="background-image: url(images/cys.png);"></div>
+                        <div class="dept-name">Computer Science and Engineering (Cyber Security)</div>
+                    </div>
                 </div>
+                <i class="fas fa-wand-sparkles hidden-btn" onclick="scrollToCredits()"></i>
             </div>
 
             <div class="item events">
@@ -2019,7 +1679,7 @@
             <div class="item credits">
                 <i class="fas fa-arrow-left back-button visible" onclick="scrollToEvents()"></i>
                 <div class="team-container">
-                    <h1>Meet Our Team</h1>
+                    <h1 id="team-title">Meet Our Team</h1>
                     <div class="developer-card" data-img-url="images/vishnu.png" data-color="#ff00ff"
                         data-email="mailto:vishnurajan24766@gmail.com"
                         data-linkedin="https://in.linkedin.com/in/vishnu-r-331560213?trk=profile-badge"
@@ -2091,22 +1751,22 @@
 
 
                     <div class="developer-card" data-img-url="images/rohith.png" data-color="#00ff7f"
-                        data-email="mailto:rohithsathish701@gmial.com"
+                        data-email="mailto:rohithsathish701@gmail.com"
                         data-linkedin="https://www.linkedin.com/in/rohith-s-7a1208345?trk=profile-badge"
                         data-instagram="https://github.com/Rohith22s"
-                        data-youtube="https://rohith22s.github.io/porfolio/">
+                        data-youtube="https://rohith22s.github.io/portfolio/">
                         <div class="card-image-content"></div>
                         <div class="card-details">
                             <h2 style="text-align: center;">Rohith S</h2>
                             <p style="text-align: center;">UI Designer & Animator</p><a style="text-align: center;"
                                 href="tel:+917530019229">+91 75300 19229</a>
-                            <div class="social-links"><a href="mailto:rohithsathish701@gmial.com" class="gmail"
+                            <div class="social-links"><a href="mailto:rohithsathish701@gmail.com" class="gmail"
                                     target="_blank" aria-label="Email"><i class="fas fa-envelope"></i></a><a
                                     href="https://www.linkedin.com/in/rohith-s-7a1208345?trk=profile-badge"
                                     class="linkedin" target="_blank" aria-label="LinkedIn"><i
                                         class="fab fa-linkedin"></i></a><a href="https://github.com/Rohith22s"
                                     class="instagram" target="_blank" aria-label="GitHub"><i
-                                        class="fab fa-github"></i></a><a href="https://rohith22s.github.io/porfolio/"
+                                        class="fab fa-github"></i></a><a href="https://rohith22s.github.io/portfolio/"
                                     class="youtube" target="_blank" aria-label="Portfolio"><i
                                         class="fas fa-globe"></i></a></div>
                         </div>
@@ -2129,7 +1789,7 @@
                                     target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                                 <a href="https://github.com/SenthilLoganathan30" class="instagram" target="_blank"
                                     aria-label="GitHub"><i class="fab fa-github"></i></a>
-                                <a href=" https://youtube.com/@nsedits8297?si=k7GOE_UqOotAE9yB" class="youtube"
+                                <a href="https://youtube.com/@nsedits8297?si=k7GOE_UqOotAE9yB" class="youtube"
                                     target="_blank" aria-label="YouTube">
                                     <i class="fab fa-youtube"></i>
                                 </a>
@@ -2141,7 +1801,7 @@
                         data-email="mailto:ytyt10444@gmail.com"
                         data-linkedin="https://www.linkedin.com/in/gokul-m-a773822a6"
                         data-instagram="https://www.instagram.com/gj_gokul_23?igsh=MWQ3emVpZWMwOTVmdw=="
-                        data-youtube="www.youtube.com/@GJ4FARMING">
+                        data-youtube="https://www.youtube.com/@GJ4FARMING">
                         <div class="card-image-content"></div>
                         <div class="card-details">
                             <h2 style="text-align: center;">Gokul M</h2>
@@ -2154,7 +1814,7 @@
                                     href="https://www.instagram.com/gj_gokul_23?igsh=MWQ3emVpZWMwOTVmdw=="
                                     class="instagram" target="_blank" aria-label="Instagram"><i
                                         class="fab fa-instagram"></i></a>
-                                <a href="www.youtube.com/@GJ4FARMING" class="youtube" target="_blank"
+                                <a href="https://www.youtube.com/@GJ4FARMING" class="youtube" target="_blank"
                                     aria-label="YouTube">
                                     <i class="fab fa-youtube"></i>
                                 </a>
@@ -2162,6 +1822,13 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- New Hit Count Page (Page 5) -->
+            <div class="item hitcount">
+                <i class="fas fa-arrow-left back-button visible" onclick="scrollToCredits()"></i>
+                <h1>Hit Count Dashboard</h1>
+                <div id="hit-count-display">Total Visitors: Loading...</div>
             </div>
 
             <nav>
@@ -2323,7 +1990,7 @@
                     navListItems.forEach(li => li.classList.remove("active"));
                     navLinks.forEach(link => link.classList.remove("active"));
 
-                    if (navListItems[current]) {
+                    if (navListItems[current] && current < 4) {  // Only update nav for pages 0-3
                         navListItems[current].classList.add("active");
                         navLinks[current].classList.add("active");
                     }
@@ -2336,9 +2003,12 @@
                         document.querySelector('.events .back-button').classList.add('visible');
                     } else if (current === 3) {
                         document.querySelector('.credits .back-button').classList.add('visible');
+                    } else if (current === 4) {
+                        document.querySelector('.hitcount .back-button').classList.add('visible');
                     }
 
                     if (current === 2) showDeptEvents();
+                    if (current === 4) fetchHitCountForPage();  // Fetch count when on hit count page
                 });
 
                 pagesContainer.dispatchEvent(new Event('scroll'));
@@ -2430,11 +2100,84 @@
                     pagesContainer.scrollTo({ top: 2 * pagesContainer.clientHeight, behavior: "smooth" });
                 }
 
+                function scrollToCredits() {
+                    pagesContainer.scrollTo({ top: 3 * pagesContainer.clientHeight, behavior: "smooth" });
+                }
+
+                function scrollToHitCount() {
+                    pagesContainer.scrollTo({ top: 4 * pagesContainer.clientHeight, behavior: "smooth" });
+                }
+
+                // Move the hidden button every 5 seconds
+                const hiddenBtn = document.querySelector('.hidden-btn');
+                const departments = document.querySelector('.departments');
+                if (hiddenBtn && departments) {
+                    setInterval(() => {
+                        const maxLeft = departments.clientWidth - hiddenBtn.clientWidth;
+                        const maxTop = departments.clientHeight - hiddenBtn.clientHeight;
+                        const randomLeft = Math.random() * maxLeft;
+                        const randomTop = Math.random() * maxTop;
+                        hiddenBtn.style.left = `${randomLeft}px`;
+                        hiddenBtn.style.top = `${randomTop}px`;
+                    }, 5000);
+                }
+
+                // Hit Count Logic: Increment on page load (new visit)
+                document.addEventListener('DOMContentLoaded', async () => {
+                    try {
+                        // Optional unique visitor check (uncomment if needed)
+                        // const hasVisited = localStorage.getItem('hasVisited');
+                        // const method = hasVisited ? 'GET' : 'POST';
+                        const method = 'POST';  // Always increment for simplicity; change to above for unique
+
+                        const response = await fetch('/.netlify/functions/counter', { method });
+                        if (response.ok) {
+                            const data = await response.json();
+                            // Optional: Set visited flag
+                            // if (!hasVisited) localStorage.setItem('hasVisited', 'true');
+                        } else {
+                            console.error('Failed to update hit count');
+                        }
+                    } catch (error) {
+                        console.error('Error with hit count:', error);
+                    }
+                });
+
+                // Fetch hit count for the hit count page (without increment)
+                async function fetchHitCountForPage() {
+                    try {
+                        const response = await fetch('/.netlify/functions/counter', { method: 'GET' });
+                        if (response.ok) {
+                            const data = await response.json();
+                            document.getElementById('hit-count-display').textContent = `Total Visitors: ${data.count}`;
+                        } else {
+                            document.getElementById('hit-count-display').textContent = 'Total Visitors: Error';
+                        }
+                    } catch (error) {
+                        console.error('Error fetching hit count:', error);
+                        document.getElementById('hit-count-display').textContent = 'Total Visitors: Error';
+                    }
+                }
+
+                // Click trigger for "MEET OUR TEAM" to show hit count page after 3 clicks
+                let clickCount = 0;
+                const teamTitle = document.getElementById('team-title');
+                if (teamTitle) {
+                    teamTitle.addEventListener('click', () => {
+                        clickCount++;
+                        if (clickCount === 3) {
+                            scrollToHitCount();
+                            clickCount = 0;  // Reset counter
+                        }
+                    });
+                }
+
                 window.goBack = goBack;
                 window.scrollToNext = scrollToNext;
                 window.scrollToHome = scrollToHome;
                 window.scrollToDepartments = scrollToDepartments;
                 window.scrollToEvents = scrollToEvents;
+                window.scrollToCredits = scrollToCredits;
             </script>
 </body>
 
