@@ -5,7 +5,7 @@ const serviceAccount = JSON.parse(process.env.FIREBASE_CREDENTIALS);
 if (!admin.apps.length) {
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: ''  // Replace with your actual database URL from Firebase settings
+    databaseURL: 'https://sympo-94600-default-rtdb.firebaseio.com/'  // Replace with your actual database URL from Firebase settings
   });
 }
 
