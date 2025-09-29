@@ -1,0 +1,7 @@
+{
+  "name": "Rpsit-Symposium",
+  "version": "1.0.0",
+  "dependencies": {
+    "faunadb": "^4.4.1"
+  }
+}
