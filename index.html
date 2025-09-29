@@ -502,7 +502,6 @@
         /* ==================================================================== DEPARTMENTS PAGE (Page 2) - 2x4 Grid ==================================================================== */
         .departments {
             padding-top: 50px;
-            position: relative; /* For positioning the hidden button */
         }
 
         .depart {
@@ -517,12 +516,6 @@
             margin: 30px auto;
             padding: 10px;
             box-sizing: border-box;
-        }
-
-        .dept-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
 
         .department {
@@ -548,12 +541,16 @@
             position: relative;
         }
 
-        .dept-name {
-            margin-top: 10px;
+        .department span {
+            position: absolute;
+            bottom: 15px;
+            padding: 5px 15px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 5px;
             font-weight: bold;
             font-size: 0.8rem;
+            z-index: 3;
             text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-            text-align: center;
         }
 
         .department:hover,
@@ -563,61 +560,44 @@
             box-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
         }
 
-        .dept-container.cse .dept-name {
+        .department.cse span {
             color: #00ffff;
             /* Cyan for CSE */
         }
 
-        .dept-container.it .dept-name {
+        .department.it span {
             color: #ff00ff;
             /* Magenta for IT */
         }
 
-        .dept-container.aids .dept-name {
+        .department.aids span {
             color: #ffff00;
             /* Yellow for AI&DS */
         }
 
-        .dept-container.mechanical .dept-name {
+        .department.mechanical span {
             color: #ff8c00;
             /* Orange for MECH */
         }
 
-        .dept-container.electronics .dept-name {
+        .department.electronics span {
             color: #00ff7f;
             /* Spring green for ECE */
         }
 
-        .dept-container.electrical .dept-name {
+        .department.electrical span {
             color: #9400d3;
             /* Dark violet for EEE */
         }
 
-        .dept-container.cyber .dept-name {
+        .department.cyber span {
             color: #ff0000;
             /* Red for CYS */
         }
 
-        .dept-container.sh .dept-name {
+        .department.sh span {
             color: #ffffff;
             /* White for S&H */
-        }
-
-        /* Hidden button styles */
-        .hidden-btn {
-            position: absolute;
-            font-size: 1rem;
-            color: #00ffff;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            z-index: 10;
-            animation: glow 1s infinite alternate;
-        }
-
-        @keyframes glow {
-            0% { text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 15px #00ffff; opacity: 0.8; }
-            100% { text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff; opacity: 1; }
         }
 
         /* ==================================================================== EVENTS PAGE (Page 3) ==================================================================== */
@@ -897,7 +877,7 @@
                 font-size: 12px;
             }
 
-            .dept-name {
+            .department span {
                 font-size: 0.7rem;
             }
 
@@ -918,7 +898,7 @@
                 font-size: 14px;
             }
 
-            .dept-name {
+            .department span {
                 font-size: 0.8rem;
             }
 
@@ -989,7 +969,7 @@
                 font-size: 12px;
             }
 
-            .dept-name {
+            .department span {
                 font-size: 0.7rem;
                 padding: 4px 12px;
             }
@@ -1344,7 +1324,7 @@
                 font-size: 10px;
             }
 
-            .dept-name {
+            .department span {
                 font-size: 0.6rem;
                 padding: 3px 10px;
             }
@@ -1738,7 +1718,7 @@
                         <li><a href="mailto:info@rpsit.ac.in" target="_blank" aria-label="Email"><i
                                     class="fas fa-envelope"></i></a></li>
                         <li><a href="" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
-                        <li> <a href="https://www.youtube.com/@RPSITSalem" target="_blank" aria-label="Instagram">
+                        <li> <a href="www.youtube.com/@RPSITSalem" target="_blank" aria-label="Instagram">
                                 <i class="fab fa-youtube"></i></a></li>
                     </ul>
                 </div>
@@ -1767,50 +1747,24 @@
 
             <div class="item departments" id="departments">
                 <i class="fas fa-arrow-left back-button visible" onclick="scrollToHome()"></i>
-                <h2>Departments</h2>
                 <div class="depart" id="depart">
-                    <div class="dept-container sh">
-                        <div class="department" data-dept="Science and Humanities" data-class="sh"
-                            style="background-image: url(images/sh.png);"></div>
-                        <div class="dept-name">Science and Humanities</div>
-                    </div>
-                    <div class="dept-container mechanical">
-                        <div class="department" data-dept="Mechanical Engineering" data-class="mechanical"
-                            style="background-image: url(images/mech.png);"></div>
-                        <div class="dept-name">Mechanical Engineering</div>
-                    </div>
-                    <div class="dept-container electrical">
-                        <div class="department" data-dept="Electrical and Electronics Engineering"
-                            data-class="electrical" style="background-image: url(images/eee.png);"></div>
-                        <div class="dept-name">Electrical and Electronics Engineering</div>
-                    </div>
-                    <div class="dept-container electronics">
-                        <div class="department" data-dept="Electronics and Communication Engineering"
-                            data-class="electronics" style="background-image: url(images/ece.png);"></div>
-                        <div class="dept-name">Electronics and Communication Engineering</div>
-                    </div>
-                    <div class="dept-container cse">
-                        <div class="department" data-dept="Computer Science and Engineering" data-class="cse"
-                            style="background-image: url(images/cse.png);"></div>
-                        <div class="dept-name">Computer Science and Engineering</div>
-                    </div>
-                    <div class="dept-container aids">
-                        <div class="department" data-dept="Artificial Intelligence & Data Science" data-class="aids"
-                            style="background-image: url(images/aids.png);"></div>
-                        <div class="dept-name">Artificial Intelligence & Data Science</div>
-                    </div>
-                    <div class="dept-container it">
-                        <div class="department" data-dept="Information Technology" data-class="it"
-                            style="background-image: url(images/it.png);"></div>
-                        <div class="dept-name">Information Technology</div>
-                    </div>
-                    <div class="dept-container cyber">
-                        <div class="department" data-dept="Computer Science and Engineering (Cyber Security)"
-                            data-class="cyber" style="background-image: url(images/cys.png);"></div>
-                        <div class="dept-name">Computer Science and Engineering (Cyber Security)</div>
-                    </div>
+                    <div class="department sh" data-dept="Science and Humanities" data-class="sh"
+                        style="background-image: url(images/sh.png);"><span>S&H</span></div>
+                    <div class="department mechanical" data-dept="Mechanical Engineering" data-class="mechanical"
+                        style="background-image: url(images/mech.png);"><span>MECH</span></div>
+                    <div class="department electrical" data-dept="Electrical and Electronics Engineering"
+                        data-class="electrical" style="background-image: url(images/eee.png);"><span>EEE</span></div>
+                    <div class="department electronics" data-dept="Electronics and Communication Engineering"
+                        data-class="electronics" style="background-image: url(images/ece.png);"><span>ECE</span></div>
+                    <div class="department cse" data-dept="Computer Science and Engineering" data-class="cse"
+                        style="background-image: url(images/cse.png);"><span>CSE</span></div>
+                    <div class="department aids" data-dept="Artificial Intelligence & Data Science" data-class="aids"
+                        style="background-image: url(images/aids.png);"><span>AI&DS</span></div>
+                    <div class="department it" data-dept="Information Technology" data-class="it"
+                        style="background-image: url(images/it.png);"><span>IT</span></div>
+                    <div class="department cyber" data-dept="Computer Science and Engineering (Cyber Security)"
+                        data-class="cyber" style="background-image: url(images/cys.png);"><span>CYS</span></div>
                 </div>
-                <i class="fas fa-wand-sparkles hidden-btn" onclick="scrollToCredits()"></i>
             </div>
 
             <div class="item events">
@@ -2137,22 +2091,22 @@
 
 
                     <div class="developer-card" data-img-url="images/rohith.png" data-color="#00ff7f"
-                        data-email="mailto:rohithsathish701@gmail.com"
+                        data-email="mailto:rohithsathish701@gmial.com"
                         data-linkedin="https://www.linkedin.com/in/rohith-s-7a1208345?trk=profile-badge"
                         data-instagram="https://github.com/Rohith22s"
-                        data-youtube="https://rohith22s.github.io/portfolio/">
+                        data-youtube="https://rohith22s.github.io/porfolio/">
                         <div class="card-image-content"></div>
                         <div class="card-details">
                             <h2 style="text-align: center;">Rohith S</h2>
                             <p style="text-align: center;">UI Designer & Animator</p><a style="text-align: center;"
                                 href="tel:+917530019229">+91 75300 19229</a>
-                            <div class="social-links"><a href="mailto:rohithsathish701@gmail.com" class="gmail"
+                            <div class="social-links"><a href="mailto:rohithsathish701@gmial.com" class="gmail"
                                     target="_blank" aria-label="Email"><i class="fas fa-envelope"></i></a><a
                                     href="https://www.linkedin.com/in/rohith-s-7a1208345?trk=profile-badge"
                                     class="linkedin" target="_blank" aria-label="LinkedIn"><i
                                         class="fab fa-linkedin"></i></a><a href="https://github.com/Rohith22s"
                                     class="instagram" target="_blank" aria-label="GitHub"><i
-                                        class="fab fa-github"></i></a><a href="https://rohith22s.github.io/portfolio/"
+                                        class="fab fa-github"></i></a><a href="https://rohith22s.github.io/porfolio/"
                                     class="youtube" target="_blank" aria-label="Portfolio"><i
                                         class="fas fa-globe"></i></a></div>
                         </div>
@@ -2175,7 +2129,7 @@
                                     target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                                 <a href="https://github.com/SenthilLoganathan30" class="instagram" target="_blank"
                                     aria-label="GitHub"><i class="fab fa-github"></i></a>
-                                <a href="https://youtube.com/@nsedits8297?si=k7GOE_UqOotAE9yB" class="youtube"
+                                <a href=" https://youtube.com/@nsedits8297?si=k7GOE_UqOotAE9yB" class="youtube"
                                     target="_blank" aria-label="YouTube">
                                     <i class="fab fa-youtube"></i>
                                 </a>
@@ -2187,7 +2141,7 @@
                         data-email="mailto:ytyt10444@gmail.com"
                         data-linkedin="https://www.linkedin.com/in/gokul-m-a773822a6"
                         data-instagram="https://www.instagram.com/gj_gokul_23?igsh=MWQ3emVpZWMwOTVmdw=="
-                        data-youtube="https://www.youtube.com/@GJ4FARMING">
+                        data-youtube="www.youtube.com/@GJ4FARMING">
                         <div class="card-image-content"></div>
                         <div class="card-details">
                             <h2 style="text-align: center;">Gokul M</h2>
@@ -2200,7 +2154,7 @@
                                     href="https://www.instagram.com/gj_gokul_23?igsh=MWQ3emVpZWMwOTVmdw=="
                                     class="instagram" target="_blank" aria-label="Instagram"><i
                                         class="fab fa-instagram"></i></a>
-                                <a href="https://www.youtube.com/@GJ4FARMING" class="youtube" target="_blank"
+                                <a href="www.youtube.com/@GJ4FARMING" class="youtube" target="_blank"
                                     aria-label="YouTube">
                                     <i class="fab fa-youtube"></i>
                                 </a>
@@ -2476,30 +2430,11 @@
                     pagesContainer.scrollTo({ top: 2 * pagesContainer.clientHeight, behavior: "smooth" });
                 }
 
-                function scrollToCredits() {
-                    pagesContainer.scrollTo({ top: 3 * pagesContainer.clientHeight, behavior: "smooth" });
-                }
-
-                // Move the hidden button every 5 seconds
-                const hiddenBtn = document.querySelector('.hidden-btn');
-                const departments = document.querySelector('.departments');
-                if (hiddenBtn && departments) {
-                    setInterval(() => {
-                        const maxLeft = departments.clientWidth - hiddenBtn.clientWidth;
-                        const maxTop = departments.clientHeight - hiddenBtn.clientHeight;
-                        const randomLeft = Math.random() * maxLeft;
-                        const randomTop = Math.random() * maxTop;
-                        hiddenBtn.style.left = `${randomLeft}px`;
-                        hiddenBtn.style.top = `${randomTop}px`;
-                    }, 5000);
-                }
-
                 window.goBack = goBack;
                 window.scrollToNext = scrollToNext;
                 window.scrollToHome = scrollToHome;
                 window.scrollToDepartments = scrollToDepartments;
                 window.scrollToEvents = scrollToEvents;
-                window.scrollToCredits = scrollToCredits;
             </script>
 </body>
 
