@@ -1,0 +1,7 @@
+{
+  "name": "techfest-tracker",
+  "version": "1.0.0",
+  "dependencies": {
+    "firebase-admin": "^12.5.0"
+  }
+}
