@@ -5,7 +5,7 @@ const serviceAccount = JSON.parse(process.env.FIREBASE_CREDENTIALS);
 if (!admin.apps.length) {
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: 'https://sympo-94600-default-rtdb.firebaseio.com/'  // Replace with your actual database URL from Firebase settings
+    databaseURL: 'https://sympo-94600-default-rtdb.firebaseio.com/' // Updated to your project ID
   });
 }
 
@@ -39,12 +39,12 @@ exports.handler = async (event) => {
         transaction.set(docRef, data);
       });
     } else {
-      return { statusCode: 400, body: 'Invalid type or missing dept' };
+      return { statusCode: 400, body: JSON.stringify({ error: 'Invalid type or missing dept' }) };
     }
 
-    return { statusCode: 200, body: 'Success' };
+    return { statusCode: 200, body: JSON.stringify({ message: 'Success' }) };
   } catch (error) {
-    console.error(error);
-    return { statusCode: 500, body: 'Error' };
+    console.error('Error:', error);
+    return { statusCode: 500, body: JSON.stringify({ error: 'Server error' }) };
   }
 };
