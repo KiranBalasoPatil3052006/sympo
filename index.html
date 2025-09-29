@@ -785,7 +785,6 @@
             margin-bottom: 1.7 rem;
             font-size: 2.2rem;
             text-shadow: 0 0 10px rgba(88, 166, 255, 0.5);
-            cursor: pointer; /* Make it clickable */
         }
 
         .developer-card {
@@ -885,30 +884,6 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             border: 2px solid rgba(255, 255, 255, 0.1);
             margin: 0 15px 0 0;
-        }
-
-        /* New Hit Count Page (Page 5) Styles */
-        .hitcount {
-            text-align: center;
-            padding: 50px;
-        }
-
-        .hitcount h1 {
-            color: #00ffff;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        #hit-count-display {
-            font-size: 2rem;
-            color: #ffffff;
-            background: rgba(0, 0, 0, 0.75);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
-            margin: 20px auto;
-            max-width: 400px;
         }
 
         /* ==================================================================== RESPONSIVE ADJUSTMENTS ==================================================================== */
@@ -1085,6 +1060,417 @@
 
         @media (max-width: 390px) {
 
+
+            .college-title {
+                font-size: 18px;
+            }
+
+            .team-container {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: auto repeat(3, auto);
+                gap: 12px;
+                padding: 6px;
+            }
+
+            .developer-card {
+                padding: 8px;
+            }
+
+            .card-image-content {
+                width: 55px;
+                height: 55px;
+                margin: 0 8px 0 0;
+            }
+
+            .developer-card h2 {
+                font-size: 0.95rem;
+            }
+
+            .developer-card p {
+                font-size: 0.75rem;
+            }
+
+            .developer-card .card-details>a {
+                font-size: 0.75rem;
+            }
+
+            .developer-card .social-links {
+                gap: 5px;
+            }
+
+            .developer-card .social-links a {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 375px) {
+
+
+            .college-title {
+                font-size: 17px;
+            }
+
+            .team-container {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: auto repeat(3, auto);
+                gap: 10px;
+                padding: 5px;
+            }
+
+            .developer-card {
+                padding: 7px;
+            }
+
+            .card-image-content {
+                width: 50px;
+                height: 50px;
+                margin: 0 7px 0 0;
+            }
+
+            .developer-card h2 {
+                font-size: 0.9rem;
+            }
+
+            .developer-card p {
+                font-size: 0.7rem;
+            }
+
+            .developer-card .card-details>a {
+                font-size: 0.7rem;
+            }
+
+            .developer-card .social-links {
+                gap: 4px;
+            }
+
+            .developer-card .social-links a {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+
+            .college-title {
+                font-size: 16px;
+            }
+
+            .team-container {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: auto repeat(3, auto);
+                gap: 8px;
+                padding: 4px;
+            }
+
+            .developer-card {
+                padding: 6px;
+            }
+
+            .card-image-content {
+                width: 45px;
+                height: 45px;
+                margin: 0 6px 0 0;
+            }
+
+            .developer-card h2 {
+                font-size: 0.85rem;
+            }
+
+            .developer-card p {
+                font-size: 0.65rem;
+            }
+
+            .developer-card .card-details>a {
+                font-size: 0.65rem;
+            }
+
+            .developer-card .social-links {
+                gap: 3px;
+            }
+
+            .developer-card .social-links a {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 320px) {
+
+            .college-title {
+                font-size: 14px;
+            }
+
+            .team-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto repeat(6, auto);
+                gap: 10px;
+                padding: 5px;
+            }
+
+            .developer-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 10px;
+            }
+
+            .card-image-content {
+                width: 60px;
+                height: 60px;
+                margin: 0 auto 10px;
+            }
+
+            .developer-card h2 {
+                font-size: 0.9rem;
+            }
+
+            .developer-card p {
+                font-size: 0.7rem;
+            }
+
+            .developer-card .card-details>a {
+                font-size: 0.7rem;
+            }
+
+            .developer-card .social-links {
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .developer-card .social-links a {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .site-header {
+                top: 5px;
+                gap: 3px;
+            }
+
+
+            .college-title {
+                font-size: 12px;
+            }
+
+            .signature-text {
+                font-size: 1.5rem;
+            }
+
+            .centered-text {
+                font-size: 1.5rem;
+                margin-top: 5px;
+            }
+
+            .centered-text span {
+                font-size: 20px;
+            }
+
+            .subtitle {
+                font-size: 0.9rem;
+            }
+
+            .welcome-text {
+                font-size: 0.8rem;
+                max-width: 90%;
+                padding: 10px;
+            }
+
+            .scroll-arrow {
+                font-size: 2rem;
+            }
+
+            .social-nav ul li a {
+                font-size: 1.1rem;
+                padding: 0 6px;
+            }
+
+            .social-nav ul li::after {
+                height: 2px;
+            }
+
+            nav {
+                width: 100vw;
+                height: 50px;
+                bottom: 0;
+                left: 0;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                background: transparent;
+                box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            }
+
+            nav ul {
+                flex-direction: row;
+                justify-content: space-around;
+                width: 100%;
+            }
+
+            nav ul li {
+                width: 25%;
+            }
+
+            nav ul li a {
+                padding: 10px 0;
+                font-size: 1.2rem;
+            }
+
+            nav ul li::after {
+                left: 0;
+                top: auto;
+                bottom: 0;
+                width: 0;
+                height: 100%;
+                transform: none;
+                transition: width 0.3s ease;
+            }
+
+            nav ul li.active::after,
+            nav ul li:hover::after {
+                width: 100%;
+                height: 3px;
+                /* For mobile, make it a bottom line */
+            }
+
+            .depart {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+                max-width: 90%;
+                margin: 10px auto;
+                padding: 5px;
+            }
+
+            .department {
+                min-height: 100px;
+                font-size: 10px;
+            }
+
+            .dept-name {
+                font-size: 0.6rem;
+                padding: 3px 10px;
+            }
+
+            .event-details h4 {
+                font-size: 1.1rem;
+            }
+
+            .event-details p {
+                font-size: 0.8rem;
+            }
+
+            .team-container {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: auto repeat(3, auto);
+                gap: 10px;
+                max-width: 90%;
+                margin: 10px auto;
+                padding: 5px;
+            }
+
+            .developer-card {
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 8px;
+                margin-bottom: 20px;
+                margin-right: 5px;
+            }
+
+            .card-image-content {
+                width: 50px;
+                height: 50px;
+                margin: 0 auto 5px auto;
+            }
+
+            .developer-card h2 {
+                font-size: 0.8rem;
+            }
+
+            .developer-card p {
+                font-size: 0.6rem;
+                margin: 1px 0;
+            }
+
+            .developer-card .card-details>a {
+                font-size: 0.6rem;
+                display: block;
+                margin: 1px 0;
+            }
+
+            .developer-card .social-links {
+                margin-top: 2px;
+                gap: 5px;
+                justify-content: center;
+            }
+
+            .developer-card .social-links a {
+                font-size: 0.8rem;
+            }
+
+            .developer-card .card-details>a {
+                display: block;
+            }
+
+            .back-button {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 414px) {
+            .site-header {
+                top: 10px;
+                left: 10px;
+                gap: 5px;
+            }
+
+
+
+            .college-title {
+                font-size: 20px;
+            }
+
+            .team-container {
+                grid-template-columns: repeat(2fr, 1);
+                grid-template-rows: auto repeat(3, auto);
+                gap: 20px;
+                max-width: 90%;
+                padding: 10px;
+            }
+
+            .developer-card {
+                flex-direction: row;
+                justify-content: flex-start;
+                padding: 12px;
+            }
+
+            .card-image-content {
+                width: 70px;
+                height: 70px;
+                margin: 0 12px 0 0;
+            }
+
+            .developer-card h2 {
+                font-size: 1.1rem;
+            }
+
+            .developer-card p {
+                font-size: 0.85rem;
+            }
+
+            .developer-card .card-details>a {
+                font-size: 0.85rem;
+            }
+
+            .developer-card .social-links {
+                gap: 8px;
+            }
+
+            .developer-card .social-links a {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 390px) {
 
             .college-title {
                 font-size: 18px;
@@ -1679,7 +2065,7 @@
             <div class="item credits">
                 <i class="fas fa-arrow-left back-button visible" onclick="scrollToEvents()"></i>
                 <div class="team-container">
-                    <h1 id="team-title">Meet Our Team</h1>
+                    <h1>Meet Our Team</h1>
                     <div class="developer-card" data-img-url="images/vishnu.png" data-color="#ff00ff"
                         data-email="mailto:vishnurajan24766@gmail.com"
                         data-linkedin="https://in.linkedin.com/in/vishnu-r-331560213?trk=profile-badge"
@@ -1822,13 +2208,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- New Hit Count Page (Page 5) -->
-            <div class="item hitcount">
-                <i class="fas fa-arrow-left back-button visible" onclick="scrollToCredits()"></i>
-                <h1>Hit Count Dashboard</h1>
-                <div id="hit-count-display">Total Visitors: Loading...</div>
             </div>
 
             <nav>
@@ -1990,7 +2369,7 @@
                     navListItems.forEach(li => li.classList.remove("active"));
                     navLinks.forEach(link => link.classList.remove("active"));
 
-                    if (navListItems[current] && current < 4) {  // Only update nav for pages 0-3
+                    if (navListItems[current]) {
                         navListItems[current].classList.add("active");
                         navLinks[current].classList.add("active");
                     }
@@ -2003,12 +2382,9 @@
                         document.querySelector('.events .back-button').classList.add('visible');
                     } else if (current === 3) {
                         document.querySelector('.credits .back-button').classList.add('visible');
-                    } else if (current === 4) {
-                        document.querySelector('.hitcount .back-button').classList.add('visible');
                     }
 
                     if (current === 2) showDeptEvents();
-                    if (current === 4) fetchHitCountForPage();  // Fetch count when on hit count page
                 });
 
                 pagesContainer.dispatchEvent(new Event('scroll'));
@@ -2104,10 +2480,6 @@
                     pagesContainer.scrollTo({ top: 3 * pagesContainer.clientHeight, behavior: "smooth" });
                 }
 
-                function scrollToHitCount() {
-                    pagesContainer.scrollTo({ top: 4 * pagesContainer.clientHeight, behavior: "smooth" });
-                }
-
                 // Move the hidden button every 5 seconds
                 const hiddenBtn = document.querySelector('.hidden-btn');
                 const departments = document.querySelector('.departments');
@@ -2120,56 +2492,6 @@
                         hiddenBtn.style.left = `${randomLeft}px`;
                         hiddenBtn.style.top = `${randomTop}px`;
                     }, 5000);
-                }
-
-                // Hit Count Logic: Increment on page load (new visit)
-                document.addEventListener('DOMContentLoaded', async () => {
-                    try {
-                        // Optional unique visitor check (uncomment if needed)
-                        // const hasVisited = localStorage.getItem('hasVisited');
-                        // const method = hasVisited ? 'GET' : 'POST';
-                        const method = 'POST';  // Always increment for simplicity; change to above for unique
-
-                        const response = await fetch('/.netlify/functions/counter', { method });
-                        if (response.ok) {
-                            const data = await response.json();
-                            // Optional: Set visited flag
-                            // if (!hasVisited) localStorage.setItem('hasVisited', 'true');
-                        } else {
-                            console.error('Failed to update hit count');
-                        }
-                    } catch (error) {
-                        console.error('Error with hit count:', error);
-                    }
-                });
-
-                // Fetch hit count for the hit count page (without increment)
-                async function fetchHitCountForPage() {
-                    try {
-                        const response = await fetch('/.netlify/functions/counter', { method: 'GET' });
-                        if (response.ok) {
-                            const data = await response.json();
-                            document.getElementById('hit-count-display').textContent = `Total Visitors: ${data.count}`;
-                        } else {
-                            document.getElementById('hit-count-display').textContent = 'Total Visitors: Error';
-                        }
-                    } catch (error) {
-                        console.error('Error fetching hit count:', error);
-                        document.getElementById('hit-count-display').textContent = 'Total Visitors: Error';
-                    }
-                }
-
-                // Click trigger for "MEET OUR TEAM" to show hit count page after 3 clicks
-                let clickCount = 0;
-                const teamTitle = document.getElementById('team-title');
-                if (teamTitle) {
-                    teamTitle.addEventListener('click', () => {
-                        clickCount++;
-                        if (clickCount === 3) {
-                            scrollToHitCount();
-                            clickCount = 0;  // Reset counter
-                        }
-                    });
                 }
 
                 window.goBack = goBack;
