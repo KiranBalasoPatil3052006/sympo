@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hit Counter</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <style>
         body {
             margin: 0;
@@ -23,6 +24,24 @@
             width: 100%;
             height: 100vh;
             z-index: -1;
+        }
+
+        /* Styling for the new back button */
+        .back-button {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            font-size: 2rem;
+            color: #00ffff;
+            text-decoration: none;
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.7);
+            transition: transform 0.3s ease, text-shadow 0.3s ease;
+            z-index: 10;
+        }
+
+        .back-button:hover {
+            transform: scale(1.1);
+            text-shadow: 0 0 15px rgba(0, 255, 255, 1);
         }
 
         .container {
@@ -79,6 +98,11 @@
             body {
                 padding: 10px;
             }
+            .back-button {
+                top: 20px;
+                left: 20px;
+                font-size: 1.8rem;
+            }
             .container {
                 margin: 20px auto;
                 padding: 15px 20px;
@@ -105,6 +129,11 @@
 </head>
 <body>
     <div id="particles-js"></div>
+    
+    <a href="index.html" class="back-button" aria-label="Go back to home">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+
     <div class="container">
         <h1>Website Statistics 📊</h1>
         <div id="stats-container"></div>
