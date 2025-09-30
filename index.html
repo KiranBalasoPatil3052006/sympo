@@ -339,9 +339,15 @@
             }
         }
 
+        /* AFTER */
         .centered-text span {
             display: inline-block;
             opacity: 0;
+            transform: translateY(25px);
+            /* Set initial state */
+        }
+
+        .centered-text.start-animation span {
             animation: jump 2s ease-out forwards;
             animation-delay: calc(0.1s * var(--i));
         }
