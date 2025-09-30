@@ -1548,8 +1548,7 @@
             <div class="item credits">
                 <i class="fas fa-arrow-left back-button visible" onclick="scrollToEvents()"></i>
                 <div class="team-container">
-                    <h1>Meet Our Team</h1>
-                    <div class="developer-card" data-img-url="images/vishnu.png" data-color="#ff00ff"
+                    <h1 class="secret-trigger">Meet Our Team</h1>                    <div class="developer-card" data-img-url="images/vishnu.png" data-color="#ff00ff"
                         data-email="mailto:vishnurajan24766@gmail.com"
                         data-linkedin="https://in.linkedin.com/in/vishnu-r-331560213?trk=profile-badge"
                         data-instagram="https://github.com/Vishnuat18"
@@ -1957,6 +1956,27 @@
         // =================================================================
         // END: HIT COUNTER LOGIC
         // =================================================================
+
+const teamTitle=document.querySelector('.secret-trigger'); // Changed this line
+let clickCount = 0;
+let clickTimer = null;
+
+if (teamTitle) {
+  teamTitle.addEventListener('click', () => {
+    clickCount++;
+
+    // Reset the 5-second timer on each click
+    clearTimeout(clickTimer);
+    clickTimer = setTimeout(() => {
+      clickCount = 0; // Reset count if 5 seconds pass
+    }, 5000);
+
+    // Check if the click count has reached 3
+    if (clickCount === 3) {
+      window.location.href = 'hit-counter.html';
+    }
+  });
+}
 
 
         document.addEventListener("DOMContentLoaded", () => {
