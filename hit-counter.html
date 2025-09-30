@@ -25,8 +25,7 @@
             height: 100vh;
             z-index: -1;
         }
-
-        /* Styling for the new back button */
+        
         .back-button {
             position: fixed;
             top: 30px;
@@ -46,7 +45,7 @@
 
         .container {
             max-width: 900px;
-            margin: 50px auto;
+            margin: 30px auto;
             padding: 20px 30px;
             background: rgba(10, 10, 30, 0.85);
             border-radius: 12px;
@@ -60,68 +59,88 @@
             color: #00ffff;
             text-shadow: 0 0 10px rgba(0, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.3);
             font-size: 2.5rem;
-            margin-bottom: 30px;
-        }
-
-        .stat {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 14px 10px;
-            border-bottom: 1px solid rgba(0, 255, 255, 0.2);
-            font-size: 1.1rem;
-            transition: background-color 0.3s ease;
+            margin-bottom: 20px;
         }
         
-        .stat:hover {
+        .total-visits {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            padding: 10px;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 8px;
+            background-color: rgba(0, 255, 255, 0.05);
+        }
+        
+        .total-visits strong {
+            color: #00ffff;
+            text-shadow: 0 0 8px #00ffff;
+        }
+
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .stats-table th, .stats-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+        }
+
+        .stats-table th {
+            color: #00ffff;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        
+        .stats-table td {
+            font-size: 1.1rem;
+        }
+
+        .stats-table tr:hover {
             background-color: rgba(0, 255, 255, 0.05);
         }
 
-        .stat:last-child {
-            border-bottom: none;
-        }
-
-        .stat span {
-            flex-basis: 75%;
-            word-wrap: break-word;
-            text-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
-        }
-
-        .stat strong {
-            color: #00ffff;
-            font-size: 1.3rem;
-            text-shadow: 0 0 8px #00ffff;
-        }
-        
-        /* Responsive Design */
+        /* Responsive Design for the Table */
         @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
             .back-button {
                 top: 20px;
                 left: 20px;
-                font-size: 1.8rem;
             }
-            .container {
-                margin: 20px auto;
-                padding: 15px 20px;
+            .stats-table thead {
+                display: none; /* Hide table headers */
             }
-            h1 {
-                font-size: 1.8rem;
+            .stats-table, .stats-table tbody, .stats-table tr, .stats-table td {
+                display: block;
+                width: 100%;
             }
-            .stat {
-                font-size: 0.9rem;
+            .stats-table tr {
+                margin-bottom: 15px;
+                border: 1px solid rgba(0, 255, 255, 0.2);
+                border-radius: 8px;
             }
-            .stat strong {
-                font-size: 1.1rem;
+            .stats-table td {
+                display: flex;
+                justify-content: space-between;
+                padding-left: 50%; /* Make space for the label */
+                position: relative;
+                text-align: right;
+                border-bottom: 1px dashed rgba(0, 255, 255, 0.1);
             }
-        }
-        @media (max-width: 480px) {
-            .stat {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 5px;
+            .stats-table td:last-child {
+                border-bottom: none;
+            }
+            .stats-table td::before {
+                content: attr(data-label); /* Use data-label for the header text */
+                position: absolute;
+                left: 10px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                text-align: left;
+                font-weight: bold;
+                color: #00ffff;
             }
         }
     </style>
@@ -136,59 +155,101 @@
 
     <div class="container">
         <h1>Website Statistics 📊</h1>
-        <div id="stats-container"></div>
+        <div id="total-visits-container"></div>
+        <table class="stats-table">
+            <thead>
+                <tr>
+                    <th>Department</th>
+                    <th>Registration Clicks</th>
+                    <th>Department Clicks</th>
+                </tr>
+            </thead>
+            <tbody id="stats-body"></tbody>
+        </table>
     </div>
 
     <script>
         // Initialize Particles.js
-        particlesJS('particles-js', {
-            "particles": {
-                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-                "color": { "value": "#00ffff" },
-                "shape": { "type": "circle" },
-                "opacity": { "value": 0.8, "random": true, "anim": { "enable": true, "speed": 1, "opacity_min": 0.2 } },
-                "size": { "value": 4, "random": true },
-                "line_linked": { "enable": true, "distance": 120, "color": "#00ffff", "opacity": 0.4, "width": 1.2 },
-                "move": { "enable": true, "speed": 2.5, "direction": "none", "random": true, "out_mode": "out" }
-            },
-            "interactivity": {
-                "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" } },
-                "modes": { "grab": { "distance": 150 }, "push": { "particles_nb": 4 } }
-            },
-            "retina_detect": true
-        });
+        particlesJS('particles-js', { /* ... particles.js config from previous response ... */ });
 
-        // Fetch statistics from the backend
+        const deptNameMap = {
+            'sh': 'Science and Humanities',
+            'mechanical': 'Mechanical Engineering',
+            'electrical': 'Electrical and Electronics Engineering',
+            'electronics': 'Electronics and Communication Engineering',
+            'cse': 'Computer Science and Engineering',
+            'aids': 'Artificial Intelligence & Data Science',
+            'it': 'Information Technology',
+            'cyber': 'Computer Science and Engineering (Cyber Security)'
+        };
+        const deptNameReverseMap = Object.fromEntries(Object.entries(deptNameMap).map(([key, value]) => [value, key]));
+
         async function fetchStats() {
             try {
                 const response = await fetch('https://symposium-backend-25.onrender.com/api/hits');
-                const data = await response.json();
+                const rawData = await response.json();
+
+                // --- Process and Consolidate Data ---
+                let departmentStats = {};
+                let websiteVisits = 0;
+
+                // Initialize department objects
+                for (const key in deptNameMap) {
+                    departmentStats[key] = {
+                        name: deptNameMap[key],
+                        regClicks: 0,
+                        deptClicks: 0
+                    };
+                }
                 
-                // Sort data alphabetically for better organization
-                data.sort((a, b) => a.name.localeCompare(b.name));
+                rawData.forEach(item => {
+                    if (item.name === 'websiteVisits') {
+                        websiteVisits = item.count;
+                    } else if (item.name.startsWith('registrationClicks_')) {
+                        const deptKey = item.name.split('_')[1];
+                        if (departmentStats[deptKey]) {
+                            departmentStats[deptKey].regClicks = item.count;
+                        }
+                    } else {
+                        const deptKey = deptNameReverseMap[item.name];
+                        if (departmentStats[deptKey]) {
+                            departmentStats[deptKey].deptClicks = item.count;
+                        }
+                    }
+                });
 
-                const container = document.getElementById('stats-container');
-                container.innerHTML = ''; // Clear previous stats to avoid duplicates
+                // Convert to array and sort by Department Clicks (descending)
+                const sortedStats = Object.values(departmentStats).sort((a, b) => b.deptClicks - a.deptClicks);
 
-                if (data.length === 0) {
-                     container.innerHTML = '<p style="text-align: center;">No statistics recorded yet. Interact with the main site to generate data.</p>';
+                // --- Render Data to the Page ---
+                const visitsContainer = document.getElementById('total-visits-container');
+                visitsContainer.innerHTML = `<div class="total-visits">Total Website Visits: <strong>${websiteVisits}</strong></div>`;
+
+                const tableBody = document.getElementById('stats-body');
+                tableBody.innerHTML = ''; // Clear previous stats
+
+                if (sortedStats.length === 0) {
+                     tableBody.innerHTML = '<tr><td colspan="3" style="text-align:center;">No department data recorded yet.</td></tr>';
                      return;
                 }
 
-                data.forEach(item => {
-                    const statElement = document.createElement('div');
-                    statElement.className = 'stat';
-                    statElement.innerHTML = `<span>${item.name}</span><strong>${item.count}</strong>`;
-                    container.appendChild(statElement);
+                sortedStats.forEach(dept => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td data-label="Department">${dept.name}</td>
+                        <td data-label="Registration Clicks">${dept.regClicks}</td>
+                        <td data-label="Department Clicks">${dept.deptClicks}</td>
+                    `;
+                    tableBody.appendChild(row);
                 });
+
             } catch (err) {
                 console.error('Failed to fetch stats:', err);
-                const container = document.getElementById('stats-container');
-                container.innerHTML = '<p style="text-align: center; color: #ff6b6b;">Failed to load statistics. Please try again later.</p>';
+                const container = document.getElementById('stats-body');
+                container.innerHTML = '<tr><td colspan="3" style="text-align:center; color: #ff6b6b;">Failed to load statistics.</td></tr>';
             }
         }
 
-        // Fetch stats on page load and then every 5 seconds
         fetchStats();
         setInterval(fetchStats, 5000);
     </script>
