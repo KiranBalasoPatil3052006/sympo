@@ -10,7 +10,7 @@
     <title>Home</title>
     <style>
         /* CSS remains unchanged from the previous response */
-        /* ... (Insert the full CSS from the previous response here for completeness) ... */
+        /* ... (Full CSS is included below) ... */
         body {
             margin: 0;
             padding: 0;
@@ -31,6 +31,45 @@
             opacity: 0.7;
         }
 
+        nav ul li {
+            position: relative;
+            width: 100%;
+            text-align: center;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.4rem;
+            transition: color 0.3s ease;
+            display: block;
+            padding: 10px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        nav ul li::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 0;
+            height: 100%;
+            background-color: rgba(0, 255, 255, 0.3);
+            transition: width 0.3s ease;
+            z-index: 1;
+        }
+
+        nav ul li.active::after,
+        nav ul li:hover::after {
+            width: 100%;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: #00ffff;
+            text-shadow: 0 0 8px #00ffff;
+        }
         .container {
             display: flex;
             height: 100vh;
@@ -339,18 +378,21 @@
             }
         }
 
-        /* AFTER */
+        /* --- CORRECTED ANIMATION LOGIC --- */
         .centered-text span {
             display: inline-block;
             opacity: 0;
+            /* Keep it invisible by default */
             transform: translateY(25px);
-            /* Set initial state */
         }
 
         .centered-text.start-animation span {
             animation: jump 2s ease-out forwards;
             animation-delay: calc(0.1s * var(--i));
         }
+
+        /* --- END OF CORRECTION --- */
+
 
         .centered-text span:nth-child(1) {
             --i: 1;
@@ -1273,22 +1315,8 @@
                 font-size: 1.2rem;
             }
 
-            nav ul li::after {
-                left: 0;
-                top: auto;
-                bottom: 0;
-                width: 0;
-                height: 100%;
-                transform: none;
-                transition: width 0.3s ease;
-            }
-
-            nav ul li.active::after,
-            nav ul li:hover::after {
-                width: 100%;
-                height: 3px;
-            }
-
+            /* Add/update these properties for the link tag */
+          
             .depart {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 10px;
@@ -1932,10 +1960,10 @@
 
             <nav>
                 <ul>
-                    <li><a href="#" data-page="0" class="active" aria-label="Home"><i class="fas fa-house"></i></a></li>
-                    <li><a href="#" data-page="1" aria-label="Departments"><i class="fas fa-building"></i></a></li>
-                    <li><a href="#" data-page="2" aria-label="Team"><i class="fas fa-users"></i></a></li>
-                    <li><a href="#" data-page="3" aria-label="Events"><i class="fas fa-star"></i></a></li>
+                    <li><a href="#" data-page="0" class="active"><i class="fas fa-house"></i></a></li>
+                    <li><a href="#" data-page="1"><i class="fas fa-building"></i></a></li>
+                    <li><a href="#" data-page="2"><i class="fas fa-users"></i></a></li>
+                    <li><a href="#" data-page="1"><i class="fas fa-star"></i></a></li>
                 </ul>
             </nav>
         </div>
@@ -1943,60 +1971,49 @@
 
     <script type="module">
 
-        // --- Secret Redirect Function ---
-        const teamTitle = document.querySelector('.secret-trigger'); // Changed this line
-        let clickCount = 0;
-        let clickTimer = null;
-
-        if (teamTitle) {
-            teamTitle.addEventListener('click', () => {
-                clickCount++;
-
-                // Reset the 5-second timer on each click
-                clearTimeout(clickTimer);
-                clickTimer = setTimeout(() => {
-                    clickCount = 0; // Reset count if 5 seconds pass
-                }, 5000);
-
-                // Check if the click count has reached 3
-                if (clickCount === 3) {
-                    window.location.href = 'hit-counter.html';
-                }
-            });
-        }
-
-
-        // =================================================================
-        // START: HIT COUNTER LOGIC
-        // =================================================================
-
-        // This function sends a request to your backend to record a "hit"
-        async function recordHit(name) {
-            try {
-                // IMPORTANT: Replace this URL with your actual deployed backend URL
-                const backendUrl = 'https://symposium-backend-25.onrender.com/api/hit';
-
-                await fetch(backendUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name })
-                });
-            } catch (err) {
-                console.error('Failed to record hit:', err);
-            }
-        }
-
-        // =================================================================
-        // END: HIT COUNTER LOGIC
-        // =================================================================
-
-
         document.addEventListener("DOMContentLoaded", () => {
+            // --- Secret Redirect Function ---
+            const teamTitle = document.querySelector('.secret-trigger');
+            let clickCount = 0;
+            let clickTimer = null;
+
+            if (teamTitle) {
+                teamTitle.addEventListener('click', () => {
+                    clickCount++;
+                    clearTimeout(clickTimer);
+                    clickTimer = setTimeout(() => {
+                        clickCount = 0;
+                    }, 5000);
+                    if (clickCount === 3) {
+                        window.location.href = 'hit-counter.html';
+                    }
+                });
+            }
+
+            // =================================================================
+            // START: HIT COUNTER LOGIC
+            // =================================================================
+            async function recordHit(name) {
+                try {
+                    const backendUrl = 'https://symposium-backend-25.onrender.com/api/hit';
+                    await fetch(backendUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ name })
+                    });
+                } catch (err) {
+                    console.error('Failed to record hit:', err);
+                }
+            }
+            // =================================================================
+            // END: HIT COUNTER LOGIC
+            // =================================================================
+
             // Record a website visit every time the page loads
             recordHit('websiteVisits');
 
             const loadStart = performance.now();
-            const minPreloaderTime = 2500;
+            const minPreloaderTime = 2000; // Set to 2 seconds
 
             // Prioritize critical assets
             const video = document.querySelector("video");
@@ -2021,8 +2038,18 @@
             Promise.all(mediaPromises).then(() => {
                 const elapsed = performance.now() - loadStart;
                 const remaining = minPreloaderTime - elapsed;
+
                 setTimeout(() => {
                     document.getElementById("preloader").classList.add("hidden");
+
+                    // Wait 2 seconds, then start the animation
+                    setTimeout(() => {
+                        const title = document.querySelector('.centered-text');
+                        if (title) {
+                            title.classList.add('start-animation');
+                        }
+                    }, 2000); // 2000ms = 2 seconds
+
                 }, remaining > 0 ? remaining : 0);
             });
 
@@ -2059,11 +2086,10 @@
             const departmentElements = document.querySelectorAll(".department");
             const eventDetails = document.querySelectorAll(".event-details");
             const noSelection = document.getElementById("no-selection");
-            let isProcessing = false; // Debounce flag
-            window.selectedDept = null; // Global variable for selected department
-            window.selectedDeptClass = null; // Global variable for selected department class
+            let isProcessing = false;
+            window.selectedDept = null;
+            window.selectedDeptClass = null;
 
-            // Navigation click events
             navLinks.forEach(link => {
                 link.addEventListener("click", e => {
                     e.preventDefault();
@@ -2072,7 +2098,6 @@
                 });
             });
 
-            // Scroll event for navigation highlighting
             pagesContainer.addEventListener("scroll", () => {
                 let current = 0;
                 pages.forEach((page, index) => {
@@ -2084,87 +2109,67 @@
 
                 navListItems.forEach(li => li.classList.remove("active"));
                 navLinks.forEach(link => link.classList.remove("active"));
-
                 if (navListItems[current]) {
                     navListItems[current].classList.add("active");
                     navLinks[current].classList.add("active");
                 }
 
                 document.querySelectorAll('.back-button').forEach(btn => btn.classList.remove('visible'));
-                if (current === 1) {
-                    document.querySelector('.departments .back-button').classList.add('visible');
-                } else if (current === 2) {
-                    document.querySelector('.events .back-button').classList.add('visible');
-                } else if (current === 3) {
-                    document.querySelector('.credits .back-button').classList.add('visible');
+                if (current > 0) {
+                    const currentBackButton = pages[current].querySelector('.back-button');
+                    if (currentBackButton) currentBackButton.classList.add('visible');
                 }
 
-                if (current === 2) showDeptEvents();
+                if (current === 3) showDeptEvents();
             });
 
-            // Department click events
             departmentElements.forEach((dept, index) => {
                 const eventHandler = () => {
                     if (isProcessing) return;
                     isProcessing = true;
-
                     const deptName = dept.dataset.dept;
                     const deptClass = dept.dataset.class;
-
-                    // Record the department click
                     recordHit(deptName);
-
                     if (!deptName || !deptClass) {
                         console.error(`Department at index ${index} is missing data-dept or data-class`);
                         isProcessing = false;
                         return;
                     }
-
                     showEvents(deptName, deptClass);
                     setTimeout(() => { isProcessing = false; }, 500);
                 };
-
                 dept.addEventListener("click", eventHandler);
                 dept.addEventListener("touchstart", eventHandler);
             });
 
-            // Registration button click events
             document.querySelectorAll('.btn.register').forEach(button => {
                 button.addEventListener('click', () => {
                     const parentDetails = button.closest('.event-details');
                     if (parentDetails) {
-                        const deptClass = parentDetails.classList[1]; // e.g., 'cse', 'it'
+                        const deptClass = parentDetails.classList[1];
                         recordHit(`registrationClicks_${deptClass}`);
                     }
                 });
             });
 
-
             function showEvents(dept, deptClass) {
                 window.selectedDept = dept;
                 window.selectedDeptClass = deptClass;
-
-                // Update active department styling
                 document.querySelectorAll(".department").forEach(el => el.classList.remove("active"));
                 const activeDept = document.querySelector(`.department[data-dept="${dept}"]`);
-                if (activeDept) {
-                    activeDept.classList.add("active");
-                } else {
-                    console.error(`No department element found for: ${dept}`);
-                }
-                // Scroll to events section
-                const eventsSection = document.querySelector(".events");
-                if (eventsSection) {
-                    const eventsSectionIndex = Array.from(pages).indexOf(eventsSection);
-                    pagesContainer.scrollTo({
-                        top: eventsSectionIndex * pagesContainer.clientHeight,
-                        behavior: "smooth"
-                    });
-                } else {
-                    console.error("Events section not found");
-                }
+                if (activeDept) activeDept.classList.add("active");
+
+                // --- MODIFICATION: Navigate to the last page for events ---
+                const eventsSectionIndex = 3; // Events are on the 4th page (index 3)
+                pagesContainer.scrollTo({
+                    top: eventsSectionIndex * pagesContainer.clientHeight,
+                    behavior: "smooth"
+                });
+                // --- END MODIFICATION ---
+
                 showDeptEvents();
             }
+
             function showDeptEvents() {
                 if (!window.selectedDept || !window.selectedDeptClass) {
                     noSelection.style.display = "block";
@@ -2179,45 +2184,26 @@
                     }
                 });
             }
-            // Scroll functions for navigation
-            window.scrollToNext = () => {
-                pagesContainer.scrollTo({
-                    top: pagesContainer.scrollTop + pagesContainer.clientHeight,
-                    behavior: "smooth"
-                });
-            };
+
+            window.scrollToNext = () => pagesContainer.scrollBy({ top: pagesContainer.clientHeight, behavior: 'smooth' });
             window.scrollToHome = () => {
-                pagesContainer.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
+                pagesContainer.scrollTo({ top: 0, behavior: "smooth" });
                 resetDepartmentSelection();
             };
             window.scrollToDepartments = () => {
-                const departmentsSection = document.querySelector(".departments");
-                const deptIndex = Array.from(pages).indexOf(departmentsSection);
-                pagesContainer.scrollTo({
-                    top: deptIndex * pagesContainer.clientHeight,
-                    behavior: "smooth"
-                });
+                const deptIndex = 1; // Departments are on the 2nd page
+                pagesContainer.scrollTo({ top: deptIndex * pagesContainer.clientHeight, behavior: "smooth" });
                 resetDepartmentSelection();
             };
             window.scrollToEvents = () => {
-                const eventsSection = document.querySelector(".events");
-                const eventsIndex = Array.from(pages).indexOf(eventsSection);
-                pagesContainer.scrollTo({
-                    top: eventsIndex * pagesContainer.clientHeight,
-                    behavior: "smooth"
-                });
+                const eventsIndex = 1; // Go back to departments page from events
+                pagesContainer.scrollTo({ top: eventsIndex * pagesContainer.clientHeight, behavior: "smooth" });
             };
             window.scrollToCredits = () => {
-                const creditsSection = document.querySelector(".credits");
-                const creditsIndex = Array.from(pages).indexOf(creditsSection);
-                pagesContainer.scrollTo({
-                    top: creditsIndex * pagesContainer.clientHeight,
-                    behavior: "smooth"
-                });
+                const creditsIndex = 2; // Credits are on the 3rd page
+                pagesContainer.scrollTo({ top: creditsIndex * pagesContainer.clientHeight, behavior: "smooth" });
             };
+
             function resetDepartmentSelection() {
                 window.selectedDept = null;
                 window.selectedDeptClass = null;
@@ -2225,7 +2211,7 @@
                 noSelection.style.display = "block";
                 eventDetails.forEach(detail => detail.classList.remove("active"));
             }
-            // Set background images for developer cards
+
             document.querySelectorAll('.developer-card').forEach(card => {
                 const imgUrl = card.dataset.imgUrl;
                 const color = card.dataset.color || '#00ffff';
@@ -2237,15 +2223,12 @@
                     card.style.setProperty('--border-color', color);
                 }
             });
-            // Handle window resize
+
             let resizeTimer;
             window.addEventListener("resize", () => {
                 clearTimeout(resizeTimer);
                 resizeTimer = setTimeout(() => {
-                    pagesContainer.scrollTo({
-                        top: pagesContainer.scrollTop,
-                        behavior: "auto"
-                    });
+                    pagesContainer.scrollTo({ top: pagesContainer.scrollTop, behavior: "auto" });
                 }, 100);
             });
         });
