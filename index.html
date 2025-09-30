@@ -1689,7 +1689,6 @@
                 </div>
             </div>
 
-            <!-- Events -->
             <div class="item events">
                 <i class="fas fa-arrow-left back-button visible" onclick="scrollToDepartments()"></i>
                 <h2>Event Details</h2>
@@ -1719,7 +1718,9 @@
                                 </a>
                             </p>
                         </div>
-                        <div class="event-actions"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdUUlfiY-JglRN3sOtJ2E72mPtFnLZDZZTEozJolC6zHGr5Cw/viewform?usp=header" class="btn register">Register</a></div>
+                        <div class="event-actions"><a
+                                href="https://docs.google.com/forms/d/e/1FAIpQLSdUUlfiY-JglRN3sOtJ2E72mPtFnLZDZZTEozJolC6zHGr5Cw/viewform?usp=header"
+                                class="btn register">Register</a></div>
                     </div>
                     <div class="event-details mechanical" data-dept="Mechanical Engineering">
                         <div class="techeven">
@@ -1935,7 +1936,35 @@
     </div>
 
     <script type="module">
+        // =================================================================
+        // START: HIT COUNTER LOGIC
+        // =================================================================
+
+        // This function sends a request to your backend to record a "hit"
+        async function recordHit(name) {
+            try {
+                // IMPORTANT: Replace this URL with your actual deployed backend URL
+                const backendUrl = 'https://symposium-backend-25.onrender.com/api/hit';
+
+                await fetch(backendUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name })
+                });
+            } catch (err) {
+                console.error('Failed to record hit:', err);
+            }
+        }
+
+        // =================================================================
+        // END: HIT COUNTER LOGIC
+        // =================================================================
+
+
         document.addEventListener("DOMContentLoaded", () => {
+            // Record a website visit every time the page loads
+            recordHit('websiteVisits');
+
             const loadStart = performance.now();
             const minPreloaderTime = 2500;
 
@@ -2004,9 +2033,6 @@
             window.selectedDept = null; // Global variable for selected department
             window.selectedDeptClass = null; // Global variable for selected department class
 
-            // Debugging: Log number of department elements
-            console.log(`Found ${departmentElements.length} department elements`);
-
             // Navigation click events
             navLinks.forEach(link => {
                 link.addEventListener("click", e => {
@@ -2048,13 +2074,15 @@
 
             // Department click events
             departmentElements.forEach((dept, index) => {
-                dept.addEventListener("click", () => {
+                const eventHandler = () => {
                     if (isProcessing) return;
                     isProcessing = true;
+
                     const deptName = dept.dataset.dept;
                     const deptClass = dept.dataset.class;
 
-                    console.log(`Clicked department: ${deptName}, class: ${deptClass}`);
+                    // Record the department click
+                    recordHit(deptName);
 
                     if (!deptName || !deptClass) {
                         console.error(`Department at index ${index} is missing data-dept or data-class`);
@@ -2064,27 +2092,23 @@
 
                     showEvents(deptName, deptClass);
                     setTimeout(() => { isProcessing = false; }, 500);
-                });
+                };
 
-                // Add touch support for mobile
-                dept.addEventListener("touchstart", () => {
-                    if (isProcessing) return;
-                    isProcessing = true;
-                    const deptName = dept.dataset.dept;
-                    const deptClass = dept.dataset.class;
+                dept.addEventListener("click", eventHandler);
+                dept.addEventListener("touchstart", eventHandler);
+            });
 
-                    console.log(`Touched department: ${deptName}, class: ${deptClass}`);
-
-                    if (!deptName || !deptClass) {
-                        console.error(`Department at index ${index} is missing data-dept or data-class`);
-                        isProcessing = false;
-                        return;
+            // Registration button click events
+            document.querySelectorAll('.btn.register').forEach(button => {
+                button.addEventListener('click', () => {
+                    const parentDetails = button.closest('.event-details');
+                    if (parentDetails) {
+                        const deptClass = parentDetails.classList[1]; // e.g., 'cse', 'it'
+                        recordHit(`registrationClicks_${deptClass}`);
                     }
-
-                    showEvents(deptName, deptClass);
-                    setTimeout(() => { isProcessing = false; }, 500);
                 });
             });
+
 
             function showEvents(dept, deptClass) {
                 window.selectedDept = dept;
