@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hit Counter</title>
+  <style>
+    body { font-family: sans-serif; background-color: #f4f4f4; color: #333; }
+    .container { max-width: 800px; margin: 50px auto; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    h1 { text-align: center; }
+    .stat { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #ddd; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Website Statistics</h1>
+    <div id="stats-container"></div>
+  </div>
+
+  <script>
+    async function fetchStats() {
+      try {
+        const response = await fetch('https://your-render-app-url.onrender.com/api/hits');
+        const data = await response.json();
+        const container = document.getElementById('stats-container');
+        container.innerHTML = '';
+        data.forEach(item => {
+          const statElement = document.createElement('div');
+          statElement.className = 'stat';
+          statElement.innerHTML = `<span>${item.name}</span><strong>${item.count}</strong>`;
+          container.appendChild(statElement);
+        });
+      } catch (err) {
+        console.error('Failed to fetch stats:', err);
+      }
+    }
+
+    // Fetch stats on page load and then every 5 seconds
+    fetchStats();
+    setInterval(fetchStats, 5000);
+  </script>
+</body>
+</html>
