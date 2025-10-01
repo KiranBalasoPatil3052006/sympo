@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -303,7 +302,7 @@
             font-size: 20px;
             color: #00ffff;
             text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
-            margin-top: 100px;
+            margin-top: 60px;
             line-height: 1.5;
         }
 
@@ -344,7 +343,8 @@
             display: inline-block;
             opacity: 0;
             animation: jump 2s ease-out forwards;
-            animation-delay: calc(0.1s * var(--i));
+            /* ADD 2s to the existing calc function */
+            animation-delay: calc(2s + (0.1s * var(--i)));
         }
 
         .centered-text span:nth-child(1) {
@@ -986,6 +986,10 @@
                 padding: 10px;
             }
 
+            .team-container h1 {
+                font-size: 25px;
+            }
+
             .developer-card {
                 flex-direction: row;
                 justify-content: flex-start;
@@ -1025,6 +1029,133 @@
             }
         }
 
+        /* COUNTDOWN STYLES - Desktop Base */
+        .countdown {
+            color: #fff;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+            padding: 10px;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.5);
+            max-width: 450px;
+            margin-top: 10px;
+            margin-bottom: -20px;
+            width: 90%;
+            /* Vertical adjustment for placement */
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+            animation: pulse-border 2s infinite alternate;
+            /* Neon border animation */
+            box-sizing: border-box;
+            /* Include padding/border in width */
+        }
+
+        @keyframes pulse-border {
+            0% {
+                box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+            }
+
+            100% {
+                box-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 5px rgba(0, 255, 255, 0.2);
+            }
+        }
+
+        .countdown h4 {
+            font-size: 1rem;
+            margin: 0 0 5px 0;
+            color: #00ffff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: space-around;
+            /* Distribute units evenly */
+            gap: 15px;
+            font-weight: bold;
+        }
+
+        .countdown-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 70px;
+            /* Set a comfortable minimum width for desktop */
+        }
+
+        .countdown-value {
+            font-size: 1.8rem;
+            color: #ff00ff;
+            text-shadow: 0 0 8px #ff00ff;
+            animation: glow-text 1.5s infinite alternate;
+            /* Value text animation */
+        }
+
+        .countdown-label {
+            font-size: 0.6rem;
+            color: #00ffff;
+            margin-top: 2px;
+        }
+
+        @keyframes glow-text {
+            0% {
+                text-shadow: 0 0 5px #ff00ff;
+            }
+
+            100% {
+                text-shadow: 0 0 15px #ff00ff, 0 0 5px #ff00ff;
+            }
+        }
+
+        /* RESPONSIVENESS (Mobile/Small Screens) */
+        @media (max-width: 600px) {
+            .countdown {
+                /* Adjust vertical position for mobile */
+                padding: 8px;
+                max-width: 90%;
+            }
+
+            .countdown h4 {
+                font-size: 0.7rem;
+                letter-spacing: 1px;
+            }
+
+            .countdown-timer {
+                gap: 8px;
+                /* Reduced gap for smaller screens */
+            }
+
+            .countdown-unit {
+                min-width: 55px;
+                /* Adjust minimum width to prevent stacking */
+            }
+
+            .countdown-value {
+                font-size: 1.3rem;
+                /* Smaller font size for numbers */
+            }
+
+            .countdown-label {
+                font-size: 0.5rem;
+                /* Smaller font size for labels */
+            }
+        }
+
+        /* Very Small Screens */
+        @media (max-width: 320px) {
+            .countdown-unit {
+                min-width: 45px;
+            }
+
+            .countdown-value {
+                font-size: 1.1rem;
+            }
+
+            .countdown-timer {
+                gap: 5px;
+            }
+        }
+
         @media (max-width: 390px) {
             .college-title {
                 font-size: 18px;
@@ -1033,6 +1164,10 @@
             .team-container {
                 gap: 15px;
                 padding: 8px;
+            }
+
+            .team-container h1 {
+                font-size: 25px;
             }
 
             .developer-card {
@@ -1076,6 +1211,10 @@
                 padding: 6px;
             }
 
+            .team-container h1 {
+                font-size: 25px;
+            }
+
             .developer-card {
                 padding: 8px;
             }
@@ -1115,6 +1254,10 @@
             .team-container {
                 gap: 10px;
                 padding: 5px;
+            }
+
+            .team-container h1 {
+                font-size: 25px;
             }
 
             .developer-card {
@@ -1162,6 +1305,10 @@
                 grid-template-rows: auto repeat(6, auto);
                 gap: 10px;
                 padding: 5px;
+            }
+
+            .team-container h1 {
+                font-size: 25px;
             }
 
             .developer-card {
@@ -1319,6 +1466,10 @@
                 padding: 5px;
             }
 
+            .team-container h1 {
+                font-size: 25px;
+            }
+
             .developer-card {
                 flex-direction: column;
                 align-items: center;
@@ -1392,6 +1543,10 @@
                 gap: 12px;
                 width: 400px;
                 height: 800px;
+            }
+
+            .team-container h1 {
+                font-size: 25px;
             }
 
             .card-image-content {
@@ -1471,7 +1626,19 @@
                     <a href="https://vishnuat18.github.io/ping_pong/"><img src="images/rpsit-logo.png"
                             alt="R P Sarathy Institute of Technology Logo" class="college-logo" /></a>
                 </div>
-
+                <div class="countdown" id="countdown">
+                    <h4>Symposium Starts In</h4>
+                    <div class="countdown-timer">
+                        <div class="countdown-unit"><span id="days" class="countdown-value">00</span><span
+                                class="countdown-label">Days</span></div>
+                        <div class="countdown-unit"><span id="hours" class="countdown-value">00</span><span
+                                class="countdown-label">Hours</span></div>
+                        <div class="countdown-unit"><span id="minutes" class="countdown-value">00</span><span
+                                class="countdown-label">Minutes</span></div>
+                        <div class="countdown-unit"><span id="seconds" class="countdown-value">00</span><span
+                                class="countdown-label">Seconds</span></div>
+                    </div>
+                </div>
                 <div class="signature-text">
                     <h3>RPSIT</h3>
                     <h3>Proudly Presents</h3>
@@ -1863,6 +2030,7 @@
                         <div class="event-actions"><a href="#" class="btn register">Register</a></div>
                     </div>
                     <div class="event-details it" data-dept="Information Technology">
+                        
                         <div class="techeven">
                             <h4>Technical Events</h4>
                             <p><strong>Paper Presentation</strong></p>
@@ -1939,21 +2107,17 @@
     <script type="module">
 
         // --- Secret Redirect Function ---
-        const teamTitle = document.querySelector('.secret-trigger'); // Changed this line
+        const teamTitle = document.querySelector('.secret-trigger');
         let clickCount = 0;
         let clickTimer = null;
 
         if (teamTitle) {
             teamTitle.addEventListener('click', () => {
                 clickCount++;
-
-                // Reset the 5-second timer on each click
                 clearTimeout(clickTimer);
                 clickTimer = setTimeout(() => {
-                    clickCount = 0; // Reset count if 5 seconds pass
+                    clickCount = 0;
                 }, 5000);
-
-                // Check if the click count has reached 3
                 if (clickCount === 3) {
                     window.location.href = 'hit-counter.html';
                 }
@@ -1965,12 +2129,9 @@
         // START: HIT COUNTER LOGIC
         // =================================================================
 
-        // This function sends a request to your backend to record a "hit"
         async function recordHit(name) {
             try {
-                // IMPORTANT: Replace this URL with your actual deployed backend URL
                 const backendUrl = 'https://symposium-backend-25.onrender.com/api/hit';
-
                 await fetch(backendUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -1985,15 +2146,212 @@
         // END: HIT COUNTER LOGIC
         // =================================================================
 
+        // --- Countdown Timer Logic ---
+        function startCountdown() {
+            const countdownDate = new Date("Oct 31, 2025 00:00:00").getTime();
+
+            const interval = setInterval(function () {
+                const now = new Date().getTime();
+                const distance = countdownDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                const pad = (num) => num < 10 ? '0' + num : num;
+
+                const daysEl = document.getElementById("days");
+                const hoursEl = document.getElementById("hours");
+                const minutesEl = document.getElementById("minutes");
+                const secondsEl = document.getElementById("seconds");
+                const countdownEl = document.getElementById("countdown");
+
+                if (daysEl && hoursEl && minutesEl && secondsEl) {
+                    daysEl.innerHTML = pad(days);
+                    hoursEl.innerHTML = pad(hours);
+                    minutesEl.innerHTML = pad(minutes);
+                    secondsEl.innerHTML = pad(seconds);
+                }
+
+                if (distance < 0) {
+                    clearInterval(interval);
+                    if (countdownEl) {
+                        countdownEl.innerHTML = "<h4>THE TECHFEST HAS BEGUN!</h4>";
+                        countdownEl.style.animation = 'none';
+                        countdownEl.style.textShadow = '0 0 10px #00ffff';
+                        countdownEl.style.boxShadow = '0 0 15px rgba(0, 255, 255, 0.8)';
+                    }
+                }
+            }, 1000);
+        }
 
         document.addEventListener("DOMContentLoaded", () => {
-            // Record a website visit every time the page loads
+            // Start the countdown immediately
+            startCountdown();
+            // Initial hit
             recordHit('websiteVisits');
 
+            const pagesContainer = document.querySelector(".pages");
+            const pages = document.querySelectorAll(".pages .item");
+            const navLinks = document.querySelectorAll("nav ul li a");
+            const navListItems = document.querySelectorAll("nav ul li");
+            const departmentElements = document.querySelectorAll(".department");
+            const eventDetails = document.querySelectorAll(".event-details");
+            const noSelection = document.getElementById("no-selection");
+
+            let isProcessing = false;
+            window.selectedDept = null;
+            window.selectedDeptClass = null;
+
+            // --- Utility to get current page index based on scroll position ---
+            function getCurrentPageIndex() {
+                const scrollPos = pagesContainer.scrollTop;
+                const pageHeight = pagesContainer.clientHeight;
+                return Math.round(scrollPos / pageHeight);
+            }
+
+            // --- Core Page Scroll Function (Exposed for HTML inline calls) ---
+            window.scrollToPage = (pageIndex) => {
+                if (pageIndex < 0 || pageIndex >= pages.length) return;
+                pagesContainer.scrollTo({
+                    top: pageIndex * pagesContainer.clientHeight,
+                    behavior: "smooth"
+                });
+                // Reset selection if not navigating to Departments or Events pages
+                if (pageIndex !== 1 && pageIndex !== 3) {
+                    resetDepartmentSelection();
+                }
+            };
+
+            window.scrollToNext = () => { window.scrollToPage(getCurrentPageIndex() + 1); };
+            window.scrollToHome = () => { window.scrollToPage(0); };
+            window.scrollToDepartments = () => { window.scrollToPage(1); };
+            window.scrollToCredits = () => { window.scrollToPage(2); };
+            window.scrollToEvents = () => { window.scrollToPage(3); };
+
+            // --- Back Button Visibility Logic (FIXED) ---
+            function updateBackButtonVisibility(currentPageIndex) {
+                document.querySelectorAll('.back-button').forEach(btn => btn.classList.remove('visible'));
+
+                // Page 1 (Departments) -> Back to Page 0 (Home)
+                if (currentPageIndex === 1) {
+                    document.querySelector('.departments .back-button').classList.add('visible');
+                }
+                // Page 2 (Team/Credits) -> Back to Page 1 (Departments)
+                else if (currentPageIndex === 2) {
+                    document.querySelector('.credits .back-button').classList.add('visible');
+                }
+                // Page 3 (Events) -> Back to Page 1 (Departments)
+                else if (currentPageIndex === 3) {
+                    document.querySelector('.events .back-button').classList.add('visible');
+                }
+            }
+
+            // --- Event Listeners ---
+            navLinks.forEach(link => {
+                link.addEventListener("click", e => {
+                    e.preventDefault();
+                    const targetPage = parseInt(link.dataset.page);
+                    window.scrollToPage(targetPage);
+                });
+            });
+
+            // Scroll event for navigation highlighting and back button visibility
+            pagesContainer.addEventListener("scroll", () => {
+                let current = getCurrentPageIndex();
+
+                // Update nav highlights
+                navListItems.forEach(li => li.classList.remove("active"));
+                navLinks.forEach(link => link.classList.remove("active"));
+
+                if (navListItems[current]) {
+                    navListItems[current].classList.add("active");
+                    navLinks[current].classList.add("active");
+                }
+
+                // Apply the fixed visibility logic
+                updateBackButtonVisibility(current);
+
+                if (current === 3) showDeptEvents();
+            });
+
+            // Department click events
+            departmentElements.forEach((dept, index) => {
+                const eventHandler = () => {
+                    if (isProcessing) return;
+                    isProcessing = true;
+
+                    const deptName = dept.dataset.dept;
+                    const deptClass = dept.dataset.class;
+
+                    recordHit(deptName);
+
+                    if (!deptName || !deptClass) {
+                        console.error(`Department at index ${index} is missing data-dept or data-class`);
+                        isProcessing = false;
+                        return;
+                    }
+
+                    showEvents(deptName, deptClass);
+                    setTimeout(() => { isProcessing = false; }, 500);
+                };
+                dept.addEventListener("click", eventHandler);
+            });
+
+            // Registration button click events
+            document.querySelectorAll('.btn.register').forEach(button => {
+                button.addEventListener('click', () => {
+                    const parentDetails = button.closest('.event-details');
+                    if (parentDetails) {
+                        const deptClass = parentDetails.classList[1];
+                        recordHit(`registrationClicks_${deptClass}`);
+                    }
+                });
+            });
+
+            // --- Department/Event Logic ---
+            function showEvents(dept, deptClass) {
+                window.selectedDept = dept;
+                window.selectedDeptClass = deptClass;
+
+                document.querySelectorAll(".department").forEach(el => el.classList.remove("active"));
+                const activeDept = document.querySelector(`.department[data-dept="${dept}"]`);
+                if (activeDept) {
+                    activeDept.classList.add("active");
+                }
+
+                window.scrollToPage(3);
+                showDeptEvents();
+            }
+
+            function showDeptEvents() {
+                if (!window.selectedDept || !window.selectedDeptClass) {
+                    noSelection.style.display = "block";
+                    eventDetails.forEach(detail => detail.classList.remove("active"));
+                    return;
+                }
+
+                noSelection.style.display = "none";
+                eventDetails.forEach(detail => {
+                    detail.classList.remove("active");
+                    if (detail.dataset.dept === window.selectedDept) {
+                        detail.classList.add("active");
+                    }
+                });
+            }
+
+            function resetDepartmentSelection() {
+                window.selectedDept = null;
+                window.selectedDeptClass = null;
+                document.querySelectorAll(".department").forEach(el => el.classList.remove("active"));
+                noSelection.style.display = "block";
+                eventDetails.forEach(detail => detail.classList.remove("active"));
+            }
+
+            // --- Initialization and Setup ---
             const loadStart = performance.now();
             const minPreloaderTime = 2500;
-
-            // Prioritize critical assets
             const video = document.querySelector("video");
             const criticalImages = Array.from(document.images).filter(img =>
                 img.src.includes("rpsit-logo.png") || img.src.includes("Gemini_Generated_Image_nyl78knyl78knyl7-removebg-preview.png")
@@ -2022,204 +2380,12 @@
             });
 
             particlesJS('particles-js', {
-                "particles": {
-                    "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-                    "color": { "value": "#00ffff" },
-                    "shape": { "type": "circle", "stroke": { "width": 0, "color": "#00ffff" } },
-                    "opacity": { "value": 0.8, "random": true, "anim": { "enable": true, "speed": 1, "opacity_min": 0.2, "sync": false } },
-                    "size": { "value": 4, "random": true, "anim": { "enable": false, "speed": 40, "size_min": 0.3, "sync": false } },
-                    "line_linked": { "enable": true, "distance": 120, "color": "#00ffff", "opacity": 0.4, "width": 1.2 },
-                    "move": {
-                        "enable": true, "speed": 2.5, "direction": "none", "random": true, "straight": false,
-                        "out_mode": "out", "bounce": false, "attract": { "enable": true, "rotateX": 600, "rotateY": 1200 }
-                    }
-                },
-                "interactivity": {
-                    "detect_on": "canvas",
-                    "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
-                    "modes": {
-                        "grab": { "distance": 150, "line_linked": { "opacity": 0.7 } },
-                        "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 0.8, "speed": 3 },
-                        "repulse": { "distance": 200, "duration": 0.4 },
-                        "push": { "particles_nb": 4 }
-                    }
-                },
+                "particles": { "number": { "value": 80, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#00ffff" }, "shape": { "type": "circle", "stroke": { "width": 0, "color": "#00ffff" } }, "opacity": { "value": 0.8, "random": true, "anim": { "enable": true, "speed": 1, "opacity_min": 0.2, "sync": false } }, "size": { "value": 4, "random": true, "anim": { "enable": false, "speed": 40, "size_min": 0.3, "sync": false } }, "line_linked": { "enable": true, "distance": 120, "color": "#00ffff", "opacity": 0.4, "width": 1.2 }, "move": { "enable": true, "speed": 2.5, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": true, "rotateX": 600, "rotateY": 1200 } } },
+                "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true }, "modes": { "grab": { "distance": 150, "line_linked": { "opacity": 0.7 } }, "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 0.8, "speed": 3 }, "repulse": { "distance": 200, "duration": 0.4 }, "push": { "particles_nb": 4 } } },
                 "retina_detect": true
             });
 
-            const navLinks = document.querySelectorAll("nav ul li a");
-            const pagesContainer = document.querySelector(".pages");
-            const pages = document.querySelectorAll(".pages .item");
-            const navListItems = document.querySelectorAll("nav ul li");
-            const departmentElements = document.querySelectorAll(".department");
-            const eventDetails = document.querySelectorAll(".event-details");
-            const noSelection = document.getElementById("no-selection");
-            let isProcessing = false; // Debounce flag
-            window.selectedDept = null; // Global variable for selected department
-            window.selectedDeptClass = null; // Global variable for selected department class
 
-            // Navigation click events
-            navLinks.forEach(link => {
-                link.addEventListener("click", e => {
-                    e.preventDefault();
-                    const targetPage = parseInt(link.dataset.page);
-                    pagesContainer.scrollTo({ top: targetPage * pagesContainer.clientHeight, behavior: "smooth" });
-                });
-            });
-
-            // Scroll event for navigation highlighting
-            pagesContainer.addEventListener("scroll", () => {
-                let current = 0;
-                pages.forEach((page, index) => {
-                    const pageTop = page.getBoundingClientRect().top;
-                    const pageBottom = page.getBoundingClientRect().bottom;
-                    const viewHeight = window.innerHeight;
-                    if (pageTop < viewHeight / 2 && pageBottom > viewHeight / 2) current = index;
-                });
-
-                navListItems.forEach(li => li.classList.remove("active"));
-                navLinks.forEach(link => link.classList.remove("active"));
-
-                if (navListItems[current]) {
-                    navListItems[current].classList.add("active");
-                    navLinks[current].classList.add("active");
-                }
-
-                document.querySelectorAll('.back-button').forEach(btn => btn.classList.remove('visible'));
-                if (current === 1) {
-                    document.querySelector('.departments .back-button').classList.add('visible');
-                } else if (current === 2) {
-                    document.querySelector('.events .back-button').classList.add('visible');
-                } else if (current === 3) {
-                    document.querySelector('.credits .back-button').classList.add('visible');
-                }
-
-                if (current === 2) showDeptEvents();
-            });
-
-            // Department click events
-            departmentElements.forEach((dept, index) => {
-                const eventHandler = () => {
-                    if (isProcessing) return;
-                    isProcessing = true;
-
-                    const deptName = dept.dataset.dept;
-                    const deptClass = dept.dataset.class;
-
-                    // Record the department click
-                    recordHit(deptName);
-
-                    if (!deptName || !deptClass) {
-                        console.error(`Department at index ${index} is missing data-dept or data-class`);
-                        isProcessing = false;
-                        return;
-                    }
-
-                    showEvents(deptName, deptClass);
-                    setTimeout(() => { isProcessing = false; }, 500);
-                };
-
-                dept.addEventListener("click", eventHandler);
-                dept.addEventListener("touchstart", eventHandler);
-            });
-
-            // Registration button click events
-            document.querySelectorAll('.btn.register').forEach(button => {
-                button.addEventListener('click', () => {
-                    const parentDetails = button.closest('.event-details');
-                    if (parentDetails) {
-                        const deptClass = parentDetails.classList[1]; // e.g., 'cse', 'it'
-                        recordHit(`registrationClicks_${deptClass}`);
-                    }
-                });
-            });
-
-
-            function showEvents(dept, deptClass) {
-                window.selectedDept = dept;
-                window.selectedDeptClass = deptClass;
-
-                // Update active department styling
-                document.querySelectorAll(".department").forEach(el => el.classList.remove("active"));
-                const activeDept = document.querySelector(`.department[data-dept="${dept}"]`);
-                if (activeDept) {
-                    activeDept.classList.add("active");
-                } else {
-                    console.error(`No department element found for: ${dept}`);
-                }
-                // Scroll to events section
-                const eventsSection = document.querySelector(".events");
-                if (eventsSection) {
-                    const eventsSectionIndex = Array.from(pages).indexOf(eventsSection);
-                    pagesContainer.scrollTo({
-                        top: eventsSectionIndex * pagesContainer.clientHeight,
-                        behavior: "smooth"
-                    });
-                } else {
-                    console.error("Events section not found");
-                }
-                showDeptEvents();
-            }
-            function showDeptEvents() {
-                if (!window.selectedDept || !window.selectedDeptClass) {
-                    noSelection.style.display = "block";
-                    eventDetails.forEach(detail => detail.classList.remove("active"));
-                    return;
-                }
-                noSelection.style.display = "none";
-                eventDetails.forEach(detail => {
-                    detail.classList.remove("active");
-                    if (detail.dataset.dept === window.selectedDept) {
-                        detail.classList.add("active");
-                    }
-                });
-            }
-            // Scroll functions for navigation
-            window.scrollToNext = () => {
-                pagesContainer.scrollTo({
-                    top: pagesContainer.scrollTop + pagesContainer.clientHeight,
-                    behavior: "smooth"
-                });
-            };
-            window.scrollToHome = () => {
-                pagesContainer.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
-                resetDepartmentSelection();
-            };
-            window.scrollToDepartments = () => {
-                const departmentsSection = document.querySelector(".departments");
-                const deptIndex = Array.from(pages).indexOf(departmentsSection);
-                pagesContainer.scrollTo({
-                    top: deptIndex * pagesContainer.clientHeight,
-                    behavior: "smooth"
-                });
-                resetDepartmentSelection();
-            };
-            window.scrollToEvents = () => {
-                const eventsSection = document.querySelector(".events");
-                const eventsIndex = Array.from(pages).indexOf(eventsSection);
-                pagesContainer.scrollTo({
-                    top: eventsIndex * pagesContainer.clientHeight,
-                    behavior: "smooth"
-                });
-            };
-            window.scrollToCredits = () => {
-                const creditsSection = document.querySelector(".credits");
-                const creditsIndex = Array.from(pages).indexOf(creditsSection);
-                pagesContainer.scrollTo({
-                    top: creditsIndex * pagesContainer.clientHeight,
-                    behavior: "smooth"
-                });
-            };
-            function resetDepartmentSelection() {
-                window.selectedDept = null;
-                window.selectedDeptClass = null;
-                document.querySelectorAll(".department").forEach(el => el.classList.remove("active"));
-                noSelection.style.display = "block";
-                eventDetails.forEach(detail => detail.classList.remove("active"));
-            }
             // Set background images for developer cards
             document.querySelectorAll('.developer-card').forEach(card => {
                 const imgUrl = card.dataset.imgUrl;
@@ -2232,17 +2398,23 @@
                     card.style.setProperty('--border-color', color);
                 }
             });
-            // Handle window resize
+
+            // Handle window resize (Scroll adjustment fix)
             let resizeTimer;
             window.addEventListener("resize", () => {
                 clearTimeout(resizeTimer);
                 resizeTimer = setTimeout(() => {
+                    const currentPageIndex = getCurrentPageIndex();
                     pagesContainer.scrollTo({
-                        top: pagesContainer.scrollTop,
+                        top: currentPageIndex * pagesContainer.clientHeight,
                         behavior: "auto"
                     });
                 }, 100);
             });
+
+            // Manually trigger scroll on load to set initial active nav/button state
+            pagesContainer.dispatchEvent(new Event('scroll'));
+            resetDepartmentSelection();
         });
     </script>
 </body>
