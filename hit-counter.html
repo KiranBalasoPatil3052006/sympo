@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <style>
+        /* General Styling */
         body {
             margin: 0;
             padding: 20px;
@@ -26,7 +27,7 @@
             z-index: -1;
         }
 
-        /* Styling for the new back button */
+        /* Back Button Styling */
         .back-button {
             position: fixed;
             top: 30px;
@@ -44,6 +45,7 @@
             text-shadow: 0 0 15px rgba(0, 255, 255, 1);
         }
 
+        /* Main Container */
         .container {
             max-width: 900px;
             margin: 50px auto;
@@ -60,40 +62,87 @@
             color: #00ffff;
             text-shadow: 0 0 10px rgba(0, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.3);
             font-size: 2.5rem;
-            margin-bottom: 30px;
         }
 
-        .stat {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 14px 10px;
+        /* Website Visits Counter */
+        #visits-container {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: rgba(0, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 8px;
+        }
+
+        #visits-container span {
+            font-size: 1.5rem;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
+        }
+
+        #visits-container strong {
+            display: block;
+            font-size: 3.5rem;
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff;
+            margin-top: 5px;
+        }
+
+        /* Table Styling */
+        .table-container {
+            overflow-x: auto;
+        }
+
+        #stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        #stats-table th, #stats-table td {
+            padding: 15px;
+            text-align: left;
             border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+        }
+
+        #stats-table th {
+            color: #00ffff;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+        }
+
+        #stats-table td {
             font-size: 1.1rem;
-            transition: background-color 0.3s ease;
         }
         
-        .stat:hover {
+        #stats-table td:first-child {
+            font-weight: bold;
+        }
+
+        #stats-table tbody tr:hover {
             background-color: rgba(0, 255, 255, 0.05);
         }
-
-        .stat:last-child {
-            border-bottom: none;
+        
+        /* Center-align count columns */
+        #stats-table th:nth-child(2), #stats-table th:nth-child(3),
+        #stats-table td:nth-child(2), #stats-table td:nth-child(3) {
+            text-align: center;
         }
 
-        .stat span {
-            flex-basis: 75%;
-            word-wrap: break-word;
-            text-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
-        }
-
-        .stat strong {
+        #stats-table td:nth-child(2), #stats-table td:nth-child(3) {
+            font-weight: bold;
             color: #00ffff;
             font-size: 1.3rem;
-            text-shadow: 0 0 8px #00ffff;
         }
-        
-        /* Responsive Design */
+
+        #error-container {
+            text-align: center;
+            padding: 20px;
+            font-size: 1.1rem;
+        }
+
+        /* === IMPROVED RESPONSIVE DESIGN FOR MOBILE === */
         @media (max-width: 768px) {
             body {
                 padding: 10px;
@@ -106,22 +155,79 @@
             .container {
                 margin: 20px auto;
                 padding: 15px 20px;
+                margin-top: 80px;
             }
             h1 {
                 font-size: 1.8rem;
             }
-            .stat {
+            #visits-container strong {
+                font-size: 2.5rem;
+            }
+
+            /* 1. Hide the table header accessibly */
+            #stats-table thead {
+                border: none;
+                clip: rect(0 0 0 0);
+                height: 1px;
+                margin: -1px;
+                overflow: hidden;
+                padding: 0;
+                position: absolute;
+                width: 1px;
+            }
+
+            /* 2. Style each TR as a distinct card */
+            #stats-table tr {
+                display: block;
+                margin-bottom: 1.5em;
+                border: 1px solid rgba(0, 255, 255, 0.2);
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
+            }
+
+            #stats-table td {
+                display: block;
+                border-bottom: 1px solid rgba(0, 255, 255, 0.15);
+                text-align: right;
+                font-size: 1rem;
+                padding: 12px;
+            }
+
+            #stats-table td:last-child {
+                border-bottom: 0;
+            }
+
+            /* 3. Make the first cell (Department) the card header */
+            #stats-table td:first-child {
+                background-color: rgba(0, 255, 255, 0.1);
+                font-weight: bold;
+                font-size: 1.1rem;
+                text-align: center;
+                color: #00ffff;
+                text-shadow: 0 0 4px #00ffff;
+                border-bottom: 2px solid rgba(0, 255, 255, 0.2);
+            }
+            
+            /* 4. Use the data-label for other cells */
+            #stats-table td:not(:first-child)::before {
+                content: attr(data-label);
+                float: left; /* Aligns label to the left */
+                font-weight: normal;
+                color: #e0e0e0;
+                text-shadow: none;
                 font-size: 0.9rem;
             }
-            .stat strong {
-                font-size: 1.1rem;
+
+            /* 5. Ensure the header cell doesn't get a fake label */
+            #stats-table td:first-child::before {
+                content: "";
+                display: none;
             }
-        }
-        @media (max-width: 480px) {
-            .stat {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 5px;
+            
+            /* 6. Adjust font size for the count values */
+            #stats-table td:nth-child(2),
+            #stats-table td:nth-child(3) {
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -136,7 +242,24 @@
 
     <div class="container">
         <h1>Website Statistics 📊</h1>
-        <div id="stats-container"></div>
+
+        <div id="visits-container">
+             </div>
+
+        <div class="table-container">
+            <table id="stats-table">
+                <thead>
+                    <tr>
+                        <th>Department</th>
+                        <th>Department Clicks</th>
+                        <th>Registration Clicks</th>
+                    </tr>
+                </thead>
+                <tbody id="stats-table-body">
+                    </tbody>
+            </table>
+        </div>
+        <div id="error-container"></div>
     </div>
 
     <script>
@@ -144,8 +267,7 @@
         particlesJS('particles-js', {
             "particles": {
                 "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-                "color": { "value": "#00ffff" },
-                "shape": { "type": "circle" },
+                "color": { "value": "#00ffff" }, "shape": { "type": "circle" },
                 "opacity": { "value": 0.8, "random": true, "anim": { "enable": true, "speed": 1, "opacity_min": 0.2 } },
                 "size": { "value": 4, "random": true },
                 "line_linked": { "enable": true, "distance": 120, "color": "#00ffff", "opacity": 0.4, "width": 1.2 },
@@ -158,40 +280,107 @@
             "retina_detect": true
         });
 
-        // Fetch statistics from the backend
+        // Mapping from short codes used in registration hits to full department names
+        const deptMap = {
+            'sh': 'Science and Humanities',
+            'mechanical': 'Mechanical Engineering',
+            'electrical': 'Electrical and Electronics Engineering',
+            'electronics': 'Electronics and Communication Engineering',
+            'cse': 'Computer Science and Engineering',
+            'aids': 'Artificial Intelligence & Data Science',
+            'it': 'Information Technology',
+            'cyber': 'Computer Science and Engineering (Cyber Security)'
+        };
+
+        // Asynchronous function to fetch and display statistics
         async function fetchStats() {
             try {
                 const response = await fetch('https://symposium-backend-25.onrender.com/api/hits');
-                const data = await response.json();
-                
-                // Sort data alphabetically for better organization
-                data.sort((a, b) => a.name.localeCompare(b.name));
-
-                const container = document.getElementById('stats-container');
-                container.innerHTML = ''; // Clear previous stats to avoid duplicates
-
-                if (data.length === 0) {
-                     container.innerHTML = '<p style="text-align: center;">No statistics recorded yet. Interact with the main site to generate data.</p>';
-                     return;
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
                 }
+                const data = await response.json();
+
+                // --- 1. Process the Raw Data ---
+                let websiteVisits = 0;
+                const departmentStats = {};
+
+                // Initialize a stats object for all known departments to ensure they all appear
+                Object.values(deptMap).forEach(fullName => {
+                    departmentStats[fullName] = { deptClicks: 0, regClicks: 0 };
+                });
 
                 data.forEach(item => {
-                    const statElement = document.createElement('div');
-                    statElement.className = 'stat';
-                    statElement.innerHTML = `<span>${item.name}</span><strong>${item.count}</strong>`;
-                    container.appendChild(statElement);
+                    if (item.name === 'websiteVisits') {
+                        websiteVisits = item.count;
+                    } else if (item.name.startsWith('registrationClicks_')) {
+                        const deptCode = item.name.replace('registrationClicks_', '');
+                        const fullName = deptMap[deptCode];
+                        if (fullName && departmentStats[fullName]) {
+                            departmentStats[fullName].regClicks = item.count;
+                        }
+                    } else {
+                        // Assumes any other name is a full department name for a department click
+                        if (departmentStats[item.name]) {
+                            departmentStats[item.name].deptClicks = item.count;
+                        }
+                    }
                 });
+
+                // --- 2. Sort the Data ---
+                // Convert the stats object into an array for sorting
+                const statsArray = Object.keys(departmentStats).map(name => ({
+                    name,
+                    deptClicks: departmentStats[name].deptClicks,
+                    regClicks: departmentStats[name].regClicks
+                }));
+
+                // Sort the array by department clicks in descending order
+                statsArray.sort((a, b) => b.deptClicks - a.deptClicks);
+
+                // --- 3. Update the DOM ---
+                const visitsContainer = document.getElementById('visits-container');
+                const tableBody = document.getElementById('stats-table-body');
+                const errorContainer = document.getElementById('error-container');
+
+                // Clear previous content to prevent duplicates on refresh
+                tableBody.innerHTML = '';
+                errorContainer.innerHTML = '';
+
+                // Display total website visits
+                visitsContainer.innerHTML = `
+                    <span>Total Website Visits</span>
+                    <strong>${websiteVisits}</strong>
+                `;
+                
+                // Handle the case where no data is available
+                if (statsArray.every(s => s.deptClicks === 0 && s.regClicks === 0) && websiteVisits === 0) {
+                     errorContainer.innerHTML = '<p>No statistics recorded yet. Interact with the main site to generate data.</p>';
+                    return;
+                }
+
+                // Populate the table with the sorted data
+                statsArray.forEach(stat => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td data-label="Department">${stat.name}</td>
+                        <td data-label="Department Clicks">${stat.deptClicks}</td>
+                        <td data-label="Registration Clicks">${stat.regClicks}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+
             } catch (err) {
                 console.error('Failed to fetch stats:', err);
-                const container = document.getElementById('stats-container');
-                container.innerHTML = '<p style="text-align: center; color: #ff6b6b;">Failed to load statistics. Please try again later.</p>';
+                const errorContainer = document.getElementById('error-container');
+                // Provide a user-friendly error message
+                errorContainer.innerHTML = '<p style="color: #ff6b6b;">Failed to load statistics. The server might be waking up. Data will appear shortly.</p>';
             }
         }
 
-        // Fetch stats on page load and then every 5 seconds
+        // Fetch stats on page load and set an interval to refresh every 5 seconds
         fetchStats();
         setInterval(fetchStats, 5000);
     </script>
 </body>
 </html>
-
