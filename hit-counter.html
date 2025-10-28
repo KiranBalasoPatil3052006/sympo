@@ -295,7 +295,7 @@
         // Asynchronous function to fetch and display statistics
         async function fetchStats() {
             try {
-                const response = await fetch('https://symposium-backend-hqqt.onrender.com/api/hit');
+                const response = await fetch('https://symposium-backend-hqqt.onrender.com/api/hits');
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
@@ -384,6 +384,7 @@
     </script>
 </body>
 </html>
+
 
 
 
